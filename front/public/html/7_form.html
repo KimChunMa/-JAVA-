@@ -9,20 +9,44 @@
 	<form>	<!-- from s -->
 		<input/>	<br/>
 		<input type="text" value="텍스트"/>	<br/>
-		<input type="password" />	<br/>
+		<input type="password" />	<br/><br/><br/>
 		
-		<input type="radio" name="email">예	 <!-- name:태그 식별자 -->
-		<input type="radio" name="email"> 아니오	<br/>
 		
-		<input type="checkbox" name="item"/>드라마
+		<input type="radio" name="email" checked="checked">예	 <!-- name:태그 식별자 -->
+		<input type="radio" name="email"> 아니오	<br/><br/><br/>
+		
+		<input type="checkbox" name="item" checked="checked"/>드라마
 		<input type="checkbox" name="item"/>예능
-		<input type="checkbox" name="item"/>노래 </br>
+		<input type="checkbox" name="item"/>노래 </br><br/><br/>
 		
-		<input type="button" value="버튼"> 
-		<input type="submit" value="전송"> 
-		<input type="reset"  value="리셋"> 
-	
+		<textarea rows="2" cols="20" style="resize: none"></textarea><br/><br/><br/>
+		
+		<input type="button" value="버튼"/> 
+		<input type="submit" value="전송"/> 
+		<input type="reset"  value="리셋"/> <br/><br/><br/>
+		
+		<input type="email" value ="이메일"/>	<br/><br/><br/>
+		<input type="color"> <br/><br/>
+		<input type="date">	 <br/><br/>
+		<input type="datetime-local"> <br/><br/>
+		<input type="month"> <br/><br/>
+		<input type="time"> <br/><br/>
+		<input type="week"> <br/><br/>
+		<input type="range" min="0" max="10" value="1"/> <br/><br/>
+		<input type="number" min="0" max="10" value="1"/>	<br/>
+		
 	</form>	<!-- from e -->
 	
+	<input type="text" value="인사과" readonly>
+	<input type="text" value="인사과" disabled="disabled" >
+	<input type="text"  placeholder="입력해주세요" >
+	<input type="text"  placeholder="입력해주세요" autofocus="autofocus">
+	<br/><br/>
+	
+	<select>
+		<option> 하나 </option>
+		<option> 둘 </option>
+		<option> 셋 </option>
+	</select>
 </body>
 </html>
