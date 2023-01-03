@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+*{
+	margin:0 auto;
+}
+
+h2{
+	text-align: center;
+	padding-bottom: 30px;
+}
+
+table{
+	padding:50px;
+	border-top:red 2px solid;
+	border-bottom:red 2px solid;
+}
+
+table td{
+	padding-bottom:5px;
+	padding-left:30px;
+}
+
+.a{
+	width:220px; height:20px;
+}
+
+.b{
+	resize: none;
+}
+
+.c{
+	vertical-align: top;	
+}
+
+.btn{
+	text-align:right;
+	margin-top:25px;
+}
+
+.btn input {
+	padding:10px 20px;
+	margin: 10px 3px 0px 0px;
+}
