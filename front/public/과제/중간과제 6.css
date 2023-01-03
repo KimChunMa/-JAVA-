@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+h2{
+	border-left:10px green solid;
+	padding-left:20px;
+}
+
+ul{
+	padding:30px;
+	width:500px;
+	border:2px solid #cccccc;
+	border-radius: 10px;
+	background-color:#EEEEEE;
+	font-size:19px;
+	margin-bottom:50px;
+}
+
+ul li {
+	margin: 10px 20px;
+	line-height: 170%
+}
+
+form{
+	padding:38px;
+	width:350px;
+	height:250px;
+	border:2px solid #cccccc;
+	border-radius:20px;
+	font-size:19px;
+	margin:30px;
+}
+
+form p {
+	padding-bottom:5px;
+	border-bottom:1px black dotted;
+}
+
+form a{
+	margin-left:230px;
+	text-decoration: none;
+	color:black;
+}

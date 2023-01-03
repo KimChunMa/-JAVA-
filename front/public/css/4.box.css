@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+h4{border:1px solid black;}
+
+h5{border-top: solid 2px blue;
+	border-right:dotted 3px orange;
+	border-bottom:double 4px red;
+	border-left:dashed 5px black;
+	border-radius: 10px;
+	box-shadow:0px 0px 5px orange;}
+
+h6{
+	border:solid 2px red;
+	padding-top:20px;
+	padding-right:30px;
+	padding-left:40px;
+	padding-bottom:50px;
+	margin-top:20px;
+	margin-right:30px;
+	margin-bottom:40px;
+	margin-left:50px;
+}
+
+h2{border:1px black solid;
+padding:10px;
+padding : 10px 20px;
+margin:10px;
+}
+
+h1{ width:200px;  
+border:solid 1px orange;
+text-align:center;
+margin:0 auto; /* width 필수 */
+}
+
+.a{
+	width:110px;
+	margin:60px;
+	border:black 10px solid;
+	padding:50px;
+}
+
+.boxa{
+	box-sizing: border-box;
+}
+
+.boxb{
+	box-sizing: content-box;
+	}
