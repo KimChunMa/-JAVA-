@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+
+*{
+	margin:0 auto;
+}
+
+.login{
+	width:350px; 
+}
+
+.head{
+	padding:15px;
+	border-top:1px solid gray;
+	text-align: center;
+}
+
+.btn{padding:20px; }
+
+table .col2 input{ width:150px; height:23px;}

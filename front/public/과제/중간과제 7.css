@@ -1,24 +1,24 @@
 @charset "UTF-8";
 
-img {
+.img_file {
 	width:400px;
 	height:500px;
 }
 
-div{
-	width:800px;
-	padding:10px;
+.box{
+	width:600px;
+	padding:20px;
 	border: 1px solid #0F6878;
-	background-color: #0F6878
+	background-color: #0F6878;
+	color:white;
+	line-height: 170%;
 }
+
 .y{
 	color:#FFA500;
 }
 
-p{
-	color:white;
-	line-height:90%; 
-}
+
 
 .y1{
 	color:#FFA500;

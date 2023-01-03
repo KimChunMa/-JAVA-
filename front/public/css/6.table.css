@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+.table {
+	border-collapse: collapse;
+}
+
+.table, th, td{
+	border:2px solid black;
+	padding:10px 20px;
+}
+
+.table th{
+	 background-color: #eeeeee;
+}
+
+.table td{
+	text-align: center;
+}
+
+.table .col1{width:50px;}
+.table .col2, table .col3 {width:100px;}
+.table .col4{width:200px;}
