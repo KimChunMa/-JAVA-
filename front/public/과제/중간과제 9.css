@@ -1,64 +1,62 @@
 @charset "UTF-8";
-
 *{
 	margin:0 auto;
 }
 
-.h2{
-	padding-top:30px;
+h3{
 	text-align: center;
-	margin-bottom:15px;
+	padding-top:15px;
 }
 
-.signup_form{
+.signup{
 	padding:30px;
+	text-align: center;
 	width:600px;
-	margin: 0 auto;
-	border-top:solid 2px red;
-	border-bottom:solid 2px red;
 }
 
-.signup_box{
+.line{
+	border-top:red 1px solid;
+	padding-top:30px;
+}
+
+.list{
 	list-style: none;
+	padding-bottom:9px;
 }
 
-.column{
-	padding:5px;	
+.col1, .col2{
+	display:inline-block;
 }
 
-.column li{
-	display: inline-block;
+.col1{
+	text-align:left;
+	width:150px;
 }
 
-.column .col1{
-	width:130px;
-	text-align: left;
+.textbox{
+	width:170px;
+	height: 25px;
 }
 
-.column .col2 input{
-	width:250px; height:20px;
+.col2{
+	text-align:left;
+	width:300px;
 }
 
-.a{
-	vertical-align: top;
+.selectbox{
+	width:70px; height: 25px;
 }
 
-
-.column .col2 .box2{
-	height:25px;
+.textbox2{
+	width:350px; height:100px; resize: none;
+	margin-bottom: 15px;
 }
 
-textarea{
-	resize: none;
-}
+.hello{ vertical-align: top; }
 
 .btn{
-	text-align:right;
-	margin-top:25px;
+	text-align: right;
 }
-
-.btn input {
-	padding:10px 20px;
-	margin: 10px 3px 0px 0px;
+.btn input{
+	padding:15px;
 }
-

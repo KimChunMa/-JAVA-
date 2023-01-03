@@ -7,90 +7,67 @@
 </head>
 <body>
 
-	<h2 class="h2"> 회원 가입 폼</h2>
+	<h3> 회원 가입 폼</h3>
 	
-	<form class="signup_form"> 
-		
-			<ul class="signup_box"> 
-				<li>
-					<ul class="column">
-						<li class="col1">아이디 </li> 
-						<li class="col2"> <input type="text" class="box"> </li>
-					</ul>
-				</li>
-					
-				<li>
-					<ul class="column"> 
-						<li class="col1">비밀번호   </li>
-						<li class="col2"> <input type="password" class="box"></li>
-					</ul>
-				</li>
-					
-				<li>
-					<ul class="column"> 
-						<li class="col1">비밀번호 확인 </li>
-						<li class="col2"> <input type="password" class="box"> </li>
-					</ul>
-				</li>
-				
-				
-				<li>
-					<ul class="column"> 
-						<li class="col1"> 이름  </li>
-						<li class="col2"> <input type="text" class="box"> </li>
-					</ul>
-				</li>
-				
-				
-				<li>
-					<ul class="column"> 
-						<li class="col1"> 이메일  </li>
-						<li class="col2">
-						 <input type="text" class="box"> @ 
-							<select class="box2">
-								<option>직접 입력</option>
-								<option>naver.com</option>
-							</select> 
-						</li>
-					</ul>
-				</li>
-				
-				<li>
-					<ul class="column">  
-						<li class="col1"> 이메일 수신  </li> 
-						<li > <input type="radio" name="a">비수신  
-						<input type="radio" name="a">수신  
-						</li>
-					</ul>
-				</li>
-				
-				
-				<li>
-					<ul class="column"> 
-						<li class="col1 "> 가입경로 </li>
-				 		<li > <input type="checkbox"> 친구추천 
-							  <input type="checkbox"> 인터넷검색  
-							  <input type="checkbox"> 기타 
-						</li>
-					</ul>
-				</li>
-				
-				<li>
-					<ul class="column"> 
-					<li class="col1 a"> 인사말 </li>  
-					<li class="col2"> <textarea rows="12" cols="50"></textarea>
-					</li>
-					</ul>	
-				</li>
-					
-			</ul>
-			
-	</form>
-	<div class="btn"> 
-		<input type="submit" value="저장하기" class="save">
-		<input type="reset" value="취소하기" class="reset">
+<form class="signup"> 
+
+<div class="line"> </div>
+	<ul class="list">
+		<li class="col1"> 아이디 </li>
+		<li class="col2"> <input type="text" class="textbox"></li>
+	</ul>
+	
+	<ul class="list">
+		<li class="col1"> 비밀번호 </li>
+		<li class="col2"> <input type="password"  class="textbox"></li>
+	</ul>
+	
+	<ul class="list">
+		<li class="col1"> 비밀번호 확인 </li>
+		<li class="col2"> <input type="password"  class="textbox"></li>
+	</ul>
+	
+	<ul class="list">
+		<li class="col1"> 이름 </li>
+		<li class="col2"> <input type="text"  class="textbox"></li>
+	</ul>
+	
+	<ul class="list">
+		<li class="col1"> 이메일 </li>
+		<li class="col2"> <input type="text"  class="textbox"> @
+			<select class="selectbox">
+				<option>직접 입력하기</option>	
+				<option>네이버</option>		
+			</select>
+		</li>
+	</ul>
+	
+	<ul class="list">
+		<li class="col1"> 이메일 수신 </li>
+		<li class="col2"> <input type="radio" name="a">비수신  
+		<input type="radio" name="a">수신</li>
+	</ul>
+	
+		<ul class="list">
+		<li class="col1"> 가입 경로 </li>
+		<li class="col2"> <input type="checkbox"> 친구추천 
+		<input type="checkbox"> 인터넷 검색
+		<input type="checkbox"> 기타</li>
+	</ul>
+	
+	<ul class="list ">
+		<li class="col1 hello"> 인사말 </li>
+		<li class="col2"> <textarea class="textbox2"></textarea></li>
+	</ul>
+	
+	<div class="line"> </div>
+	
+	<div class="btn">
+		<input type="submit" value="저장하기">
+		<input type="reset" value="취소하기">
 	</div>
-	
+
+</form>
 
 </body>
 </html>
