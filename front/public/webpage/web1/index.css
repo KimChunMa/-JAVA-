@@ -1,0 +1,96 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 공통 */
+*{margin:0px; padding:0px;}
+li{list-style:none;}
+a{text-decoration: none; color:black;}
+
+
+#header{ /* 상단 */
+	width:1200px;
+	margin: 0 auto;
+	display:flex;
+	justify-content: space-between;
+}
+
+.top_menu { /* 상단 메뉴*/
+	text-align:right;
+	margin-top: 20px;
+	margin-bottom:10px;
+}
+
+.top_menu a{ /* 상단 메뉴 a */
+	font-family: 'NanumSquareNeo-Variable';}
+
+
+.main_menu li{ /* 본 메뉴 li*/
+	display:inline-block;
+	margin-left:80px;
+	font-size:24px;
+	font-family: 'NanumSquareNeo-Variable';}
+	
+
+ 
+ #image{
+	background-image: url("image/갈색.png");
+	height:250px; width:100%;
+	background-repeat: no-repeat;
+	/*background-position: top;*/
+	object-fit:fill;
+	margin:20px 0px;
+	
+	
+}
+
+
+#content{ /* 본문  */
+	width:1200px; margin: 0 auto;
+	display:flex; justify-content: space-between;	
+}
+
+.side_bar{ /* 사이드바 */
+	width: 250px; 
+}
+
+ .side_bar h3{
+ font-size:20px;
+ background-color:#516E7F;
+ color:#55CFAD;
+ padding: 15px;
+ }
+ 
+.side_bar li{
+	border-bottom:dotted 1px #eeeeee;
+	padding:10px;}
+
+
+.main_content{ /* 본문 */
+	width:900px; 
+}
+
+.main_content h3{
+	font-size:20px; border-bottom: 1px solid #eeeeee;
+	padding-bottom:15px;
+}
+
+
+
+#footer{
+	background-color: #2c2a29;
+	 margin-top:50px; 
+}
+
+#ft_box{
+	width:1200px; margin:0 auto; padding:30px; color:white;
+	display: flex; justify-content: space-between;
+}
+
+
+	

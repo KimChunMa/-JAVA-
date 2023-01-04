@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+#web_box{
+	
+}
+
+#header{
+
+	background-color:blue;
+	height:200px;
+}
+
+#content{
+	
+	background-color:orange;
+	height:600px; width:1200px; /* 1050px ~ 1300px */
+	margin:0 auto;
+	
+	display:flex;
+}
+
+#left_menu{
+
+	background-color:gray;
+	height:600px; width:900px;
+}
+
+#right_menu{
+	
+	background-color:purple;
+	height:600px;
+	width:300px;
+}
+
+
+#footer{
+	
+	background-color:black;
+	height:200px;
+	
+}
+

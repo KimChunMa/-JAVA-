@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+*{	
+	margin:0 auto;
+}
+
+.signup{
+	padding-top:30px;
+	width:700px;
+}
+
+.line2{
+	border-top:2px black solid;
+	padding-top:20px;
+}
+
+.list{
+	list-style:none;
+	padding-bottom:10px;
+}
+
+.col1, .col2{
+	display:inline-block;
+	text-align: left;
+	vertical-align: top;
+}
+
+.col1{
+	width:90px;
+	font-weight: bold;
+	vertical-align: center;
+}
+
+.col2{
+	width:500px;
+}
+
+.col2 input, textarea{
+	width:500px;
+	height:25px;
+	resize: none;
+}
+
+textarea{
+	height:90px;
+}
+
+.line{
+	border-bottom:#F2F2F2 1px solid;
+	margin:10px;
+}
+
+.btn{
+	text-align:right;
+}
+.save, .list1{
+	padding:16px;
+	
+}

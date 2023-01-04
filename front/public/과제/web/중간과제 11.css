@@ -1,0 +1,138 @@
+@charset "UTF-8";
+
+*{padding:0px; margin:0px;}
+a{text-decoration: none; color:black;}
+li{list-style:none;}
+
+#header{ /* 상단 */
+	width:1200px;
+	margin: 0 auto;
+	display:flex;
+	justify-content: space-between;
+}
+
+.menu li{
+	display:inline-block;
+}
+
+.top_menu{
+	text-align: right;
+}
+
+.main_menu li{
+	font-size:25px;
+	padding:25px;
+	margin-right:40px;
+	font-weight: bold;
+}
+
+#img{
+	background-image: url("img/광고.png");
+	width:100%px; height:250px; padding-bottom:10px;
+}
+
+#content{
+	display:flex;
+	width:1200px;
+	margin:0 auto;
+}
+
+.list{width:250px;}
+
+.list h2{
+	background-color:#0BA09A;color:white;
+	padding:12px;
+}
+
+.list p{ padding:10px; margin-bottom:5px;}
+
+.btn{
+	text-align: center;
+}
+
+.btn input{
+	padding:5px;
+}
+
+.line{
+	padding-top:8px;
+	border-bottom:2px black solid;
+}
+
+.list h4{
+	padding:14px;
+	border-bottom: 1px solid #EEEEEE;
+}
+
+.list li{
+	padding:13px 6px	;
+}
+
+.write{
+	width:400px; margin:20px;
+}
+
+.write1 li{
+	display:inline-block;
+}
+
+.write1 ul, .write2 ul{
+	display:flex;
+	justify-content: space-between;
+	padding-bottom:10px;
+}
+
+.write1 , .write2{
+	padding-bottom:30px;
+	
+}
+.picture{
+	width:400px; margin:20px;
+}
+
+.picture ul{
+	display:inline-block;
+}
+
+#footer{ /* 하단 */
+	background-color: #05354E; margin-top:50px; 
+	width:100%;
+}
+
+.link li, .link a{
+	color:white;
+	padding-right:20px;
+	font-weight: bold;
+}
+
+.ft_box{
+	width:1200px; color:white;
+	margin:0 auto;}
+
+.link {
+	width:1200px;
+	display:flex; justify-content: flex-start;}
+
+
+.link li {
+	display:inline-block;
+	padding-top:10px;
+	padding-bottom: 20px;
+}
+
+.link ul{
+	display:inline-block;
+}
+
+.ft_box ul {
+	display:inline-block;
+	padding-right: 100px;
+	vertical-align: top;
+}
+.a{
+	padding-top:30px;
+	padding-bottom:80px;
+}
+
+
+

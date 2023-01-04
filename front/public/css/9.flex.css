@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+.container{
+	display:flex;
+}
+
+.box{
+		border:1px white solid;
+		width:100px; height:50px;
+		background-color: red; color:white;	
+}
+
+#flexbox1{justify-content: flex-start;}
+
+#flexbox2{justify-content: flex-end;}
+
+#flexbox3{justify-content: center;}
+
+#flexbox4{justify-content: space-between;}
+
+#flexbox5{justify-content: space-around;}
+
+#flexbox6{ justify-content: space-evenly;}
+
+#flexbox7{
+	flex-direction: column;
+}
