@@ -1,44 +1,54 @@
 @charset "UTF-8";
 
-@charset "UTF-8";
-
-@font-face {
-    font-family: 'NanumSquareNeo-Variable';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+/* 상단 */
+#sub_img1{
+	background-image: url("../img/sub_reservation.jpg");
 }
 
+/* 본문  */
+#content{padding:100px 0px; margin:0 auto;
+width:1200px; display:flex;}
 
-ul{list-style: none; }
-li{display:inline-block;}
-a{text-decoration: none; color:black;}
-*{padding: 0px; margin:0px; }
+/* 날짜 */
+.date{
+	width:700px; padding:30px 0px;
+	background-color: #FCF9EA;
+	text-align: center;
+	margin:0 auto;}
+	
+.date p{margin-bottom:10px;}
+	
+.date2{ padding:8px 0px;}
 
-/*  상단   */
-.header{ width:1200px; margin:0 auto; padding:12px 0px;
-		position:relative; /* 상위요소 relative! */
-		height:50px;} 
-		
-.blue{color:blue}
+table{margin-left:auto; margin-right:auto;}
 
-.logo{position:absolute; /* 하위에겐 absolute */
-left:0px; top:20px;}
-
-.h_menu{ position:absolute; /* 하위에겐 absolute */
-right:0px; top:20px;
+table , td , tr{
+	border:2px solid black;
+	border-collapse: collapse;
+	background-color:white;
 	
 }
 
-.h_menu li{ padding-right:80px; font-size:20px;
-font-family: 'NanumSquareNeo-Variable'; }
+.row1 td{width:90px; height:10px; 
+text-align: center;}
 
+td{text-align: left;  height:80px;
+vertical-align: top;}
 
-/* 하단 */
-.footer{background-color: #292C32; margin-top:50px;}
-.ft_box{margin:0 auto; color:white; width:1200px;
-		display:flex; justify-content: space-between;
-		padding:50px 0px;}
-.ft_item{width:400px;}
+.red{ color:red;}
 
-#sns{width:200px;}
+/* 사이드바 */
+.sider_bar{
+	width:300px; padding-left:30px;
+}
+
+.sider_bar h3{ padding-left:10px;
+	border-left:5px black solid; }
+	
+.sider_bar li{padding: 5px 0px;
+display:block; font-size:15px;}
+
+.sider_bar ul{padding-bottom: 30px;}
+
+.green{color:green; font-size:9px;}
+

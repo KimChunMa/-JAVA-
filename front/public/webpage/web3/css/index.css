@@ -13,7 +13,7 @@ li{display:inline-block;}
 a{text-decoration: none; color:black;}
 *{padding: 0px; margin:0px; }
 
-/*  상단   */
+/*  상단  ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
 .header{ width:1200px; margin:0 auto; padding:12px 0px;
 		position:relative; /* 상위요소 relative! */
 		height:50px;} 
@@ -34,22 +34,27 @@ font-family: 'NanumSquareNeo-Variable'; }
 /* 이미지 배너 */
 .nav{ text-align: center;}
 
-/* 본문 */
+/* 본문 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
 .section{margin: 0 auto; width:1200px;}
 
-.top_main{display:flex; justify-content: space-around;
-margin-top:80px;}
+/* 상단메뉴 */
+.top_main{display:flex; }
 
-.left, .right{ width:450px; display:flex;}
+.banner{ width:500px; display:flex; margin: 80px 50px;}
 
-.btm-main{display:flex; margin-top:100px;}
+.banner img{padding: 0px 20px;}
 
-.btm-main ul, .btm-main img{
-	width:250px; padding-right:30px;
-}
+/* 하단메뉴 */
 
-/* 하단 */
-.footer{background-color: #292C32; margin-top:50px;}
+.items{background-color: #eeeeee;}
+.btm-main{display:flex;}
+.btm-main img{width:100%;}
+.btm-main li {padding:3px 0px;}
+
+.item{width:270px; margin:30px 30px;}
+
+/* 하단 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+.footer{background-color: #292C32; padding-top:50px;}
 .ft_box{margin:0 auto; color:white; width:1200px;
 		display:flex; justify-content: space-between;
 		padding:50px 0px;}
