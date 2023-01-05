@@ -11,7 +11,7 @@
 ul{list-style: none; }
 li{display:inline-block;}
 a{text-decoration: none; color:black;}
-*{padding: 0px; margin:0px; }
+*{padding: 0px; margin:0px;  }
 
 /*  상단   */
 .header{ width:1200px; margin:0 auto; padding:12px 0px;
@@ -31,6 +31,19 @@ right:0px; top:20px;
 .h_menu li{ padding-right:80px; font-size:20px;
 font-family: 'NanumSquareNeo-Variable'; }
 
+/* 이미지 */
+.nav{text-align: center;}
+
+/* 본문 */
+.section{ width:1200px; margin: 0 auto; }
+
+.top_main{ display:flex; margin:110px 0px; padding:30px;}
+
+.top_main li, .btm_main li{display:block; padding:15px;}
+.top_main span, .btm_main span{font-weight: bold;}
+
+.btm_main {display:flex; margin:100px 0px; padding:30px;
+background-color: #EEEEEE;}
 
 /* 하단 */
 .footer{background-color: #292C32; margin-top:50px;}
