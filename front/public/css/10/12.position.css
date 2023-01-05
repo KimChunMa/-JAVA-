@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+.box1 , .box2 , .box3 , .box4 , .box5 , .box6,
+.box7 , .box8 , .box9 , .box10 , .box11 , .box12{
+	width:100px; height:80px; background-color:yellow;
+	border:1px solid red;
+}
+
+.box2 {position:relative; left:50px; top:50px;}
+
+.box5 { position:absolute; left:50px; top:50px;}
+
+.box8 {position:fixed; left:100px; top:50px;}
+
+.parent1 { position:relative; 
+width:300px; height:300px; border:1px black solid}
+
+.box11 { position: absolute; left:80px;  bottom: 10px;}
+
+.box12{left:20px; /* 기본값 static은 적용안됨 */}

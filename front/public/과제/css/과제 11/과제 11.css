@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+.box{
+	background-color: yellow; color:black; text-align: center;
+	width:100px; height:80px; border-radius: 15px;
+}
+
+.contain{
+	margin:0 auto;
+	background-color: green;
+	width:800px; height:800px;
+	position: relative;
+}
+
+.one { position:absolute; top: 100px; left:380px;}
+
+.two { position:absolute; top: 220px; left:180px;}
+
+.thr { position:absolute; top: 220px; left:580px;}
+
+.four { position:absolute; top:380px; left:180px;}
+
+.five { position:absolute; top: 380px; left:580px;}
+
+.six { position:absolute; top: 500px; left:380px;}

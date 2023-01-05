@@ -29,6 +29,8 @@ li{list-style:none;}
 #img{
 	background-image: url("img/광고.png");
 	width:100%px; height:250px; padding-bottom:10px;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 #content{

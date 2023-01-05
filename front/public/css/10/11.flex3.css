@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+.flexbox1 , .flexbox2 , .flexbox3,  .flexbox4, .flexbox5
+{display:flex; width:200px;}
+
+.box1, .box2, .box3 , .box4 , .box5 , .box6
+{ background-color:blue;color:white; 
+border:1px solid white;}
+
+
+.box1 { width:50px; height:50px;}
+.box2 { width:100px; height:100px; 
+display:inline-flex; align-items: center;}
+
+.box4{width: 50px; height:80px;}
+.box5{ width:100px; height:150px;
+display:inline-flex; align-items: center;}
+
+.line{border-bottom: green 2px solid;margin:30px;}
+
+
+.flexbox1{ align-items: flex-start; flex-wrap:wrap;}
+.flexbox2{ align-items: flex-end;}
+.flexbox3{ align-items: center;}
+.flexbox4{ align-items: stretch;}
+.flexbox5{ align-items: baseline; flex-wrap:wrap;}

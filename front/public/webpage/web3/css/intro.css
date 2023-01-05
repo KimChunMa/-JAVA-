@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'NanumSquareNeo-Variable';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+ul{list-style: none; }
+li{display:inline-block;}
+a{text-decoration: none; color:black;}
+*{padding: 0px; margin:0px; }
+
+/*  상단   */
+.header{ width:1200px; margin:0 auto; padding:12px 0px;
+		position:relative; /* 상위요소 relative! */
+		height:50px;} 
+		
+.blue{color:blue}
+
+.logo{position:absolute; /* 하위에겐 absolute */
+left:0px; top:20px;}
+
+.h_menu{ position:absolute; /* 하위에겐 absolute */
+right:0px; top:20px;
+	
+}
+
+.h_menu li{ padding-right:80px; font-size:20px;
+font-family: 'NanumSquareNeo-Variable'; }
+
+
+/* 하단 */
+.footer{background-color: #292C32; margin-top:50px;}
+.ft_box{margin:0 auto; color:white; width:1200px;
+		display:flex; justify-content: space-between;
+		padding:50px 0px;}
+.ft_item{width:400px;}
+
+#sns{width:200px;}
