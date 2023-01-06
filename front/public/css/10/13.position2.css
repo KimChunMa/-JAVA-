@@ -8,10 +8,7 @@ z-index:1;  /* 겹칠때 배치 순서 */
 background-color: red;
 border-bottom:1px solid #eeeeee;
 display:flex; 
-justify-content: space-between;
-
-
-}
+justify-content: space-between;}
 
 .h_menu li{
 	display:inline-block;
@@ -25,7 +22,6 @@ justify-content: space-between;
 	opacity: 0.5; /* 투명도 1=100%, 0=0%*/
 	
 	width:20%; border:2px solid #eeeeee;
-	
 	
 }
 
