@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+#header{/* sticky 화면에서 벗어났을 때 위치고정*/
+position: sticky; top:0px; /* 가장 위에 */
+
+z-index:1;  /* 겹칠때 배치 순서 */
+
+background-color: red;
+border-bottom:1px solid #eeeeee;
+display:flex; 
+justify-content: space-between;
+
+
+}
+
+.h_menu li{
+	display:inline-block;
+}
+
+.popup{ /* fixed */
+	position: fixed; 
+	
+	right: 0px ; top:40%;
+	
+	opacity: 0.5; /* 투명도 1=100%, 0=0%*/
+	
+	width:20%; border:2px solid #eeeeee;
+	
+	
+}
+
+body{background-color:white;}

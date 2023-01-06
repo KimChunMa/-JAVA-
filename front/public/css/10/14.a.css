@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+a{color:black; text-decoration: none;}
+
+a:hover{ /* 마우스 올릴때 */
+	color:orange;}
+
+a:active { /* 마우스 클릭할때 */
+	color:blue;}
+
+a:visited{/* 클릭 했을 때 */
+	color:red;}
+
+#header{ /* 가운데로 */
+	background-color: #eeeeee;
+	display:flex;
+	justify-content: center;}
+
+#header .drop_menu { /* 리스트 정렬 */
+	display:inline-block;
+	margin-right:50px; }
+
+.drop_menu{ position: relative;}
+.sub_menu{ display:none; /* 숨기기 */
+	position: absolute; 
+	top:22px; left:-30px;/* 상위 요소와 하위요소 접점이 있어야 hover유지*/
+	
+	padding-top : 50px; /* 상위요소와 하위요소사이 여백 */
+	border-left:2px solid red;
+	border-right:2px solid red;
+	border-bottom:2px solid red;
+	
+	width:120px;
+	font-size: 15px;
+	}
+	
+
+.drop_menu:hover .sub_menu{ 
+	display:block; /* 클릭할때 보여주기 */}
