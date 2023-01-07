@@ -1,11 +1,11 @@
-<!-- sticky 안먹힘. 이모티콘 사이트 -->
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>끌리는 남성의류, 조군샵</title>
 <link href="index.css" rel="stylesheet">
+
+<script src="https://kit.fontawesome.com/e89fff508e.js" crossorigin="anonymous"></script>	
 </head>
 <body>
 
@@ -17,18 +17,37 @@
 			<a href="#"> MYPAGE</a>	<span class="t_line">|</span>
 			<a href="#"> ORDER</a>	<span class="t_line">|</span>
 			<a href="#"> CART(0)</a>	<span class="t_line">|</span>
-			<a href="#"> COMMUNITY</a>	<span class="t_line">|</span>
+			
+			<ul>
+				<li  class="drop_menu">
+					<a href="#"> COMMUNITY</a>	
+						<ul class="sub_menu">
+							<li><a href="#">Q&A</a></li>
+							<li><a href="#">FAQ</a></li>
+							<li><a href="#">이벤트</a></li>
+							<li><a href="#">당첨자발표</a></li>
+							<li><a href="#">조군스토리</a></li>
+							<li><a href="#">조군TV & 코디팁</a></li>
+							<li><a href="#">데일리룩</a></li>
+							<li><a href="#">포토리뷰</a></li>
+						</ul>
+				</li>
+			</ul>
+			
+			<span class="t_line">|</span>
 			<a href="#"> ☰</a>
 		</div>					<!-- 상단메뉴 끝 -->
-		
+	</div>					<!-- 헤더 끝 -->
 	
-		<div class="btm_menu">	<!-- 하단메뉴 (sticky) 안먹힘 -->
-			<div> <!-- 로고 -->
-				<img src="img/로고.png">
-			</div>
-			
-			<!-- 링크 -->
+	<div class="btm_menu">	<!-- 하단메뉴 (sticky) -->	
+		<!-- 링크 -->
 			<div class="link">
+				<div class="logo"> <!-- 로고 -->
+					<a href="#">
+						<img src="img/로고.png">
+					</a>
+				</div>
+			
 				<ul>
 					<li><a href="#"> BEST</a></li>
 					<li><a href="#"> <span class="red"> NEW~20%</span></a></li>
@@ -115,18 +134,31 @@
 					<li><a href="#"> SALE</a></li>
 					<li><a href="#"> BRAND</a></li>
 				</ul>
-			</div>
+			</div>				<!-- 링크 끝 -->
 			
-			<div>	<!-- 검색창 -->
+			<div>				<!-- 검색창 -->
 				<span class="search">
 					<input type="text" class="search_input">
-					🔍
-					<a href="#"> ☰</a>
+					<a href="#">
+						<i class="fa-solid fa-magnifying-glass"></i>
+					 </a>
 				</span>
-			</div>
-			
+			</div>				<!-- 검색창 끝 -->
 		</div>					<!-- 하단메뉴 끝 -->
 		
+	<div class="fixed">			<!-- 픽스 -->
+		<ul> 
+		<li><a href="#"><i class="fa-solid fa-clock"></i></li>
+		<li><a href="#"><i class="fa-solid fa-star"></i></a></li>
+		<li><a href="#"><i class="fa-solid fa-calendar-days"></i></a></li>
+		<li><a href="#"><i class="fa-brands fa-line"></i></a></li>
+		<li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
+		<li><a href="#"><i class="fa-solid fa-chevron-up"></i></a></li>
+		<li><a href="#"><i class="fa-solid fa-angle-down"></i></a></li>
+		
+		
+		</ul>
+	</div>
 		
 	
 	<div id="content">
@@ -137,8 +169,8 @@
 			
 			<div class="CS">
 				<h2>CS CENTER</h2>
-				<span>1599-3120</span>
-				
+				<span class="tel">1599-3120</span>
+				<br/><br/>
 				<p>MON-FRI : 10:00 ~ 17:00 <br/>
 				LUNCH: 13:00 ~ 14:00<br/>
 				SAT, SUN, HOLIDAY OFF</p>
@@ -146,13 +178,16 @@
 			
 			<div class="DELIVERY">
 				<h2>DELIVERY</h2>
+				<p> 반품 주소</p>
+				<br/>
 				<p>경기도 부천시 길주로 347(중동) 5층 물류센터<br/>
 				대한통운 택배 이용</p>
 			</div>
 			
 			<div class="BANK">
 				<h2>BANK ACCOUNT</h2>
-				<span>예금주 : ㈜조군</span>
+				<p>예금주 : ㈜조군</p>
+				<br/>
 				<p>우리 1005-601-776813<br/>
 				   농협 351-0286-8129-53<br/>
 				   기업 114-153764-04-011<br/>
@@ -165,16 +200,18 @@
 				<ul>
 					<li><a href="#">홈</a></li>
 					<li><a href="#">이용약관</a></li>
-					<li><a href="#">개인정보처리방침</a></li>
+					<li class="bold"><a href="#">개인정보처리방침</a></li>
 					<li><a href="#">쇼핑몰 이용안내</a></li>
 				</ul>
 			</div>
 	 	</div>					<!-- 하단박스 끝 -->
-	 	<div class="gray"> 
+</div>
+
+	<div class="gray"> 
 	 		<span >㈜ 조군 | 대표 : 조안익 | 사업자 등록 번호 : 130-86-56658 | 통신판매업 신고: 제2011-경기부천-126호 | 개인정보 보호 책임자 : 조안나 [사업자정보확인]<br/>
 			E-mail : jogunshop@naver.com | 주소 : 경기도 부천시 원미구 중동 1086-2 6층 조군샵 도로명 : 경기도 부천시 길주로 347(중동) 6층 조군샵<br/>
 			ⓒ 2006. jogun All rights reserved.</span>
-</div>
+			
 	</div>			<!-- 하단 끝 -->
 	
 		
@@ -182,11 +219,10 @@
 		
 		
 		
-		
-	</div>					<!-- 헤더 끝 -->
+	
 
 	
-</div> 
+</div> <!-- wrap 끝 -->
 
 
 </body>
