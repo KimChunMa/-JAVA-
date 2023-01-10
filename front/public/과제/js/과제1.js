@@ -5,7 +5,7 @@ let student = document.querySelector('#Sbox').value;
 //인풋 값 넣기
 
 let check = studentArray.indexOf(student);
-//인풋 값과 배열 확인하기 
+//인풋 값과 배열 일치 확인하기 
 
 if(student==0)
 	{ //공백이라면

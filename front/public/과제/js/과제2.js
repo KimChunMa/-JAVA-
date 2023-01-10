@@ -7,7 +7,7 @@ function Signup(){
 	{//공백이라면
 	alert("공백란 입니다.")	
 	}
-	else if(student.length<=7)
+	else if(check.length<=7)
 	{//7자리 이하라면
 		alert("8자리로 입력해주세요.")
 	}else
