@@ -3,30 +3,25 @@ let 학생리스트 = [];
 /*alert("고냥실행됩니다")*/
 
 function onAdd(){
-	/*alert("클릭했습니다")*/
+	//input 값 가져와서 넣기
+	학생리스트.push(  document.querySelector('.sname').value )
 	
-	//받기
-	학생리스트.push(document.querySelector('.sname').value)
-	//.클래스 , #아이디
-	/*alert(sname.value);*/
-	
-	//넣기
-	let slist =  document.querySelector('#slist')
-	slist.innerHTML = '<li>' + 학생리스트 + '</li>'
-
+	document.querySelector('#slist').innerHTML = '<li>'+학생리스트+'</li>'
+	//문서에 넣기
 }
+
 
 /* 삭제 */
 function Ondelete() {
-	let dname = document.querySelector('#slist').value 
-	// input 값 넣기
+	/* 인풋 텍스트 값 가져오기*/
+	let dname = document.querySelector('.sname').value
 	
-	학생리스트.splice(학생리스트.indexOf(dname),1);
-	//input값 인덱스 찾기
+	/*인풋 텍스트 값 찾기*/
+	학생리스트.splice( 학생리스트.indexOf( dname ) , 1 );
 	
-	let slist =  document.querySelector('#slist')
-	//html 리스트 아이디 
+	// [ 출력부 ]
+	// 1. <ul> 가져와서  [ DOM 객체 ]
+	// 2. <ul> innerHTML 이용한 <ul> {여기에 데이터 넣기} </ul>
+	document.querySelector('#slist').innerHTML = '<li>'+학생리스트+'</li>'
 	
-	slist.innerHTML = '<li>' + 학생리스트 + '</li>'
-	//리스트 다시 출력
 }
