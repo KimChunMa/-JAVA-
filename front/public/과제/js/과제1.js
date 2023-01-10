@@ -18,10 +18,12 @@ if(student==0)
 					if (check>-1){ //배열에 존재한다면
 					alert("성공!")
 					document.querySelector('#Sbox').value = null; //인풋값 초기화
+					document.querySelector('.resultBox').innerHTML="로그인 성공";
 					}
 						else
 					{
 						alert("실패!")
+						document.querySelector('.resultBox').innerHTML="로그인 실패";
 					}
 			
 				}
