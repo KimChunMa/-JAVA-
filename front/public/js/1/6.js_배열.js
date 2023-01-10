@@ -1,31 +1,95 @@
-let array = ["자료1", "자료2", "자료3"];
-const array2  = ["자료1", "자료2", "자료3"];
-
-console.log(array[0], array[1], array[2] )
-console.log(array[0],array[1],array[2] )
-console.log(array)
-console.log(array2.length)
-
-document.write(array)
-document.write('<h3>'+array+'<h3>') //HTML 마크업은 JS내에 문자열 처리
-
-
+/*
+	데이터[자료] : 문자,숫자,그림 형태의 단위
+		자료 증가--> 메모리 증가 --> 돈 증가
+	메모리[휘발성] : 사용중에만 저장 / 종료시 사라짐
+	--
+	변수와상수 : 데이터[자료] 1개를 메모리[주기억장치] 저장
+	배열 : 데이터 여러개를 저장
+		1. 배열 : [ ]
+		2. 식별번호 : 인덱스 0번시작 
+		3. 선언방법
+			let	배열명 = [ 요소1 , 요소2  , 요소3 ]
+			const 배열명 = [ 요소1 , 요소2 , 요소3 ]
+		예시)
+			let 학년3_2반 = [ '유재석' , '강호동' , '신동엽' , '김현수' ]
+			인덱스[순서번호]		0 		 1  		2 		3
+			마지막인덱스		3
+			학생길이[수]		4
+		
+		4. 배열 길이
+			학년3_2반.length	:	4
+		
+		5. 요소[자료] 추가
+			배열명.push( 새로운요소 )	: 마지막 요소뒤에 새로운요소 추가 
+			배열명.splice( 추가할인덱스 , 0 , 새로운요소 ) : 해당 인덱스에 새로운 요소 추가 
+				[ 추가된 인덱스 뒤로 한칸씩 이동 ]
+		6. 요소 제거
+			- 인덱스 이용한 제거 
+				배열명.splice( 제거할 인덱스의 시작번호 , 제거개수 , [새로운요소] )
+				배열명.splice( 0 )	: 모든 요소 제거
+				배열명.splice( 0 , 1 ) : 0번 인덱스 1개 제거 
+				배열명.splice( 3 , 1 ) : 3번 인덱스 1개 제거
+				배열명.splice( 2 , 3 ) : 2 3 4 인덱스 제거 
+				[ 삭제된 요소 뒤로 한칸씩 당기기 ]
+			- 요소의 값으로 제거 
+				*값으로 인덱스찾기 : 배열명.indexOf(데이터)
+				배열명.splice( 배열명.indexOf(데이터) , 1 )
+			- 요소에 새로운값으로 변경
+				배열명.splice( 0 , 1 , 새로운요소 )
+*/
+// 1. 배열 선언 : [] 안에 , 구분해서 여러개의 자료 입력한다.
+let 배열명 = [ '유재석' , '강호동' , '신동엽' , '김현수' ]
+// 2. 배열 호출 
+console.log( 배열명 )
+document.write( 배열명 )
+document.write('<h3>'+배열명+'</h3>')		// * HTML 마크업은 JS내에서는 문자열 처리 
+// 3. 배열내 특정 요소만 호출 : 배열명[인덱스]
+console.log( 배열명[0] + 배열명[1] + 배열명[2] + 배열명[3] ) 
 document.write('<ol>')
-document.write('<li>'+array[0]+'</li>')
-document.write('<li>'+array[1]+'</li>')
-document.write('<li>'+array[2]+'</li>')
-document.write('<p>'+array.length+'</p>')
-document.write('<ol>')
+document.write('<li>'+배열명[0]+'</li>')	// 변수/배열 문자열 처리X  // HTML 문자열처리 O
+document.write('<li>'+배열명[1]+'</li>')	// 변수/배열 문자열 처리X  // HTML 문자열처리 O
+document.write('<li>'+배열명[2]+'</li>')	// 변수/배열 문자열 처리X  // HTML 문자열처리 O
+document.write('<li>'+배열명[3]+'</li>')	// 변수/배열 문자열 처리X  // HTML 문자열처리 O
+document.write('</ol>')
+// 4. 배열의 길이
+console.log( 배열명.length +"명" )
+document.write('<p>현재 인원수 : '+배열명.length+'명</p>')
+
+// 5. 배열의 요소 추가 
+배열명.push('전현무')
+console.log( 배열명 )
+
+// 6. 배열의 특정 요소 제거 
+배열명.splice( 0 , 1 ); 
+console.log( 배열명 ) // ['유재석', '강호동', '신동엽', '김현수', '전현무']
+	// * 한줄에 두개 이상의 명령어 작성시에는 ; 구분하기
+	
+// 7. 데이터로 인덱스 찾기 
+let sindex = 배열명.indexOf('신동엽');	
+console.log( '신동엽 인덱스 : ' + sindex )
+
+// 8. 데이터로 요소 삭제 
+배열명.splice( 배열명.indexOf('신동엽') , 1 ); 
+console.log( 배열명 ) // ['강호동', '김현수', '전현무']
+
+// 9. 배열내 요소 데이터 변경 
+배열명.splice( 0 , 1 , '서장훈');	
+console.log(배열명)	// ['서장훈', '김현수', '전현무']
+
+// 10. 배열내 요소 사이[ 서장훈 과 김현수 사이  ] 요소 추가 
+배열명.splice( 1 ,  0 , '유재석' )
+console.log( 배열명 ) // ['서장훈', '유재석', '김현수', '전현무']
 
 
-array.push("자료4")
-console.log(array[3])
 
-array.splice(0,2); //인덱스 0~2까지 제거
-console.log(array)
 
-array.splice(0); //모든 배열 삭제
-console.log(array)
+
+
+
+
+
+
+
 
 
 
