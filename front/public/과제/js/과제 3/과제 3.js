@@ -8,7 +8,7 @@ function addContent(){
 	/*방명록 배열 넣기 */
 	contentArrays.push(document.querySelector('#box').value);
 
-/*초기 방명록 테이블 헤드*/
+/*초기 방명록 테이블 헤드 ※같은내용 반복안되게 초기화*/
 let table = ' <table> <tr> <th> 번호 </th> <th> 방문록 </th> </tr>'	
 
 
