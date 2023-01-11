@@ -54,7 +54,16 @@ let a = '';
 for(let i = 1 ; i <10 ; i++){
 	for(let j = 2 ; j < 10 ; j++)
 	{
-		a += (j + "*" + i +"=" + i*j +'&nbsp&nbsp&nbsp&nbsp')
+		let result = j + "*" + i +"=" + i*j
+		
+		if(result.length<10){
+			result += " "
+			console.log(result)
+		}
+		
+		
+		
+		a += result
 		document.querySelector('body').innerHTML = a;
 	}
 	a+='<br/>'

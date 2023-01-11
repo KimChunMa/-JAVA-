@@ -1,35 +1,33 @@
-let 단 = Number(prompt("단을 입력하세용")) //메세지로 입력하기
-let 곱 = Number(prompt("곱을 입력하세용")) //메세지로 입력하기
+let 단 = Number(prompt("단을 입력해주세요"))
+let 곱 = Number(prompt("곱을 입력해주세요"))
+
 
 function On(){
+let table = '<table> <tr> <th>단</th> <th>곱</th> <th>결과</th></tr>';
 
-//텍스트로 입력할때
-let dan =  Number(document.querySelector('#dan').value)
-let multiply = Number(document.querySelector('#multiply').value) 
 
-if(dan && multiply)
-{
- 단 = dan;
- 곱 = multiply;
+let dan= document.querySelector('#dan').value;
+let mutiply= document.querySelector('#mutiply').value;
+
+if (dan && mutiply){
+	단 = dan;
+	곱 = mutiply;
 }
-
-
-let tbl = '<tr> <th> 단 </th> <th> 곱 </th> <th> 결과 </th> </tr>';
-
-	for(let i = 1 ; i <= 곱 ;i++ )
-	{//+1행 만들기
-		tbl += '<tr>' //행먼저
-		
-		tbl+='<td>'+단+'</td>' 
-		
-		tbl+='<td>'+i+'</td>'
-		
-		tbl+='<td>'+단*곱+'</td>'
 	
-		tbl += '</tr>'
-	}//+1행 만들기 끝
+	for(let i = 1;i <= 곱 ;i++)
+	{
+		table += '<tr>'
+		
+		table += '<td>'+단+'</td>'
+		
+		table += '<td>'+i+'</td>'
+		
+		table += '<td>'+단*곱+'</td>'
+			
+		table += '</tr>'
+	}
 	
+	table += '</table>'
 	
-document.querySelector("#table").innerHTML = tbl;
-
+	document.querySelector('#Tbox').innerHTML = table;
 }
