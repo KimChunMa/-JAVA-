@@ -34,11 +34,11 @@
 // while( 10 > 5 ){ alert('실행문'); }	// 10 이 5보다 크니까 반복실행 
 
 // 3. while [ 조건을 변수로 이용한 반복 ]		// 입력에 따른 조건 결과가 바뀌니까 반복여부
-let 입력 = prompt('입력:')
+/*let 입력 = prompt('입력:')
 while( 입력 != 'exit'){	// while s // 입력된 값이 exit 아니면 아래 코드 실행 
 	console.log('실행중')
 	입력 = prompt('입력')	// 반복적으로 입력받기 
-} // while end // while 종료되는 조건 : 입력된 값이 exit 이면 종료 
+}*/ // while end // while 종료되는 조건 : 입력된 값이 exit 이면 종료 
 
 // 4. while [ 순서 대로 반복 ]
 let i = 0;	// 반복 순서 번호 변수 [ 반복 몇번 되었는지 체크 함수 ]
@@ -64,6 +64,9 @@ for( let j = 0 ; j < 과일상자.length ; j++ ){ // for s
 } // for e
 
 
+for( let j in 과일상자){
+	console.log(과일상자[j])
+}
 
 
 
