@@ -1,0 +1,22 @@
+/* 공용 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+*{padding:0px; margin:0px; }
+
+.wrap{display:flex;}
+
+.content1, .content2{
+	width:50%;
+	border:1px black solid;
+	margin:0 auto;
+}
+
+/* 이경석 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+.content2 {display:flex; flex-direction:column;
+align-items: center;}
+
+.content2 h6{font-size:30px; }
+
+.content2 table, .content2 td , .content2 th
+{border:black 1px solid; border-collapse: collapse; text-align: center;}
+
+.content2 td , .content2 th
+{width: 125px; height:60px; padding:0px;}
