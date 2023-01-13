@@ -28,4 +28,3 @@ let result = 함수4 (1,2,3)
 console.log(result)
 
 
-
