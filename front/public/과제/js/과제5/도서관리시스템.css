@@ -9,6 +9,50 @@
 	margin:0 auto;
 }
 
+/* 김태호 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+
+
+.contetn1Top{
+	margin: 0 auto;
+}
+
+.adminBookListPrint{
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-bottom: 5px;
+}
+
+.tableBookList{
+	border: 1px solid white;
+	width: 100%;
+}
+
+.list1 , .list4{
+	width: 12%
+}
+.list2{
+	width: 50%
+}
+.list3{
+	width: 26%
+}
+
+.bookResist_HTML{
+	width: 90%;
+}
+
+.bookSearch_HTML{
+	width: 47%;
+	border: 1px solid white;
+	margin-top: 15px;
+	margin-left: 11px;
+	margin-right: 7px;
+}
+
+
+
+
+
 /* 이경석 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
 .content2 {display:flex; flex-direction:column;
 align-items: center;}
