@@ -1,0 +1,18 @@
+*{padding:0px; margin: 0px;}
+
+.wrap{
+	display:flex; justify-content:center; 
+	flex-wrap:wrap; 
+}
+
+.addbox, .listbox, .updatebox{width:40%; border:1px solid black;
+text-align: center; }
+
+.addTable, .listTable, .updateTable{margin:10px auto;}
+
+.addbtn{padding:10px; }
+
+.listTable, .listTable td{border:1px solid black; border-collapse: collapse; 
+padding:9px;}
+
+.updatebox{display:none; margin-top:30px;}

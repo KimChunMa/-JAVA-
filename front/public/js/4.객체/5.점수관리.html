@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<link href="5.점수관리.css" rel="stylesheet">
+</head>
+<body>
+	<div class="wrap">
+		<div class="addbox">
+			<h1> 학생 점수 등록 </h1>
+			<table class="addTable">
+				<tr>
+					<td>학생명 </td>
+					<td> <input type="text" class="name" placeholder="중복불가능"></td>
+				</tr>
+				
+				<tr>
+					<td>국어 </td>
+					<td> <input type="text" class="kor" placeholder="숫자입력 0~100"></td>
+				</tr>
+				
+				<tr>
+					<td>영어 </td>
+					<td> <input type="text" class="eng" placeholder="숫자입력 0~100"></td>
+				</tr>
+				
+				<tr>
+					<td>수학 </td>
+					<td> <input type="text" class="math" placeholder="숫자입력 0~100"></td>
+				</tr>
+				
+				<tr>
+					<td colspan="2"> <button class="addbtn"> 점수 등록</button></td>
+				</tr>
+			</table>
+		</div>
+		
+		
+		<div class="listbox">
+			<h1> 학생 점수 현황</h1>
+			<table class="listTable">
+				
+			</table>
+		</div>	
+		
+		
+		<div class="updatebox">
+			<table class="updateTable">
+				<tr>
+					<td>학생명 </td>
+					<td> <input type="text" class="upname" readonly="readonly"></td>
+				</tr>
+				
+				<tr>
+					<td>국어 </td>
+					<td> <input type="text" class="upkor" placeholder="숫자입력 0~100"></td>
+				</tr>
+				
+				<tr>
+					<td>영어 </td>
+					<td> <input type="text" class="upeng" placeholder="숫자입력 0~100"></td>
+				</tr>
+				
+				<tr>
+					<td>수학 </td>
+					<td> <input type="text" class="upmath" placeholder="숫자입력 0~100"></td>
+				</tr>
+				
+				<tr>
+					<td colspan="2"> <button class="Update"> 수정 완료</button></td>
+				</tr>
+			</table>
+		</div>
+		
+	</div> <!-- wrap e -->
+	
+	
+	<script src="5.점수관리.js"></script>
+</body>
+</html>
