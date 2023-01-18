@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<link href="버거킹.css" rel="stylesheet">
+</head>
+<body>
+	<div class="wrap"> <!-- wrap s -->
+	
+		<div class="container"> <!-- container s -->
+			
+				<div class="kiosbox">
+					<div class="header">  		<!-- 상단 -->
+						<img src="img/배너.png">
+						<div class="categorybox"></div>
+					</div>						<!-- 상단 끝 -->
+					
+					<div class="content">  		<!-- 본문 -->
+						<div class="productbox"></div>	<!-- 제품출력구역 -->
+						
+						<div class="cartbox">	<!-- 카트출력구역 -->
+						<div class="cartcontent">	<!-- 제품개수, 가격, 정보 -->
+							<div class="carttop">	
+								<div> 카트 <span class="total">0</span></div>
+								<div> 총 주문 금액 <span class="tprice"> 0 원</span></div>
+							</div> <!-- 제품개수, 가격 정보 끝 -->
+							
+							<div class="cartbottom"></div> <!-- 제품정보 -->
+						</div>					<!-- 제품개수, 가격, 정보 -->
+							
+							<div class="cartbtn">
+								<button class="cancel" onclick="cancel()"> 취소 </button>
+								<button class="order" onclick="order()"> 주문하기 </button>
+							</div>
+						</div>					<!-- 카트 출력 구역 끝 -->
+					</div>						<!-- 본문 끝 -->
+					
+				
+				</div>	<!-- 키오스크 끝 -->
+		</div>					 <!-- container e -->
+	
+		<div class="container">  <!-- container s -->
+			
+				<div>
+				</div>
+		</div>					 <!-- container s -->
+	
+	</div> <!-- wrap e -->
+
+
+	<script src="버거킹.js"></script>
+</body>
+</html>

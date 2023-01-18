@@ -3,7 +3,7 @@ document.body.innerHTML = h1;
 
 	//일반
 function 함수1(){console.log('문서열림')}
-window.onload = 함수1
+window.onload = 함수1()
 window.addEventListener('DOMContentLoaded', 함수1)
 
 	// 익명 함수

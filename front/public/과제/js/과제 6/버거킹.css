@@ -1,0 +1,78 @@
+/* 폰트 */
+@font-face {
+    font-family: 'godic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.1/PuradakGentleGothicR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;}
+
+/* 전체 */
+*{padding:0px ; margin: 0px; font-family:godic; }
+
+.wrap{display:flex; justify-content: center;}
+
+
+.container{width:45%; margin:1%;}
+
+/* 키오스트 */
+.kiosbox{width:100%; height:1000px; }
+
+/* 상단 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+.header{height:250px;}
+
+/* 상단배너 */
+.header img {width:100%; height:80%}
+
+/* 카테고리 */
+.categorybox li{display:inline-block; margin:10px 35px; padding:5px; color:#8e8e8e}
+
+.categoryselect{ color:red !important; border-bottom:5px solid red;
+padding-bottom:5px;} 
+
+/* 중단 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+.content{ height:650px; }
+
+/* 제품 */
+.productbox{height:450px; display:flex; flex-wrap:wrap; }
+.product{width: 28%; text-align: center; margin:2%;}
+.pprice{color:red;}
+
+/* 장바구니(카트) */
+.cartcontent{ padding: 20px;}
+.cartbox{ background-color:#eeeeee;  }
+.carttop{display:flex; justify-content:space-between; }
+
+.total{
+	background-color:red;
+	width:30px;
+	display:inline-block;
+	border-radius: 10px;
+	text-align: center;
+	color:white;
+	font-size:10px;
+	padding:4px;
+}
+
+.tprice{color:red;}
+
+.cartbottom{display:flex; margin-top:20px;}
+
+.item{width: 20%; background-color: white; padding: 15px;
+	margin-right: 10px; font-size:16px;}
+
+.ititle{ width: 100%; }
+
+.iprice{color:red; margin:10px 0px;}
+
+/* 버튼 */
+.cartbtn{display:flex;}
+
+.cartbtn button{ width:50%; padding:20px; border:none;
+color:white; font-size:20px;}
+
+.cancel{ background-color:black;}
+
+.order{ background-color:red;}
+
+
+/* 하단 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+.footer{ height:50px;}

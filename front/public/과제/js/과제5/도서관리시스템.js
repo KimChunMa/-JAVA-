@@ -1,5 +1,8 @@
 // 230113, 김태호 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 let BookList = ['혼자공부하는자바','이것이자바다','열혈 C언어']
+let rentalList = ['열혈 C언어']
+
+printBookList()
 
 // 1-1. 검색창 도서명 JS 연결 및 검색 버튼 함수 생성 (기능 )
 function bookSearch(){
@@ -72,6 +75,12 @@ function printBookList(){
 
 // 2-2. 도서대여 여부 (합체)
 
+function checkRent( i ){
+	rentalList.forEach((rental)=>{
+			if(BookList[i] == rental ){
+				alert('대여중 입니다')
+			}else{alert('대여가능 합니다')}
+		})}
 
 // 2-3. 삭제버튼 함수 생성
 function buttonDelete( dNum ){
@@ -105,16 +114,13 @@ function buttonDelete( dNum ){
 	 				
 	 				<td><input type='button'
 	 				onclick="buttonRent( ${i} )"
-	 				value="[대여버튼]" id="rental${i}"
-	 				
-	 				/></td>
+	 				value="[대여버튼]" id="rental${i}"/></td>
 	 				
 	 				<td><input type='button'
 	 				onclick="buttonReturn( ${i} )"
 	 				value="[반납버튼]" id="return${i}"
-	 				disabled
-	 				/></td>
-	 				</tr>`
+	 				disabled/></td>
+	 			 </tr>`
  }
 bookList+= `</table>`;
 
