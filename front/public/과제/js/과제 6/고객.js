@@ -1,4 +1,4 @@
-/* 공용 */
+/* 공용 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
 let categoryList = [ '프리미엄', '스페셜', '와퍼', '올데이킹', '치킨버거']
 
 let burgerList = [{ name:'기네스콰트로치즈와퍼', price:9800 ,
@@ -15,12 +15,14 @@ let burgerList = [{ name:'기네스콰트로치즈와퍼', price:9800 ,
 
 let cartList = []; //장바구니
 let orderList=[]; //주문리스트
+/* ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
 
-category_print() //선출력
-category_select(0)
-product_print(0);
+category_print() //선출력 카테고리
+category_select(0) //프리미엄 카테고리 선출력
+product_print(0); //프리미엄 버거 선출력
 
-let tprice = 0;
+let tprice = 0; //총가격
+
 
 /*공용 끝 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
 
@@ -87,26 +89,27 @@ function cancel(){
 function order(){
 	alert("주문 합니다.")
 		
-	let no = 0;
+	let no = 0; //주문번호
 	if(orderList.length == 0 ) {no = 1;} //주문이 없다면 주문번호 1
 	else{no = orderList [orderList.length-1].no+1} //마지막 인덱스 주문객체의 주문+1
 	
 	let order ={
 				no : no ,
 				items : cartList.map((obj)=> { return obj;}), 
-				time : new Date() ,
+				time :  new Date(),
 				state : true,
 				complete :0,
 				price : `${tprice}`}
 				
 	orderList.push(order)
 	
-	console.log(orderList)
+	console.log( orderList)
 	
 	//주문후
-	cartList.splice(0); tprice=0; cart_print(); }
+	cartList.splice(0); tprice=0; cart_print(); 
+	orderOut(); sales(); }
 
-//제품 및 개수 출력
+//장바구니 제품 및 개수 출력
 function cart_print(){
 	
 	let html ='';

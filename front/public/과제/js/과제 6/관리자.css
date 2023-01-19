@@ -1,0 +1,49 @@
+/* 공용 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+@font-face {
+    font-family: 'Nanum';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/NanumSquareNeo-Variable.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{font-family: Nanum}
+
+/* 1 버거등록 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+.burgar_submit{padding-bottom:20px;border:2px black solid; font-size:14px;
+				background-color:#ededed; text-align: center;}
+
+h3{padding:10px; font-size:20px;}
+
+.submit_table{display:flex; justify-content: center; }
+
+.submit_table th, .submit_table td {padding-right:20px; padding-bottom:6px;}
+
+.submit{padding:10px;}
+
+/* 2 등록된 버거 현황 출력*/
+
+.submit_output{padding-top:30px;}
+
+.out_table{width:100%; text-align: center; 
+border:1px black solid; border-collapse: collapse;}
+.out_table th, .out_table td {border:1px black solid;width:14%; }
+.out_table th{padding:10px;}
+.out_table img{width:100%;}
+.out_table button{padding:12px; font-size:16px;}
+
+/* 3 주문된 주문 목록 현황 출력*/
+.order_list{padding-top:30px;}
+.order_table{width:100%; text-align: center;}
+.order_table, .order_table th, .order_table td { padding:5px;
+	border:1px solid black; border-collapse: collapse;}
+.order_table button{padding:8px;}
+
+.order_table td{width:15%;}
+
+/*4 매출 현황*/
+.sales{padding-top:50px;}
+.salseTable{width:100%}
+.salseTable , .salseTable td,  .salseTable th {
+	border:1px solid black; border-collapse: collapse;}
+	
+.salseTable td,  .salseTable th {padding:10px;}

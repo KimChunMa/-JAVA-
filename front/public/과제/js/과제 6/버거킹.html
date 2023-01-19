@@ -3,12 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link href="버거킹.css" rel="stylesheet">
+	<link href="고객.css" rel="stylesheet">
+	<link href="관리자.css" rel="stylesheet">
 </head>
 <body>
 	<div class="wrap"> <!-- wrap s -->
 	
-		<div class="container"> <!-- container s -->
+		<div class="container"> <!-- container 고객 -->
 			
 				<div class="kiosbox">
 					<div class="header">  		<!-- 상단 -->
@@ -38,17 +39,59 @@
 					
 				
 				</div>	<!-- 키오스크 끝 -->
-		</div>					 <!-- container e -->
+		</div>					 <!-- container 고객 끝 -->
+	
+	<!-- 관리자용 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ -->
 	
 		<div class="container">  <!-- container s -->
-			
-				<div>
+				
+				<!-- 1 -->
+				<div class="burgar_submit">
+				<h3>버거 등록</h3>
+				<table class="submit_table">
+					<tr>
+						<th>버거 이름</th> <td> <input type="text" class="s_name"></td>
+					</tr>
+					<tr>
+						<th>카테고리 명</th> <td> <input type="text" class="s_category"></td>
+					</tr>
+					<tr>
+						<th>가격</th> <td> <input type="text" class="s_price"></td>
+					</tr>
+					<tr>	<!--이미지는 img/카테고리/버거이름.확장자  -->
+						<th>이미지명</th> <td> <input type="text" class="s_img"></td>
+					</tr>
+					<tr>
+						 <td colspan="2"> <button class="Submit" onclick="submit()">제품 등록</button></td>
+					</tr>
+				</table>
+				불고기와퍼, 와퍼, 할라피뇨와퍼 3개 (확장자는 자동png)
+				</div>			<!-- 제품 등록 끝 -->
+				
+				<!-- 2 -->
+				<div class="submit_output">	<!-- 등록된 버거 현황 -->
+				<table class="out_table">
+				</table>
+				</div>						<!-- 등록된 버거 현황 끝 -->
+				
+				<!-- 3 -->
+				<div class="order_list">	<!-- 주문된 주문 목록 현황 출력 -->
+					<table class="order_table">
+					</table>
 				</div>
+				
+				<!-- 4 -->
+				<div class="sales">
+					<table class="salseTable">
+					</table>
+				</div>
+				
 		</div>					 <!-- container s -->
 	
 	</div> <!-- wrap e -->
 
 
-	<script src="버거킹.js"></script>
+	<script src="고객.js"></script>
+	<script src="관리자.js"></script>
 </body>
 </html>
