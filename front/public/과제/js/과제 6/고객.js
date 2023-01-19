@@ -24,6 +24,13 @@ product_print(0); //프리미엄 버거 선출력
 let tprice = 0; //총가격
 
 
+function time2(){
+	/*시간*/
+	const date = new Date().toLocaleDateString('ko-kr');
+	const time = new Date().toLocaleTimeString('ko-kr')
+	const time2 = date + time
+	return time2;}
+
 /*공용 끝 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
 
 
@@ -96,15 +103,13 @@ function order(){
 	let order ={
 				no : no ,
 				items : cartList.map((obj)=> { return obj;}), 
-				time :  new Date(),
+				time :  time2(),
 				state : true,
 				complete :0,
 				price : `${tprice}`}
 				
 	orderList.push(order)
-	
-	console.log( orderList)
-	
+
 	//주문후
 	cartList.splice(0); tprice=0; cart_print(); 
 	orderOut(); sales(); }

@@ -16,7 +16,8 @@ alert('등록되었습니다');
 
 //등록된 제품의 카테고리 출력
 let index= categoryList.indexOf(burgerList[burgerList.length-1].category)
-	category_select(index)
+	category_select(index);
+	burgarList();
 }}
 
 
@@ -38,7 +39,7 @@ function burgarList(){ //버거리스트 순회 => 출력
 					<td><img src="${burgerList[idx].img}"></td>
 					<td>${burgerList[idx].name}</td>
 					<td>${burgerList[idx].category}</td>
-					<td>${burgerList[idx].price}</td>
+					<td>${burgerList[idx].price.toLocaleString()}원</td>
 					
 					<td onclick="Del(${idx})">
 					<button>[삭제]</button></td>
@@ -53,7 +54,7 @@ function burgarList(){ //버거리스트 순회 => 출력
 /* 2-1 삭제*/
 function Del(idx){
 	burgerList.splice(idx,1)
-	outlist()
+	burgarList();
 	category_select(0)
 }
 
@@ -129,9 +130,7 @@ function time(i){
 	
 /*4 매출 현황*/
 sales()
-
-
-function sales(){
+function sales(){ //주문시 시동
 	let sales = `<tr> 
 					<th> 제품 번호 </th> 
 					<th> 버거이름 </th> 
@@ -140,52 +139,67 @@ function sales(){
 					<th> 순위 </th> 
 				</tr>`
 				
-	group();
-				
-	// 1. 
-	orderList.forEach( (o,i) => {
-		
-		sales+=`<tr> 
-					<th> ${i} </th> 
-					<th>  </th> 
-					<th> 판매수량 </th> 
-					<th> 매출액 </th> 
-					<th> 순위 </th> 
-				</tr>`
-	}) 
-				
-	
-	
-	document.querySelector('.salseTable').innerHTML = sales
-}
-
-
-
-
-function group(){
-let gplist = [  ]
 
 	// 1. 제품 중복 제거 
-	orderList.forEach( ( o,i) => {
-		o.items.forEach( ( o2, i2 ) => {
-			if( !gplist.includes(  o2.name ) ){
-				gplist.push(  o2.name  );
-			}
+	let nameList = [  ]
+	orderList.forEach( ( o) => { //주문리스트
+		o.items.forEach( ( o2 ) => {//주문내 상품리스트
+			if( !nameList.includes(  o2.name ) ){ //중복이 없다면
+				nameList.push(  o2.name );} //이름푸쉬
 		})
 	}) 
-	console.log( gplist )
+	
 	
 	// 2. 제품 수량 체크
-	gplist.forEach( ( g ) => {
-		let count = 0;
-		orderList.forEach( ( o,i) => {
-			o.items.forEach( ( o2, i2 ) => {
-				if( g == o2.name ){ count++; }
+	let gpList =[];
+	nameList.forEach( ( name ) => { //이름리스트
+	  let count = 0;
+		orderList.forEach( ( order ) => { //주문리스트
+			order.items.forEach( (item ) => { //주문내 상품 리스트
+				if( name == item.name )
+				{ count++; } //이름리스트와 주문내 상품리스트가 있다면 카운트업
 			})
 		}) 
-		console.log( 'g : ' + count )
+	 let sells ={ name:name , count:parseInt(count)};
+	 gpList.push(sells)
 	})
 	
+	//매출액
+	let price =0;
+	gpList.forEach((obj,idx)=>{
+		burgerList.forEach((bobj)=>{
+			if(obj.name == bobj.name)
+			{obj.price = bobj.price; obj.money = obj.price*obj.count;}
+		})
+	})
+	
+		//순위
+	
+		gpList.forEach((obj,idx)=>{
+			let rank=1;
+			gpList.forEach((obj2)=>{
+				console.log(obj.money)
+				console.log('ㅡㅡㅡㅡㅡㅡ비교')
+				console.log(obj2.money)
+				
+				if(obj.money < obj2.money){
+					rank++; console.log('랭크는'); console.log(rank)
+				}
+			})
+			obj.rank=rank;	
+		})	
+	
+	
+	gpList.forEach((obj,idx)=>{
+		sales +=`<tr>
+					<td> ${idx+1}</td>	
+					<td> ${obj.name}</td>
+					<td> ${obj.count}</td>
+					<td> ${(obj.money).toLocaleString()}원</td>
+					<td> ${obj.rank}</td>
+				</tr>`
+	})
+	document.querySelector('.salseTable').innerHTML = sales
 }
 
 
