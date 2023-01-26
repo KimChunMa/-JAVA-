@@ -66,7 +66,7 @@ function Edit(idx){
 		alert('숫자로 입력하셔야 합니다.')
 	}else{
 	burgerList[idx].price= eprice
-	outlist()
+	burgarList()
 	category_select(0)
 	}}
 
