@@ -30,7 +30,7 @@
 .h_bottommenu{ width: 100%; display: flex; justify-content: space-between;
  font-size: 12px; font-weight: bold;}
 
-
+.carousel-inner img{margin: 0 auto; width:85% !important;}
 
 /* 제품 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
 
@@ -70,6 +70,7 @@
 
 .item_title{
 	font-size:14px;
+	height:30px;
 	margin:5% 0%;
 }
 
