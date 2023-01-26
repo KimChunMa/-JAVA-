@@ -2,11 +2,12 @@
 
 /* 웹폰트 : 눈누홈페이지 */
 @font-face {
-    font-family: 'RixInooAriDuriR';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/RixInooAriDuriR.woff2') format('woff2');
+    font-family: 'Sans';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/Happiness-Sans-Title.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
+
 /* 기본값 설절 글꼴,색상,여백 */
 *{ font-family: '맑은 고딕'; color:black; margin: 0; padding: 0px; }
 
@@ -14,7 +15,7 @@
 .logobox{ text-align: center; }
 
 /* 로고 제목 꾸미기 : 폰트 , 색상 , 사이즈 */
-.title{ font-family: 'RixInooAriDuriR'; color: black; font-size: 40px; }
+.title{ font-family: 'Sans'; color: black; font-size: 40px; text-decoration: none; }
 
 /* sticky 메뉴 2개 이므로 충돌 : 하단 메뉴 top 위치 변경 */
 .h_bottom{ top : 40px !important; /* 부트스트랩보다 우선순위 */ }
@@ -26,16 +27,88 @@
 .h_topmenu{ width: 100%; display: flex; justify-content: flex-end; font-size: 9px;}
 
 /* 하단 메뉴 : 가로 수평정렬 / justify-content: space-between 사용시 width 필수!  */
-.h_bottommenu{ width: 100%; display: flex; justify-content: space-between; font-size: 12px; font-weight: bold;}
+.h_bottommenu{ width: 100%; display: flex; justify-content: space-between;
+ font-size: 12px; font-weight: bold;}
 
 
 
+/* 제품 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ */
+
+.itembox{display:flex; flex-wrap: wrap;}
+
+.box_title{
+	text-align: center;
+	font-family: 'Sans';
+	margin-top:10%;
+	border-bottom:2px solid #999999;
+	width:20%;
+	margin:0 auto;
+	padding-top:10%;
+	padding-bottom:1%;
+}
+/* 서로 다른 사이즈마다 css다르게 설정 */
+		/* 조건 ↓ 참 일경우 */
+@media(max-width: 1000px){	/* 최대 가로사이즈 1000px 아래면 */
+	.item{width: 45% !important; margin: 2% !important;}
+}
+
+@media(max-width: 500px){	/* 최대 가로사이즈 500px 아래면 */
+	.item{width: 90% !important; margin: 2% !important;}
+}
 
 
+/* 1200px 이상 기준 */
+.item{width: 28%; margin: 2%;}
+.item img{
+	width:100%;
+	border-radius:20px;
+}
 
+.item :hover{
+	opacity: 0.8;
+}
 
+.item_title{
+	font-size:14px;
+	margin:5% 0%;
+}
 
+.item_size{
+	font-size:13px;
+	color:#999999;
+	border-bottom: 1px solid #999999;
+	padding-bottom:4%;
+}
 
+.item_price{
+	text-decoration: line-through;
+	color:#999999;
+	font-size:14px;
+	margin-top: 3% ;
+}
+
+.item_sale{
+	font-family: Sans;
+	font-size:17px;
+}
+
+.item_discount{
+	font-family: Sans;
+	color:#f44336;
+	font-size:17px
+}
+
+.item_bottom{
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.item_review{
+	font-size:13px;
+	color:#999999;
+	text-align: right;
+}
 
 
 

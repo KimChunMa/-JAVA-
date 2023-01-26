@@ -26,7 +26,7 @@ h3{padding:10px; font-size:20px;}
 
 .out_table{width:100%; text-align: center; 
 border:1px black solid; border-collapse: collapse;}
-.out_table th, .out_table td {border:1px black solid;width:14%; }
+.out_table th, .out_table td {border:1px black solid;  width:14%}
 .out_table th{padding:10px;}
 .out_table img{width:100%;}
 .out_table button{padding:12px; font-size:16px;}

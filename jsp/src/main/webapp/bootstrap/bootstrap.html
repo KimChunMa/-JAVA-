@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">	
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<title>Insert title here</title>
+	<style>
+		
+	</style>
+
+</head>
+<body>
+ 
+ 	<div>
+ 	디브
+ 	</div>
+ 	
+ 	<div class="container">
+ 	컨테
+ 	</div>
+ 	
+ 	<div class="container">
+ 		<div class="box1 row">		<!-- 가로열 -->
+ 			<div class="col-md-1 col-1"> col-md-1 1칸 </div>	<!-- 열 한칸 -->
+ 			<div class="col-md-1 col-1"> 1칸</div>
+ 			<div class="col-md-1 col-1"> 1칸</div>
+ 			<div class="col-md-1 col-1"> 1칸</div>
+ 			<div class="col-md-1 col-1"> 1칸</div>
+ 			<div class="col-md-1 col-1"> 1칸</div>
+ 			<div class="col-md-1 col-1"> 1칸</div>
+ 			<div class="col-md-1 col-1"> 1칸</div>
+ 			<div class="col-md-1 col-1"> 1칸</div>
+ 			<div class="col-md-1 col-1"> 1칸</div>
+ 			<div class="col-md-1 col-1"> 1칸</div>
+ 			<div class="col-md-1 col-1"> 1칸</div>	
+ 		</div>
+ 		
+ 		<div class="row">
+ 			<div class="col-md-8 col-8" > col-md-8 </div>
+ 		    <div class="col-md-4 col-4" > col-md-4 </div>
+ 		 </div>
+ 		    
+ 		     <div class=" row">
+ 		    	<div class="col-md-4 col-4"> col-md-4 </div>
+ 		    	<div class="col-md-4 col-4"> col-md-4 </div>
+ 		    	<div class="col-md-4 col-4"> col-md-4 </div>
+ 		    </div>
+ 		    
+ 		    <div class="row">
+ 		    	<div class="col-md-6 col-6"> col-md-6[열6칸]</div>
+ 		    	<div class="col-md-6 col-6"> col-md-6[열6칸]</div>
+ 		    </div>
+ 		
+ 			<div class="row">
+ 				<div class="col-md-8" style="background-color:red;">
+ 					<div class="row">
+ 						<div class="col-md-4 col-4" style="background-color:blue;"> 외부 8 그리드 내 4</div>
+ 						<div class="col-md-4 col-4" style="background-color:white;"> 외부 8 그리드 내 8</div>
+ 					</div>
+ 				</div>
+ 				
+ 				<div class="col-md-4"> <!-- 4조각 -->
+ 					<div class="row">
+ 						<div class="col-md-6"> 외부4 그리드내 6</div>
+ 						<div class="col-md-6"> 외부4 그리드내 6</div>
+ 					</div>
+ 				</div>
+ 			</div>
+ 			
+ 			<div class="row">
+	 			<div class="col-md-5"> col-md-5</div>
+	 			<div class="col-md-5"> col-md-5</div>
+ 			</div>
+ 			
+ 			
+ 			<table class="table table-striped">
+ 				<thead>
+ 					<tr>
+ 						<th> 번호 </th> <th> 제목 </th> <th>작성일 </th> <th> 조회수 </th> 
+ 					</tr>
+ 				</thead>
+ 				<tbody>
+ 					<tr>
+ 						<td> 1 </td> <td> hello </td> <td> 2023-1-26 </td> <td> 1 </td>
+ 					</tr>
+ 					
+ 					<tr>
+ 						<td> 2 </td> <td> hello </td> <td> 2023-1-26 </td> <td> 1 </td>
+ 					</tr>
+ 					
+ 					<tr>
+ 						<td> 3 </td> <td> hello </td> <td> 2023-1-26 </td> <td> 1 </td>
+ 					</tr>
+ 				</tbody>
+ 			</table>
+ 			
+ 			<div class="row">	<!-- 하위요소 가로배치 :flex -->
+ 				<div class="col-md-4">
+ 					<table class="table table-striped">
+ 						<thead>
+ 							<tr> 
+ 								<th> 번호 </th> <th> 제목 </th> 
+ 							</tr>
+ 						</thead>
+ 						
+ 						<tbody>
+ 							<tr>
+ 								<td> 1 </td> <td> 일 </td>
+ 							</tr>
+ 							<tr>
+ 								<td> 2 </td> <td> 이 </td>
+ 							</tr>
+ 							<tr>
+ 								<td> 3 </td> <td> 삼 </td>
+ 							</tr>
+ 						</tbody>
+ 					</table>
+ 				</div>
+ 				<div class="col-md-4">
+ 					<table class="table table-hover">
+ 						<thead>
+ 							<tr> 
+ 								<th> 번호 </th> <th> 제목 </th> 
+ 							</tr>
+ 						</thead>
+ 						
+ 						<tbody>
+ 							<tr>
+ 								<td> 1 </td> <td> 일 </td>
+ 							</tr>
+ 							<tr>
+ 								<td> 2 </td> <td> 이 </td>
+ 							</tr>
+ 							<tr>
+ 								<td> 3 </td> <td> 삼 </td>
+ 							</tr>
+ 						</tbody>
+ 					</table>
+ 				</div>
+ 				<div class="col-md-4">
+ 					<table class="table table-bordered">
+ 						<thead>
+ 							<tr> 
+ 								<th> 번호 </th> <th> 제목 </th> 
+ 							</tr>
+ 						</thead>
+ 						
+ 						<tbody>
+ 							<tr>
+ 								<td> 1 </td> <td> 일 </td>
+ 							</tr>
+ 							<tr>
+ 								<td> 2 </td> <td> 이 </td>
+ 							</tr>
+ 							<tr>
+ 								<td> 3 </td> <td> 삼 </td>
+ 							</tr>
+ 						</tbody>
+ 					</table>
+ 				</div>
+ 			</div>
+ 			
+ 			
+ 		</div> 		<!-- container e -->
+ 		
+ 		
+ 		
+ 	
+ 	
+
+ 
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

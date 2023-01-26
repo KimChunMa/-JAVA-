@@ -25,12 +25,12 @@ let index= categoryList.indexOf(burgerList[burgerList.length-1].category)
 burgarList()
 function burgarList(){ //버거리스트 순회 => 출력
 	let html = `<tr> 
-					<th>제품번호</th>
-					<th>이미지</th>
-					<th>버거이름</th>
-					<th>카테고리</th>
-					<th>가격</th>
-					<th colspan="2">비고</th>
+					<th >제품번호</th>
+					<th >이미지</th>
+					<th >버거이름</th>
+					<th >카테고리</th>
+					<th >가격</th>
+					<th colspan="2" >비고</th>
 				</tr>`
 				
 	burgerList.forEach((obj,idx)=>{
@@ -83,11 +83,12 @@ function orderOut(){
 			   		</tr>`
 			   
 	orderList.forEach((obj,idx)=>{//주문리스트
-		obj.items.forEach((o,j)=>{ //주문리스트에 아이템 반복
+		obj.items.forEach((o)=>{ //주문리스트에 아이템 반복
 		//주문아이템 리스트
 		orderout += `<tr> 
 						<td>${obj.no}</td>
-						<td>${o.name}</td>
+						<td>${o.name}<
+						/td>
 						<td class="date${idx}">${obj.time}</td>`})
 					
 		if(obj.state){
@@ -100,8 +101,6 @@ function orderOut(){
 					 <td></td>
 				     </tr>`}
 				     
-	time(idx)
-	
 	})   //주문
 	document.querySelector('.order_table').innerHTML = orderout;
 }
@@ -110,24 +109,10 @@ function orderOut(){
 function quest( idx ){
 	alert('주문이 완료되었습니다')
 	orderList[idx].state = false ; //주문상태
-	document.querySelector(`.questbtn${idx}`).style.display='none' //비고
-	
-	let  quset = document.querySelectorAll(`.quest${idx}`) //요청완료
-	quset.forEach((o)=>{ o.innerHTML = '주문완료'})
-	time(idx)
+	orderList[idx].time= time2()
+	orderOut();
 }
 			
-
-/*3-2 시간*/
-function time(i){
-	/*시간*/
-	const date = new Date().toLocaleDateString('ko-kr');
-	const time = new Date().toLocaleTimeString('ko-kr')
-
-	let  today = document.querySelectorAll(`.date${i}`) //요청일
-	today.forEach((o)=>{ o.innerHTML = date +" "+time})}
-
-	
 /*4 매출 현황*/
 sales()
 function sales(){ //주문시 시동
@@ -165,7 +150,6 @@ function sales(){ //주문시 시동
 	})
 	
 	//매출액
-	let price =0;
 	gpList.forEach((obj,idx)=>{
 		burgerList.forEach((bobj)=>{
 			if(obj.name == bobj.name)
@@ -175,15 +159,11 @@ function sales(){ //주문시 시동
 	
 		//순위
 	
-		gpList.forEach((obj,idx)=>{
+		gpList.forEach((obj)=>{
 			let rank=1;
 			gpList.forEach((obj2)=>{
-				console.log(obj.money)
-				console.log('ㅡㅡㅡㅡㅡㅡ비교')
-				console.log(obj2.money)
-				
 				if(obj.money < obj2.money){
-					rank++; console.log('랭크는'); console.log(rank)
+					rank++; console.log('랭크는'); 
 				}
 			})
 			obj.rank=rank;	
