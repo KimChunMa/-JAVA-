@@ -1,5 +1,4 @@
 /*공용*/
-let u_left = 10;  //유저 좌표
 let m_left = 910; //몬스터 좌표
 
 let userbox = document.querySelector('.userbox') //유저박스
@@ -9,11 +8,9 @@ let logbox = document.querySelector('.logbox') //좌표알림
 let logbox2 = document.querySelector('.logbox2')//몬스터 좌표알림
 
 /* 체력*/
-let u_hp=100;
 let m_hp=100;
 
 /* 공격력*/
-let u_attack = 1; 
 let m_attack =1;
 
 /*캐릭터 객체*/
@@ -26,12 +23,12 @@ Character.power=Character.level*10;
 let monsters = [
 	{img: '주황버섯.gif', hp:100, left:910, top:460, exp:1 , power:1},
 	{img: '독버섯.gif', hp:200, left:910, top:460, exp:2 , power:2},
-	{img: '철버섯.gif', hp:300, left:910, top:460, exp:3 , power:3}
+	{img: '철버섯.gif', hp:300, left:910, top:40, exp:3 , power:3}
 	]
 
 /*몬스터 단계*/
 let step = 0;
-monster(0)
+monster(step)
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
 
 
@@ -91,7 +88,7 @@ document.addEventListener('keydown',(e)=>{
 		//a키중 몬스터 범위 +-10일때 체력달기
 		if(Character.left >= m_left - 100 && Character.left <= m_left + 100 ){
 		//몬스터 체력 -= 공격력 * 10이하 난수
-		m_hp -=u_attack* ( parseInt(Math.random()*20+1) );
+		m_hp -= Character.power*( parseInt(Math.random()*2+1));
 		
 		hp();
 		}	
@@ -111,20 +108,20 @@ function hp(){
 		return;
 	}
 	
-	if(u_hp <=0){ //유저 0일시 게임오버
+	if(Character.hp <=0){ //유저 0일시 게임오버
 		alert('game over');	
 		return;
 	}
 	
 	
 	let u_bar = document.querySelector('.u_bar') //유저체력
-	u_bar.style.width =`${u_hp * 3}px`
+	u_bar.style.width =`${Character.hp * 3}px`
 	
 	let m_bar = document.querySelector('.m_bar')//몬스터 체력
 	m_bar.style.width =`${m_hp * 3}px` 			
 	
 	console.log('몬'+ m_hp);
-	console.log('유'+ u_hp);
+	console.log('유'+ Character.hp);
 }
 
 /*2. [공격 받을시]*/
@@ -134,7 +131,7 @@ function monster_attack(){
 		if(m_left >= Character.left - 60 && m_left <= Character.left + 60 )
 		{
 		//몬스터 체력 -= 공격력 * 10이하 난수
-		u_hp -=m_attack* ( parseInt(Math.random()*10+1) );
+		Character.hp -=m_attack* ( parseInt(Math.random()*10+1) );
 		hp();
 		}
 }
