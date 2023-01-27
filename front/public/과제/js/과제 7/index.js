@@ -1,5 +1,5 @@
 /*공용*/
-let u_left = 10; let u_top = 420; //유저 좌표
+let u_left = 10;  //유저 좌표
 let m_left = 910; //몬스터 좌표
 
 let userbox = document.querySelector('.userbox') //유저박스
@@ -16,36 +16,47 @@ let m_hp=100;
 let u_attack = 1; 
 let m_attack =1;
 
+/*캐릭터 객체*/
+let Character ={img:'캐릭터.png', left:10, top:450, hp:100,
+exp:0, level:1}
+/*캐릭터 공격력*/
+Character.power=Character.level*10;
+
 /*몬스터 배열*/
-let monster = [
-	{m_ing: '주황버섯.gif', hp:100, left:910, top:440, exp:1},
-	{m_ing: '독버섯.gif', hp:200, left:910, top:440, exp:2},
-	{m_ing: '철버섯.gif', hp:300, left:910, top:440, exp:3}
+let monsters = [
+	{img: '주황버섯.gif', hp:100, left:910, top:460, exp:1 , power:1},
+	{img: '독버섯.gif', hp:200, left:910, top:460, exp:2 , power:2},
+	{img: '철버섯.gif', hp:300, left:910, top:460, exp:3 , power:3}
 	]
+
+/*몬스터 단계*/
+let step = 0;
+monster(0)
 /*ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
 
-//문서에 키입력시 발생하는 이벤트
+
+//문서에 키입력시 발생하는 이벤트 (유저)
 document.addEventListener('keydown',(e)=>{
 	
 	let key = e.keyCode;
 	
 	if(key == 37){//왼쪽
-		u_left -= 10
-		u_left = u_left < 0 ? 0 : u_left; //0보다 작으면 0고정
+		Character.left -= 10
+		Character.left = Character.left < 0 ? 0 : Character.left; //0보다 작으면 0고정
 	
 	}else if(key == 39){//오른쪽
-		u_left += 10
+		Character.left += 10
 		userbox.style.backgroundImage = `url(img/이동.png)`
-		u_left = u_left >= 910 ? 910 : u_left;
+		Character.left = Character.left >= 910 ? 910 : Character.left;
 	}
 	
-	userbox.style.left = `${u_left}px`
-	logbox.innerHTML = `<div> 좌표 : ${u_left}</div>`
+	userbox.style.left = `${Character.left}px`
+	logbox.innerHTML = `<div> 좌표 : ${Character.left}</div>`
 })
 
 //키를 떼었을떄
 document.addEventListener('keyup',(e)=>{
-	userbox.style.backgroundImage = `url(img/캐릭터.png)`
+	userbox.style.backgroundImage = `url(img/${Character.img})`
 	userbox.style.backgroundSize = `cover`
 })
 
@@ -78,7 +89,7 @@ document.addEventListener('keydown',(e)=>{
 		userbox.style.backgroundSize = `105%`
 	
 		//a키중 몬스터 범위 +-10일때 체력달기
-		if(u_left >= m_left - 100 && u_left <= m_left + 100 ){
+		if(Character.left >= m_left - 100 && Character.left <= m_left + 100 ){
 		//몬스터 체력 -= 공격력 * 10이하 난수
 		m_hp -=u_attack* ( parseInt(Math.random()*20+1) );
 		
@@ -95,7 +106,8 @@ function hp(){
 	
 	if(m_hp <=0){ //몬스터 0일시 안보이게
 		alert('처치하였습니다.');	
-		document.querySelector('.monbox').style.display="none"
+		document.querySelector('.monbox').style.display="none";
+		step++;
 		return;
 	}
 	
@@ -119,10 +131,20 @@ function hp(){
 function monster_attack(){
 	
 		//유저범위 +-60일때 체력 감소 
-		if(m_left >= u_left - 60 && m_left <= u_left + 60 )
+		if(m_left >= Character.left - 60 && m_left <= Character.left + 60 )
 		{
 		//몬스터 체력 -= 공격력 * 10이하 난수
 		u_hp -=m_attack* ( parseInt(Math.random()*10+1) );
 		hp();
 		}
+}
+
+/*몬스터 교체*/
+function monster(i){
+	let monster = document.querySelector('.monbox')
+	monster.style.backgroundImage = `url(img/${monsters[i].img})`
+	monster.style.left = `${monsters[i].left}`
+	monster.style.top = `${monsters[i].top}`
+	monster.style.width = `${monsters[i].hp}.px`
+	
 }
