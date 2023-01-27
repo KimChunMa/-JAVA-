@@ -1,17 +1,9 @@
 /*공용*/
-let m_left = 910; //몬스터 좌표
-
 let userbox = document.querySelector('.userbox') //유저박스
 let monbox = document.querySelector('.monbox') // 몬스터 박스
 
 let logbox = document.querySelector('.logbox') //좌표알림
 let logbox2 = document.querySelector('.logbox2')//몬스터 좌표알림
-
-/* 체력*/
-let m_hp=100;
-
-/* 공격력*/
-let m_attack =1;
 
 /*캐릭터 객체*/
 let Character ={img:'캐릭터.png', left:10, top:450, hp:100,
@@ -66,13 +58,13 @@ function mon_moving(){
 	let rand = parseInt(Math.random()*70+1);  //이동거리
 	
 	let rand2 = parseInt(Math.random()*2); //이동방향 0또는 1
-	if(rand2==1){m_left +=rand}
-	else{m_left -=rand}
+	if(rand2==1){monsters[step].left +=rand}
+	else{monsters[step].left -=rand}
 
-	if(m_left<0){m_left = 0;}
-	if(m_left>910){m_left = 910;}
-	monbox.style.left = `${m_left}px`
-	logbox2.innerHTML = `<div>몹 좌표 : ${m_left}</div>`
+	if(monsters[step].left<0){monsters[step].left = 0;}
+	if(monsters[step].left>910){monsters[step].left = 910;}
+	monbox.style.left = `${monsters[step].left}px`
+	logbox2.innerHTML = `<div>몹 좌표 : ${monsters[step].left}</div>`
 	
 	monster_attack(); //몬스터 공격
 }
@@ -86,9 +78,9 @@ document.addEventListener('keydown',(e)=>{
 		userbox.style.backgroundSize = `105%`
 	
 		//a키중 몬스터 범위 +-10일때 체력달기
-		if(Character.left >= m_left - 100 && Character.left <= m_left + 100 ){
+		if(Character.left >= monsters[step].left - 100 && Character.left <= monsters[step].left + 100 ){
 		//몬스터 체력 -= 공격력 * 10이하 난수
-		m_hp -= Character.power*( parseInt(Math.random()*2+1));
+		monsters[step].hp -= Character.power*( parseInt(Math.random()*2+1));
 		
 		hp();
 		}	
@@ -101,7 +93,7 @@ document.addEventListener('keydown',(e)=>{
 /*1-2체력*/
 function hp(){
 	
-	if(m_hp <=0){ //몬스터 0일시 안보이게
+	if(monsters[step].hp <=0){ //몬스터 0일시 안보이게
 		alert('처치하였습니다.');	
 		document.querySelector('.monbox').style.display="none";
 		step++;
@@ -118,9 +110,9 @@ function hp(){
 	u_bar.style.width =`${Character.hp * 3}px`
 	
 	let m_bar = document.querySelector('.m_bar')//몬스터 체력
-	m_bar.style.width =`${m_hp * 3}px` 			
+	m_bar.style.width =`${monsters[step].hp * 3}px` 			
 	
-	console.log('몬'+ m_hp);
+	console.log('몬'+ monsters[step].hp);
 	console.log('유'+ Character.hp);
 }
 
@@ -128,10 +120,10 @@ function hp(){
 function monster_attack(){
 	
 		//유저범위 +-60일때 체력 감소 
-		if(m_left >= Character.left - 60 && m_left <= Character.left + 60 )
+		if(monsters[step].left >= Character.left - 60 && monsters[step].left <= Character.left + 60 )
 		{
 		//몬스터 체력 -= 공격력 * 10이하 난수
-		Character.hp -=m_attack* ( parseInt(Math.random()*10+1) );
+		Character.hp -=monsters[step].power* ( parseInt(Math.random()*10+1) );
 		hp();
 		}
 }
