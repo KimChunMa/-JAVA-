@@ -1,0 +1,28 @@
+/* 게임화면 */
+.wrap{width:1000px; height:600px; margin:0 auto;
+border:1px solid black; position: relative; /* 하위요소들의 기준점 */
+background-image:url("img/게임배경.jfif"); background-size:110%;
+background-repeat: no-repeat;} 
+
+/* 유저 */
+.userbox{width:100px; height:100px;
+position:absolute; left:10px; top:420px; /* 상위요소의 절대위치 */
+background-image: url("img/캐릭터.png"); background-repeat: no-repeat;
+ background-size: 100%;	
+}	 
+
+/* 몬스터 */
+.monbox{width:100px; height:100px;
+position:absolute; left:910px; top:440px; /* 상위요소의 절대위치 */
+background-image: url("img/주황버섯.gif"); background-repeat: no-repeat;
+transition:all 1s; /* 애니메이션 1초간 부드럽게 이동 */
+
+}
+
+
+/* HP 바*/
+.hp_bar{display:flex; justify-content: space-between;}
+.u_bar{width:300px; height:40px; background-color: red; 
+margin:30px;}
+.m_bar{width:300px; height:40px; background-color: red;
+margin:30px;}
