@@ -13,9 +13,9 @@ Character.power=Character.level*10;
 
 /*몬스터 배열*/
 let monsters = [
-	{img: '주황버섯.gif', hp:100, left:910, top:460, exp:1 , power:1},
-	{img: '독버섯.gif', hp:200, left:910, top:460, exp:2 , power:2},
-	{img: '철버섯.gif', hp:300, left:910, top:40, exp:3 , power:3}
+	{img: '주황버섯.gif', hp:100, left:910, top:500, exp:1 , power:1, },
+	{img: '독버섯.gif', hp:200, left:910, top:500, exp:2 , power:2},
+	{img: '철버섯.gif', hp:250, left:910, top:500, exp:3 , power:3}
 	]
 
 /*몬스터 단계*/
@@ -54,19 +54,22 @@ document.addEventListener('keyup',(e)=>{
 setInterval(mon_moving, 1000)
 
 function mon_moving(){
-		//0~1사이 => 0~10사이 => 1~11사이
+		//0~1사이 => 0~70사이 => 1~71사이
 	let rand = parseInt(Math.random()*70+1);  //이동거리
 	
 	let rand2 = parseInt(Math.random()*2); //이동방향 0또는 1
 	if(rand2==1){monsters[step].left +=rand}
 	else{monsters[step].left -=rand}
-
+	
+	//최대거리
 	if(monsters[step].left<0){monsters[step].left = 0;}
 	if(monsters[step].left>910){monsters[step].left = 910;}
+	
+	//실제 이동
 	monbox.style.left = `${monsters[step].left}px`
 	logbox2.innerHTML = `<div>몹 좌표 : ${monsters[step].left}</div>`
 	
-	monster_attack(); //몬스터 공격
+	
 }
 
 /*1. [공격시]*/
@@ -78,25 +81,32 @@ document.addEventListener('keydown',(e)=>{
 		userbox.style.backgroundSize = `105%`
 	
 		//a키중 몬스터 범위 +-10일때 체력달기
-		if(Character.left >= monsters[step].left - 100 && Character.left <= monsters[step].left + 100 ){
+		if(Character.left >= monsters[step].left - 100 
+		&& Character.left <= monsters[step].left + 100 ){
 		//몬스터 체력 -= 공격력 * 10이하 난수
 		monsters[step].hp -= Character.power*( parseInt(Math.random()*2+1));
-		
 		hp();
-		}	
-		
-	}
+		} //사거리 감소	
+	} //a키 모션 끝
 	
+	/*방어 모드*/
+	if(key == 83){ //s키 모션
+		userbox.style.backgroundImage = `url(img/방어.png)`;
+		userbox.style.backgroundSize = `contain`;
+		monster_attack(false); 
+	}else{monster_attack(true); }
 	
 })
 
 /*1-2체력*/
 function hp(){
 	
-	if(monsters[step].hp <=0){ //몬스터 0일시 안보이게
+	if(monsters[step].hp <=0){ //몬스터 0일시 
 		alert('처치하였습니다.');	
-		document.querySelector('.monbox').style.display="none";
-		step++;
+		step++; 
+		monster(step); //몬스터 +1단계
+		user_location(); // 유저,hp제자리
+		
 		return;
 	}
 	
@@ -107,33 +117,59 @@ function hp(){
 	
 	
 	let u_bar = document.querySelector('.u_bar') //유저체력
-	u_bar.style.width =`${Character.hp * 3}px`
+	u_bar.style.width =`${Character.hp * 1.5}px`
 	
 	let m_bar = document.querySelector('.m_bar')//몬스터 체력
-	m_bar.style.width =`${monsters[step].hp * 3}px` 			
+	m_bar.style.width =`${monsters[step].hp * 1.5}px` 			
 	
-	console.log('몬'+ monsters[step].hp);
-	console.log('유'+ Character.hp);
 }
 
 /*2. [공격 받을시]*/
-function monster_attack(){
-	
+function monster_attack( bool ){
+		if(bool == false){  //방어시 그냥 스킾
+			return;
+		}else if ( bool == true ){ //방어를 안할시 hp 감소
 		//유저범위 +-60일때 체력 감소 
-		if(monsters[step].left >= Character.left - 60 && monsters[step].left <= Character.left + 60 )
-		{
-		//몬스터 체력 -= 공격력 * 10이하 난수
-		Character.hp -=monsters[step].power* ( parseInt(Math.random()*10+1) );
-		hp();
-		}
+			if(monsters[step].left >= Character.left - 60 && monsters[step].left <= Character.left + 60 )
+			{
+			//몬스터 체력 -= 공격력 * 10이하 난수
+			Character.hp -=monsters[step].power* ( parseInt(Math.random()*10+1) );
+			hp();
+			}
+		} 
 }
 
 /*몬스터 교체*/
 function monster(i){
+	if(i == 3){
+		alert('컨텐츠가 종료되었습니다.');
+	}
+	
 	let monster = document.querySelector('.monbox')
 	monster.style.backgroundImage = `url(img/${monsters[i].img})`
 	monster.style.left = `${monsters[i].left}`
 	monster.style.top = `${monsters[i].top}`
 	monster.style.width = `${monsters[i].hp}.px`
 	
+	
+}
+
+/*유저,hp 원위치*/
+function user_location(){
+	Character.left = 10;
+	userbox.style.left = `${Character.left}px`
+	Character.hp = 100;
+	hp();
+}
+
+status()
+/*상태창*/
+function status(){
+  let html = `
+  		<li> 레벨 : ${Character.level} </li>
+  		<li> 경험치 : ${Character.exp}	</li>
+  		<li> HP : ${Character.hp}	</li>
+  		<li> 공격력 : ${Character.power} </li>`
+  
+  document.querySelector('.user_status').innerHTML = html
 }

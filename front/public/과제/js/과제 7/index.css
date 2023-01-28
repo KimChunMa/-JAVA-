@@ -1,3 +1,5 @@
+*{margin:0px; padding:0px;}
+
 /* 게임화면 */
 .wrap{width:1000px; height:600px; margin:0 auto;
 border:1px solid black; position: relative; /* 하위요소들의 기준점 */
@@ -16,13 +18,23 @@ background-image: url("img/캐릭터.png"); background-repeat: no-repeat;
 position:absolute; left:910px; top:460px; /* 상위요소의 절대위치 */
 background-image: url("img/주황버섯.gif"); background-repeat: no-repeat;
 transition:all 1s; /* 애니메이션 1초간 부드럽게 이동 */
-
+ background-size: contain;	/* 해당너비에 비율꽉 */
 }
 
 
 /* HP 바*/
-.hp_bar{display:flex; justify-content: space-between;}
-.u_bar{width:300px; height:40px; background-color: red; 
-margin:30px;}
-.m_bar{width:300px; height:40px; background-color: red;
-margin:30px;}
+.hp_bar{display:flex; justify-content: space-between; width:100%;}
+.u_bar{width:150px; height:40px; background-color: red; margin:15px;}
+.m_bar{width:150px; height:40px; background-color: red; margin:15px;}
+
+/* 상태창*/
+.status {height:30px; width:50px;
+margin-left:20px; position:relative;}
+/* 상태창 이미지 */
+.status img{height:30px}
+
+/* 용사능력치 */
+.user_status{background-color:white; width:100px; 
+position:absolute; top:30px; ; display:none;}
+li{list-style: none}
+.status:hover .user_status{display:block;}
