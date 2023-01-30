@@ -16,7 +16,5 @@ function quest_submit(){
 	alert('글쓰기성공')
 	
 	//결과
-	let result = false;
-	if(result) {alert('글쓰기성공'); location.href=`list.html`;}
-	else{alert('글쓰기실패')}
+
 }
