@@ -8,6 +8,7 @@
 	
 	<!-- 사용자정의 : css -->
 	<link href="/jsp/css/index.css" rel="stylesheet">
+	<link href="list.css" rel="stylesheet">
 	
 	<!-- 부트스트랩 : css -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -19,6 +20,7 @@
 	 -->
 </head>
 <body>
+	<!-- 헤더 시작 -->
 	<!-- 상단 메뉴 / sticky-top : 반응형 상단고정  bg-white : 배경 흰색 -->
 	<div class="navbar navbar-expand-lg sticky-top bg-white h_top">	<!-- 네비케이션 [ 메뉴 ]  -->
 		<div class="container">							<!-- 구역 -->
@@ -67,7 +69,81 @@
 			</div>
 		</div>
 	</div>
-	
+<!-- 헤더 end -->
+
+<!-- 본문 -->
+	<div class="container">	<!-- 반응형 구현 -->
+		<h3> 커뮤니티 </h3>
+		
+		<!-- 테이블 -->
+		<table class="table  table-striped table-bordered text-center">
+			<thead>
+				<tr>
+					<th width="5%"> 번호 </th> <th width="60%" > 제목 </th> <th width="10%"> 작성자 </th> 
+					<th width="10%"> 작성일 </th> <th width="5%"> 조회수 </th> <th width="5%">좋아요</th> <th width="5%">싫어요</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>	<td> 5 </td>  <td> 안녕하세요1 </td>  <td> 유재석 </td>  <td> 2023-01-30 </td>  <td> 325 </td>  <td> 59 </td>  <td> 10 </td>  </tr>
+				
+				<tr>	<td> 4 </td>  <td > 안녕하세요2안녕하세요2  안녕하세요2안녕하세요2 안녕하세요2안녕하세요2안녕하세요2 안녕하세요2 안녕하세요2  안녕하세요2안녕하세요2안녕하세요2안녕하세요2안녕하세요2안녕하세요2안녕하세요2안녕하세요2안녕하세요2</td>  
+						<td> 강호동 </td>  <td > 2023-01-27 </td>  <td  > 125 </td>  <td  > 49 </td>  <td  > 15 </td>  </tr>
+				
+				<tr>	<td> 3 </td>  <td> 안녕하세요3 </td>  <td> 신동엽 </td>  <td> 2023-01-25 </td>  <td> 32 </td>  <td> 39 </td>  <td> 2 </td>  </tr>
+				
+				<tr>	<td> 2 </td>  <td> 안녕하세요4 </td>  <td> 서장훈 </td>  <td> 2023-01-24 </td>  <td> 57 </td>  <td> 29 </td>  <td> 6 </td>  </tr>
+				
+				<tr>	<td> 1 </td>  <td> 안녕하세요5 </td>  <td> 김희철 </td>  <td> 2023-01-23 </td>  <td> 9 </td>  <td> 19 </td>  <td> 9</td>  </tr>
+			</tbody>
+		</table> <!-- 테이블 끝 -->
+		
+		
+		<!-- 페이지 네이션 -->
+		<div class="row">	<!-- 하단구역 1  -->
+		 <div class="col-md-5 offset-md-4 col-12">	<!-- 4칸 여백 5칸 -->
+			  <ul class="pagination">
+			    <li class="page-item">
+			      <a class="page-link" href="#" aria-label="Previous"><</a>
+			    </li>
+			    <li class="page-item"><a class="page-link" href="#">1</a></li>
+			    <li class="page-item"><a class="page-link" href="#">2</a></li>
+			    <li class="page-item"><a class="page-link" href="#">3</a></li>
+			    <li class="page-item"><a class="page-link" href="#">4</a></li>
+			    <li class="page-item"><a class="page-link" href="#">5</a></li>
+			    <li class="page-item">
+			      <a class="page-link" href="#" aria-label="Next">></a>
+			    </li>
+			  </ul>
+		 </div>	
+		
+		 <div class="col-md-1 offset-md-2 col-12"><!-- 글쓰기 -->
+		 	<a href="#"> <button type="button" class="form-control">글쓰기</button></a>
+		 </div>
+		</div> <!-- row 끝 -->	
+		
+		
+		<div class="row">	<!-- 하단구역2 -->
+		 <div class="col-md-5 offset-md-4 row g-2"> <!-- 5칸 여백4칸 가로 여백1cm? 씩 -->
+		 
+			<div class="col-md-3">
+				<select class="form-select">
+					<option> 키워드 </option>
+					<option> 번호 </option>
+					<option> 제목 </option>
+					<option> 작성자</option>
+				</select>
+			</div>
+			
+			<div class="col-md-6">
+				<input type="text" placeholder="검색어" class="form-control">
+			</div>
+			
+			<div class="col-md-3">
+				<button class="form-control">검색</button>
+			</div>
+		</div>	<!-- 하단구역2 e -->
+	 </div>
+	</div>	<!-- 컨테이너 끝 -->
 
 	
 	
