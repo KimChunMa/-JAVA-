@@ -1,0 +1,11 @@
+@charset "UTF-8";
+
+.td_title{
+	/* 사이즈보다 내용이 클경우 내용 자동 줄바꿈 */
+	white-space: nowrap;/* 줄바꿈 해제*/
+	overflow:hidden; /* 사이즈 넘칠경우 내용 숨기기*/
+	/* scroll: 스코롤바 */
+	
+	text-overflow: ellipsis;
+	word-break:break-all;
+}
