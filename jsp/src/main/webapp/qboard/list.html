@@ -2,24 +2,16 @@
 <html>
 <head>
 	<meta charset="UTF-8">	<!-- 한글 인코딩 : UTF-8 -->
-	<title>글쓰기</title>	<!-- 페이지 제목 -->
+	<title>문의사항</title>	<!-- 페이지 제목 -->
 	<!-- 반응형 : 뷰포트 -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<!-- 사용자정의 : css -->
 	<link href="/jsp/css/index.css" rel="stylesheet">
-
 	
 	<!-- 부트스트랩 : css -->
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-	<!-- 헤더에서 사용되는 경로 : 절대경로 [페이지마다 헤더 사용] -->
-	<!-- 서버 경로
-		1. 로컬호스트(생략가능) http://localhost:8080/프로젝트명/파일명 => /프로젝트명/파일명 
-		2. ip4(생략가능)	  192.168.17.94/프로젝트명/파일명 => /프로젝트명/파일명 
-	 -->
-	 <!-- 썸머노트  -->
-	 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 </head>
 <body>
 	<!-- 헤더 시작 -->
@@ -72,71 +64,76 @@
 		</div>
 	</div>
 <!-- 헤더 end -->
-	
-	<div class="container">
-		<h3 class="box_title"> 게시글 작성</h3>
+
+	<!-- 문의 테이블 -->
+	<div class="container my-4">
+		<table class="quest_table table table-bordered text-center table-striped">
 		
-		<form class="writeform">	<!-- 입력양식 -->
-			<div class="row my-3"> <!-- margin 위아래 3 -->
-				<div class="col-md-3"> 
-					<input type="text" placeholder="작성자" class="form-control bwriter">
-				</div>
-				<div class="col-md-3"> 
-					<input type="password" placeholder="비밀번호" class="form-control bpassword">
-				</div>
-			</div>
-			
-			<div class="row my-3">
-				<div class="col-md-12">
-					<input type="text" placeholder="제목" class="form-control btitle">
-				</div>
-			</div>
-			
-			<!-- 기본 -->
-			<textarea rows="10" cols="" class="form-control bcontent" placeholder="내용"></textarea>
-			
-			<textarea id="summernote" class="form-control my-3" rows="10" cols="" placeholder="내용2"></textarea>
-			
-			<div class="row my-3"> 
-				<div class="col-md-3">
-			 		<input type="file" class="form-control">
-			 	</div>
-			 </div>
-			 
-			 <div class="row col-md-4 offset-md-4">
-			 	<div class="col-md-4">
-					<button type="button" class="form-control writebtn" onclick="board_write()">등록</button>
-				</div>
-				<div class="col-md-4">
-					<button type="reset" class="form-control resetbtn">다시작성</button>
-				</div>
-				<div class="col-md-4">
-					<a href="/jsp/board/list.html"> <button type="button" class="form-control backbtn">목록보기</button> </a>
-				</div>
-			 </div>	
-		</form>
+		</table>
+	</div>	<!-- 문의 테이블 끝 -->
+	
+	<!-- 페이징,글쓰기 버튼 -->
+	<div class="row my-5"> 
+		<div class="col-md-4 offset-md-5"> <!-- 여백4 4칸 총12 -->
+			<nav aria-label="Page navigation example">
+			  <ul class="pagination">
+			  
+			    <li class="page-item">
+			      <a class="page-link" href="#" aria-label="Previous">
+			        <span aria-hidden="true">&laquo;</span>
+			      </a>
+			    </li>
+			    
+			    <li class="page-item"><a class="page-link" href="#">1</a></li>
+			    <li class="page-item"><a class="page-link" href="#">2</a></li>
+			    <li class="page-item"><a class="page-link" href="#">3</a></li>
+			    
+			    <li class="page-item">
+			      <a class="page-link" href="#" aria-label="Next">
+			        <span aria-hidden="true">&raquo;</span>
+			      </a>
+			    </li>
+			  </ul>
+			</nav>
+		</div>	
+		
+			<div class="col-md-1 offset-md-1"><!-- 글쓰기 -->
+		 		<a href="write.html" > <button type="button" class="form-control">글쓰기</button></a>
+		 	</div>
+		
+	</div>	
+	
+	<!-- 검색창 -->
+	<div class="col-md-5 offset-md-4 row g-2"> 
+		<div class="col-md-4">
+			<select class="form-select">
+				<option> 키워드 </option>
+				<option> 제목 </option>
+				<option> 번호 </option>
+				<option> 작성자 </option>
+			</select>
+		</div>
+	
+		<div class="col-md-4">
+			<input type="text" placeholder="검색창" class="form-control">
+		</div>
+		
+		<div class="col-md-2">
+			<button class="form-control">검색</button>
+		</div>
+		
+		
 	</div>
-
-
-	
-		
 	
 	
 	<!-- 부트스트랩 : js -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-	
-	<!-- js 라이브러리 -->
-	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-	
-	 <!-- 썸머노트  -->
-	<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-	
-	 <script src=" https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-ko-KR.min.js"></script> <!--  한글 -->
-	
-	<!-- 사용자정의 -->
+	<script src="/jsp/qboard/list.js"></script>
 	
 </body>
 </html>
+
+
 
 
 
