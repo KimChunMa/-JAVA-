@@ -39,12 +39,11 @@
 .box_title{
 	text-align: center;
 	font-family: 'Sans';
-	margin-top:10%;
 	border-bottom:2px solid #999999;
 	width:20%;
-	margin:0 auto;
-	padding-top:10%;
-	padding-bottom:1%;
+	margin:3% auto;
+	padding-top:3%;
+	padding-bottom:3%;
 }
 /* 서로 다른 사이즈마다 css다르게 설정 */
 		/* 조건 ↓ 참 일경우 */
