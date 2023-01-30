@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">	<!-- 한글 인코딩 : UTF-8 -->
-	<title>글쓰기</title>	<!-- 페이지 제목 -->
+	<title>뷰</title>	<!-- 페이지 제목 -->
 	<!-- 반응형 : 뷰포트 -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
@@ -73,51 +73,6 @@
 	</div>
 <!-- 헤더 end -->
 	
-	<div class="container">
-		<h3 class="box_title"> 게시글 작성</h3>
-		
-		<form class="writeform">	<!-- 입력양식 -->
-			<div class="row my-3"> <!-- margin 위아래 3 -->
-				<div class="col-md-3"> 
-					<input type="text" placeholder="작성자" class="form-control bwriter">
-				</div>
-				<div class="col-md-3"> 
-					<input type="password" placeholder="비밀번호" class="form-control bpassword">
-				</div>
-			</div>
-			
-			<div class="row my-3">
-				<div class="col-md-12">
-					<input type="text" placeholder="제목" class="form-control btitle">
-				</div>
-			</div>
-			
-			<!-- 기본 -->
-			<textarea rows="10" cols="" class="form-control bcontent" placeholder="내용"></textarea>
-			
-			<textarea id="summernote" class="form-control my-3" rows="10" cols="" placeholder="내용2"></textarea>
-			
-			<div class="row my-3"> 
-				<div class="col-md-3">
-			 		<input type="file" class="form-control">
-			 	</div>
-			 </div>
-			 
-			 <div class="row col-md-4 offset-md-4">
-			 	<div class="col-md-4">
-					<button type="button" class="form-control writebtn" onclick="board_write()">등록</button>
-				</div>
-				<div class="col-md-4">
-					<button type="reset" class="form-control resetbtn">다시작성</button>
-				</div>
-				<div class="col-md-4">
-					<a href="list.html"> <button type="button" class="form-control backbtn">목록보기</button> </a>
-				</div>
-			 </div>	
-		</form>
-	</div>
-
-
 	
 		
 	
@@ -138,12 +93,6 @@
 </body>
 </html>
 
-
-	<!-- 부트스트랩 여백
-			m : margin
-				m-3
-			
-			 -->
 
 
 

@@ -22,7 +22,7 @@ function border_print( key, keyword){ //검색후 페이지
 	boardlist.forEach((obj,idx)=>{
 		html += `<tbody> <tr> 
 					  <td>${obj.no} </td>
-					  <td>${obj.title} </td>
+					  <td><a href="view.html"  class="nav-link">${obj.title}</a> </td>
 					  <td>${obj.writer} </td>
 					  <td>${obj.date} </td>
 					  <td>${obj.view} </td>
