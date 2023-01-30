@@ -5,6 +5,7 @@ let monbox = document.querySelector('.monbox') // 몬스터 박스
 let logbox = document.querySelector('.logbox') //좌표알림
 let logbox2 = document.querySelector('.logbox2')//몬스터 좌표알림
 
+
 /*캐릭터 객체*/
 let Character ={img:'캐릭터.png', left:10, top:450, hp:100,
 exp:0, level:1}
@@ -69,7 +70,6 @@ function mon_moving(){
 	monbox.style.left = `${monsters[step].left}px`
 	logbox2.innerHTML = `<div>몹 좌표 : ${monsters[step].left}</div>`
 	
-	
 }
 
 /*1. [공격시]*/
@@ -125,6 +125,7 @@ function hp(){
 }
 
 /*2. [공격 받을시]*/
+
 function monster_attack( bool ){
 		if(bool == false){  //방어시 그냥 스킾
 			return;
@@ -137,6 +138,7 @@ function monster_attack( bool ){
 			hp();
 			}
 		} 
+		
 }
 
 /*몬스터 교체*/
