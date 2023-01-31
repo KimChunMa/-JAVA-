@@ -1,8 +1,4 @@
-let contents = [
-	{date:'20230101', content : '새해맞이 여행'},
-	{date:'20230103', content : '3일에 여행'},
-	{date:'20230101', content : '새해맞이 여행'},
-]
+let contents = []
 
 
 let year = (new Date().getFullYear()) 
@@ -53,7 +49,7 @@ function contents_print( date ){
 	let html =``;
 	contents.forEach((o,i)=>{
 		if(date == o.date){
-			html += `<div class="content"> ${o.content}</div>`
+			html += `<div class="content" style="background-color : ${o.bg_color}"> ${o.content}</div>`
 		}
 	})
 
@@ -93,8 +89,9 @@ document.querySelector('.modal_write').addEventListener('click',(e)=>{
 	
 	let content ={
 		date:document.querySelector('.modal_date').innerHTML ,
-		content: document.querySelector('.modal_input').value
-	};
+		content: document.querySelector('.modal_input').value,
+		bg_color : document.querySelector('.modal_color').value
+	}; console.log(content)
 	//등록된 객체 푸쉬
 	contents.push(content) 
 	//빈칸으로
@@ -102,6 +99,8 @@ document.querySelector('.modal_write').addEventListener('click',(e)=>{
 	//듣기
 	document.querySelector('.modal_wrap').style.display="none"
 	date()
+	
+	
 })
 
 //해당 날짜 컨텐츠 출력
@@ -117,7 +116,7 @@ function modal_print( fdate){
 		if(obj.date == fdate){
 			html += `<tr>
 						 <td> ${i} </td> <td>${obj.content}</td> 
-						 <th><button class="del"
+						 <th><button class="del" style="background-color : ${o.color}"
 						 onclick="Del(${idx})">삭제</button> </th>
 					 </tr>`
 			i++
