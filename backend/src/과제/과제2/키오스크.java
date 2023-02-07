@@ -41,9 +41,9 @@ public class 키오스크 {
 			}else if(order == 4) { //주문시
 				System.out.println("----------------------");
 				System.out.println("제품명    수량       가격 ");
-				System.out.printf ("콜라      %d        %d \n",a_sum, (a_sum*a) );
-				System.out.printf ("사이다    %d        %d \n",b_sum, (b_sum*b) );
-				System.out.printf ("환타      %d        %d \n",c_sum, (c_sum*c) );
+				if(a_sum>0) {System.out.printf ("콜라      %d        %d \n",a_sum, (a_sum*a) );}
+				if(b_sum>0) {System.out.printf ("사이다    %d        %d \n",b_sum, (b_sum*b) );}
+				if(c_sum>0) {System.out.printf ("환타      %d        %d \n",c_sum, (c_sum*c) );}
 				System.out.printf ("총가격   %d \n",sum );
 			
 				System.out.println("1. 결제 2.취소");
