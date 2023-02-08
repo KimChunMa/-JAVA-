@@ -95,7 +95,8 @@ public class Ex5_틱택토 {
 
 		
 			
-		} // while e
+			} // while e
 		
+		}
 	}
 }
