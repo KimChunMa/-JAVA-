@@ -7,6 +7,5 @@ public class Member {
 	String pw ;
 	String name ;
 	String tel ;
-	String rental ="없음";
 	ArrayList<Book> rentList = new ArrayList<>();
 }
