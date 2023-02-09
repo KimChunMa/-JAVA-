@@ -4,4 +4,6 @@ public class Book {
 	boolean 대여여부;
 	String 도서장르;
 	String 도서명;
+	
+	Member member;
 }
