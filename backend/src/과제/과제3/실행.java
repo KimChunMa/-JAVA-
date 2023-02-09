@@ -10,13 +10,13 @@ public class 실행 {
 		
 		ArrayList<Book> bookList = new ArrayList<>();
 		
-		Book b1 = new Book(); b1.대여여부 = "가능"; b1.도서장르 = "소설"; b1.도서명 = "행복한편의점";
+		Book b1 = new Book(); b1.대여여부 = true; b1.도서장르 = "소설"; b1.도서명 = "행복한편의점";
 		bookList.add(b1);
 		
-		Book b2 = new Book(); b2.대여여부 = "불가능"; b2.도서장르 = "에세이"; b2.도서명 = "이것이여행이다";
+		Book b2 = new Book(); b2.대여여부 = false; b2.도서장르 = "에세이"; b2.도서명 = "이것이여행이다";
 		bookList.add(b2);
 		
-		Book b3 = new Book(); b3.대여여부 = "가능"; b3.도서장르 = "전문도서"; b3.도서명 = "이것이자바다";
+		Book b3 = new Book(); b3.대여여부 = true; b3.도서장르 = "전문도서"; b3.도서명 = "이것이자바다";
 		bookList.add(b3);
 		
 		
@@ -44,11 +44,12 @@ public class 실행 {
 				System.out.println("무엇을 대여하시겠습니까?");
 				int no = sc.nextInt();
 				
-				if(bookList.get(no).대여여부.equals("불가능")) {
+				if(bookList.get(no).대여여부 ==false) {
 					System.out.println("대여할 수 없습니다.");
 				}else {
-					bookList.get(no).대여여부 = "불가능";
+					bookList.get(no).대여여부 = false;
 					System.out.println("대여하셨습니다.");
+					
 				}
 				
 				
@@ -58,8 +59,8 @@ public class 실행 {
 				System.out.println("무엇을 반납하시겠습니까?");
 				int no = sc.nextInt();
 				
-				if(bookList.get(no).대여여부.equals("불가능")) {
-					bookList.get(no).대여여부 ="가능";
+				if(bookList.get(no).대여여부 == false) {
+					bookList.get(no).대여여부 =true;
 					System.out.println("반납되었습니다.");
 				}else {
 					System.out.println("대여하지 않은 책 입니다.");
@@ -70,7 +71,7 @@ public class 실행 {
 				Book book = new Book();
 				System.out.println("등록할 도서명을 입력해주세요"); book.도서명 = sc.next();
 				System.out.println("등록할 도서장르 입력해주세요"); book.도서장르 = sc.next();
-				book.대여여부 = "가능"; bookList.add(book);
+				book.대여여부 = true; bookList.add(book);
 				System.out.println("등록되었습니다");
 			}
 			
@@ -92,6 +93,7 @@ public class 실행 {
 								if( (m2.name).equals(m1.name) ) {
 									if( (m2.tel).equals(m1.tel) ) {
 										System.out.println("로그인 성공");
+										break;
 									}
 								}
 							}
