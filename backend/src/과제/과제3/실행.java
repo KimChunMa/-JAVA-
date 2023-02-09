@@ -86,7 +86,17 @@ public class 실행 {
 					System.out.println("전화번호를 입력해주세요"); m1.tel = sc.next();
 					
 					
-					
+					for(Member m2:memberList) {
+						if( (m2.id).equals(m1.id) ) {
+							if( (m2.pw).equals(m1.pw) ) {
+								if( (m2.name).equals(m1.name) ) {
+									if( (m2.tel).equals(m1.tel) ) {
+										System.out.println("로그인 성공");
+									}
+								}
+							}
+						}
+					}
 					
 					
 				}
