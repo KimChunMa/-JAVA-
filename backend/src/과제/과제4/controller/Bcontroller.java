@@ -16,6 +16,13 @@ public class Bcontroller {//로그인시 함수 클래스
 		while(true) {
 			System.out.println("━━━━━━━━━━━━━━⊱༻ 이젠 커뮤니티 ༺⊰━━━━━━━━━━━━━━");
 			System.out.println("번호\t조회수\t작성자\t제목");
+			int idx= 0 ;
+			for(Board bo: boardDB ) {
+				System.out.printf("%d\t%d\t%s\t%s\n",idx,bo.view,bo.writer,bo.title);
+				idx++;
+			}
+			
+			
 			System.out.println("1.글쓰기 2.글보기 3.로그아웃");
 			int ch = sc.nextInt();
 			
@@ -34,12 +41,12 @@ public class Bcontroller {//로그인시 함수 클래스
 			}//if ch 1 e	
 			
 			else if(ch==2) {//글 보기
-				int idx = 0; // 인덱스확인용
+				int idx2 = 0; // 인덱스확인용
 				System.out.println("번호\t조회수\t작성자\t제목");
 				
 				for(Board bo: boardDB ) {
 					System.out.printf("%d\t%d\t%s\t%s\n",idx,bo.view,bo.writer,bo.title);
-					idx++;
+					idx2++;
 				}
 				System.out.println("게시글 끝");
 			}//if ch 2 e
