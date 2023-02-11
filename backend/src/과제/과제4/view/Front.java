@@ -2,6 +2,7 @@ package 과제.과제4.view;
 
 import java.util.Scanner;
 
+import 과제.과제4.controller.Bcontroller;
 import 과제.과제4.controller.Mcontroller;
 
 // print, scanner
@@ -9,6 +10,7 @@ import 과제.과제4.controller.Mcontroller;
 public class Front {
 	Scanner sc =  new Scanner(System.in);
 	Mcontroller mc = new Mcontroller();
+	Bcontroller bc = new Bcontroller();
 	
 	//메인페이지
 	public void index() {
@@ -51,13 +53,24 @@ public class Front {
 		System.out.print("아이디: "); 	String id = sc.next();
 		System.out.print("비밀번호: "); 	String pw = sc.next();
 		
-		
+		//memberDB의 인덱스 위치를 result에 저장함
 		int result = mc.login(id, pw);
 		if(result>=0) {System.out.println("[알림] 로그인 성공 ");}
 		else if(result == -1) {System.out.println("[알림]비밀번호가 틀렸습니다.");}
 		else if(result == -2) {System.out.println("[알림]없는 회원 입니다.");}
 		
+		//로그인 성공시 (가독성을 위해 분리)
+		if(result>=0) {
+		while(true) {//로그인성공 페이지
+			int login_result = bc.board_print(result,mc); //멤버DB 받기
+			if(login_result==3) {System.out.println("[알림]로그아웃 합니다."); break;}
+			
+			
+			
+		}//while e
+		
 	}
+	}//login e
 	
 	//아이디찾기 페이지
 	void findId() {
@@ -74,5 +87,19 @@ public class Front {
 	
 	
 	//비밀번호 찾기 페이지
-	void findPw() {}
-}
+	void findPw() {
+		System.out.println("아이디 : ");		String id = sc.next();
+		System.out.println("전화번호 : ");	String tel = sc.next();
+		String result = mc.findPw(id,tel);
+		
+		if(result == null) {
+			System.out.println("[알림] 일치하는 비밀번호가 없습니다. ");
+		}else {
+			System.out.println("[알림] 회원님의 비밀번호 : "+ result);
+		}
+		
+		
+	}//findPw e
+	
+	
+}//class e

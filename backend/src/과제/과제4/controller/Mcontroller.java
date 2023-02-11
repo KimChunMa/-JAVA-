@@ -7,7 +7,7 @@ public class Mcontroller {
 	
 	ArrayList<Member> memberDB = new ArrayList<>();
 	
-	//회원가입 로직
+	//1. 회원가입 로직
 	public int signup(String id, String pw, String confirmpw, String name, String tel) {
 		if(!(pw.equals(confirmpw))) {return 1;} //회원가입 실패
 		
@@ -16,7 +16,7 @@ public class Mcontroller {
 		return 0; //회원가입 성공
 	}
 	
-	//로그인 로직
+	//2. 로그인 로직
 	public int login (String id, String pw) {
 		
 		//모든 멤버중 동일한 아이디 / 비밀번호 찾기
@@ -30,7 +30,9 @@ public class Mcontroller {
 		}// for e
 		return -2; // 아이디가 없음
 	}//login e
-	//아이디 찾기 로직
+	
+	
+	//3. 아이디 찾기 로직
 	public String findId(String name, String phone) {
 		//입력받은 이름과 전화번호와 일치한 회원찾기
 		for(Member m : memberDB) {
@@ -41,5 +43,15 @@ public class Mcontroller {
 		return null; //아이디 못찾으면 null
 	}
 	
-	//비밀번호 찾기 로직
+	//4. 비밀번호 찾기 로직
+	public String findPw(String id, String tel) {
+		//입력받은 이름과 전화번호와 일치한 회원찾기
+		for(Member m : memberDB) {
+			if(m.id.equals(id) && m.phone.equals(tel)) {
+					return m.pw;
+			}
+		}
+		return null; //비밀번호 못찾으면 null
+	}
+	
 }
