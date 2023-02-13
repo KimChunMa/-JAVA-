@@ -15,6 +15,7 @@ public class Board {
 	private String title;
 	private String content;
 	private String writer;
+	private String pw;
 	private Date date;
 	private int view;
 	
@@ -24,20 +25,20 @@ public class Board {
 	}
 
 	
-	public Board(String title, String content, String writer, Date date, int view) {
+	public Board(String title, String content, String writer, String pw,Date date, int view) {
 		super();
 		this.title = title;
 		this.content = content;
 		this.writer = writer;
 		this.date = date;
 		this.view = view;
+		this.pw = pw;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Board [title=" + title + ", content=" + content + ", writer=" + writer + ", date=" + date + ", view="
-				+ view + "]";
+		return title +"\t"+writer+"\t"+view+"\t"+date;
 	}
 
 	
