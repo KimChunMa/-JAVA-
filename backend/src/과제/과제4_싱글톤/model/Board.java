@@ -5,6 +5,17 @@ package 과제.과제4_싱글톤.model;
  		1. 한명의 회원이 글을 작성함.
  		2. 회원은 여러개의 글을 작성함.
  		
+ 		양방향 설정 [toString 불가능] : StackOverflower
+ 		객체 호출시 -> 주소값
+ 		스택 영역 	vs	힙영역
+ 		Board board = new Board();
+ 							32번지
+ 							
+ 		Member member = new Member();					
+ 							33번지
+ 							
+ 		System.out.println(board); 
+ 							32번지 출력
  */
 public class Board {
 	//필드

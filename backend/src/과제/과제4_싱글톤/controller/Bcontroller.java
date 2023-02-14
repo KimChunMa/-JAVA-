@@ -5,6 +5,12 @@ import java.util.ArrayList;
 import 과제.과제4_싱글톤.model.Board;
 
 public class Bcontroller {
+	//싱글톤
+	private static Bcontroller bc = new Bcontroller();
+	private Bcontroller() {};
+	public static Bcontroller getInstance() {
+		return bc;
+	}
 	
 	private ArrayList<Board> boardDB = new ArrayList<>();
 	
@@ -19,7 +25,7 @@ public class Bcontroller {
 		
 		boardDB.add(board);
 		// mc객체의 로그인된 member객체의 boardDB 추가 
-		Mcontroller.getInstance().getLogSession().getBoardDB().add(board);
+		//Mcontroller.getInstance().getLogSession().getBoardlist().add(board);
 		
 		return true;
 	}
@@ -31,6 +37,8 @@ public class Bcontroller {
 	
 	//글 상세
 	public Board getBoard(int bno) {
+		boardDB.get(bno).setView( 
+				boardDB.get(bno).getView()+1 );
 		return boardDB.get(bno);
 	}
 	

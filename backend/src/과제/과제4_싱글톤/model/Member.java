@@ -14,18 +14,18 @@ public class Member {
 	private String pw;
 	private String name;
 	private String phone;
-	private ArrayList<Board> boardDB = new ArrayList<>();
+	//private ArrayList<Board> boardlist;
 	
 	//생성자
 	public Member() {super();}
 
-	public Member(String id, String pw, String name, String phone, ArrayList<Board> boardDB) {
+	public Member(String id, String pw, String name, String phone, ArrayList<Board> boardlist) {
 		super();
 		this.id = id;
 		this.pw = pw;
 		this.name = name;
 		this.phone = phone;
-		this.boardDB = boardDB;
+		//this.boardlist = boardlist;
 	}
 
 	
@@ -62,19 +62,16 @@ public class Member {
 		this.phone = phone;
 	}
 
-	public ArrayList<Board> getBoardDB() {
-		return boardDB;
-	}
-
-	public void setBoardDB(ArrayList<Board> boardDB) {
-		this.boardDB = boardDB;
-	}
-
-	@Override
-	public String toString() {
-		return "Member [id=" + id + ", pw=" + pw + ", name=" + name + ", phone=" + phone + ", boardDB=" + boardDB + "]";
-	}
-	
+	/*
+	 * public ArrayList<Board> getBoardlist() { return boardlist; }
+	 * 
+	 * public void setBoardDB(ArrayList<Board> boardlist) { this.boardlist =
+	 * boardlist; }
+	 */
+	/*
+	 * @Override public String toString() { return "Member [id=" + id + ", pw=" + pw
+	 * + ", name=" + name + ", phone=" + phone + ", board=" + boardlist + "]"; }
+	 */
 	
 	
 	
