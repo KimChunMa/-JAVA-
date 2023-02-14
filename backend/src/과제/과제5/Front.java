@@ -52,7 +52,14 @@ public class Front {
 		while(true) {
 		System.out.println("-------중고나라---------");
 		System.out.println("번호\t이름\t가격");
-		}
+		
+		for(Product p : PController.getInstance.ProductDB) {
+			System.out.println(p.pname);
+			System.out.println(p.price);
+		}//for e
+		
+		
+		}//while e
 	}
 	
 }
