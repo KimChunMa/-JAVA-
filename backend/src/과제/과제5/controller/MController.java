@@ -8,7 +8,7 @@ public class MController {
 	//싱글톤
 	private MController() {};
 	private static MController mc = new MController();
-	private static MController getInstance() {return mc;}
+	public static MController getInstance() {return mc;}
 	
 	//멤버DB
 	private ArrayList<Member> memberDB = new ArrayList<>();
