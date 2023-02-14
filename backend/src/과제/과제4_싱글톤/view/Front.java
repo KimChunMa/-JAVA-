@@ -104,7 +104,7 @@ public class Front {
 		else {System.out.println("등록이 실패했습니다.");}
 	}
 	
-	-
+	
 	//게시물 상세 페이지
 	public void view_page() {
 		System.out.println("이동할 게시물 번호[인덱스]:"); 
