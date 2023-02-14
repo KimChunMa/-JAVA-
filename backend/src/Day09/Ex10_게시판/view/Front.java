@@ -68,6 +68,7 @@ public class Front {
 		System.out.print(" >> 1. 뒤로가기 2.삭제 3.수정 : ");
 		int ch2 = sc.nextInt();
 		if( ch2 == 1 ) { return; }
+		
 	}
 	
 }// class e
