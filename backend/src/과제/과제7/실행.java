@@ -62,7 +62,7 @@ public class 실행 {
 				for(은행 user : bankDB) {
 					if(user.account.equals(code)) {
 						System.out.print("예금액 : ");  int money = scanner.nextInt();
-						bankDB.get(i).amount = money; System.out.println("예금되었습니다");
+						bankDB.get(i).amount += money; System.out.println("예금되었습니다");
 					}
 					i++;
 				}//for e
