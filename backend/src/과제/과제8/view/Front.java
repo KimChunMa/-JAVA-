@@ -19,7 +19,7 @@ public class Front {
 		System.out.println("1. 대전 2. 대구 3. 부산 4.광주");
 		System.out.println("목적지를 선택해주세요"); int ch2 = sc.nextInt();
 		
-		if(ch==1) {  //목적지 선택시 model에서 거리 뺴오기
+		if(ch==1) { 
 			소형 car = new 소형(ch2); System.out.println("거리 : "+car.getDistance()+"  요금 :"+car.getPrice()+ " 시간 : "+car.getTime() +" 분");
 		}
 		
@@ -30,6 +30,9 @@ public class Front {
 		else if(ch==3) { 
 			대형 car = new 대형(ch2); System.out.println("거리 : "+car.getDistance()+"  요금 :"+car.getPrice() + " 시간 : "+car.getTime() +" 분");
 		}
+
+		
+
 		
 	}
 }

@@ -6,6 +6,7 @@ import 과제.과제8.model.지역.대전;
 import 과제.과제8.model.지역.부산;
 
 public class Car {
+	//필드
 	public int distance;
 	public int price;
 	public int km;
@@ -13,9 +14,9 @@ public class Car {
 	public String[] locations = {null,"대전","대구","부산","광주"};
 	public String location;
 	
+	//생성자
 	public Car() {}
 
-	
 	public Car( int ch2) {
 		km=0;
 		
@@ -28,8 +29,8 @@ public class Car {
 		time = distance/km;
 	}
 
-
 	
+	//get set
 	public int getDistance() {
 		return distance;
 	}
