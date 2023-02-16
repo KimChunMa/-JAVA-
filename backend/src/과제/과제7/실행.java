@@ -39,20 +39,19 @@ public class 실행 {
 				int bankChoice = scanner.nextInt();
 				
 				if(bankChoice == 1) { //1. 신한 은행
-					System.out.print("이름 : "); String name = scanner.next();
-					System.out.print("비밀번호 : "); String pw = scanner.next();
-					신한 계좌 = new 신한(name,pw);
-					bankDB.add(계좌);
+					신한 계좌 = new 신한();
+					은행 계좌1 = 계좌.make_Account();
+					bankDB.add(계좌1);
+					
 				}else if(bankChoice == 2) { //2. 국민 은행
-					System.out.print("이름 : "); String name = scanner.next();
-					System.out.print("비밀번호 : "); String pw = scanner.next();
-					국민 계좌 = new 국민(name,pw);
-					bankDB.add(계좌);
+					국민 계좌 = new 국민();
+					은행 계좌1 = 계좌.make_Account();
+					bankDB.add(계좌1);
+					
 				}else if(bankChoice == 3) { //3. 우리 은행 
-					System.out.print("이름 : "); String name = scanner.next();
-					System.out.print("비밀번호 : "); String pw = scanner.next();
-					신한 계좌 = new 신한(name,pw);
-					bankDB.add(계좌);
+					신한 계좌 = new 신한();
+					은행 계좌1 = 계좌.make_Account();
+					bankDB.add(계좌1);
 				}
 				
 			}else if(choice == 2) {//2. 예금

@@ -1,6 +1,10 @@
 package 과제.과제7;
 
+
+import java.util.Scanner;
+
 public class 은행 {
+	Scanner scanner = new Scanner(System.in);
 	
 	public String account; //계좌번호
 	public String code;
@@ -29,6 +33,16 @@ public class 은행 {
 		else {txtAccount +=  Integer.toString(account);}
 		
 		return txtAccount;
+	}
+	
+	
+	public 은행 make_Account() {
+		System.out.print("이름 : "); String name = scanner.next();
+		System.out.print("비밀번호 : "); String pw = scanner.next();
+		
+		은행 계좌 = new 은행();
+		return 계좌;
+		
 	}
 	
 }
