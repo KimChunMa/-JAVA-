@@ -1,5 +1,4 @@
-package 과제.과제8.model.지역;
-
+package 과제.과제8.Car.model.지역;
 
 public class 대전 {
 	//싱글톤
@@ -7,7 +6,7 @@ public class 대전 {
 	private static 대전 Daejeon = new 대전();
 	public static 대전 getInstance() {return Daejeon;}
 	
-	private int distance = 6;
+	private int distance = 20;
 	
 	public int getDistance() {
 		return distance;
@@ -16,5 +15,4 @@ public class 대전 {
 	public void setDistance(int distance) {
 		this.distance = distance;
 	}
-	
 }

@@ -1,4 +1,4 @@
-package 과제.과제8.model.지역;
+package 과제.과제8.Car.model.지역;
 
 public class 부산 {
 	//싱글톤
@@ -6,7 +6,7 @@ public class 부산 {
 	private static 부산 Busan = new 부산();
 	public static 부산 getInstance() {return Busan;}
 	
-	private int distance = 18;
+	private int distance = 36;
 	
 	public int getDistance() {
 		return distance;
@@ -15,5 +15,4 @@ public class 부산 {
 	public void setDistance(int distance) {
 		this.distance = distance;
 	}
-
 }
