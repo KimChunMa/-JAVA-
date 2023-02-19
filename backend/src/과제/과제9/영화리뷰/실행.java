@@ -101,7 +101,7 @@ public class 실행 {
 				
 				}//ch2 e
 				
-				if(ch==3) {//내용
+				else if(ch==3) {//내용
 					//1. 글쓰기
 					System.out.println("작성자를 입력해주세요"); String user = sc.next();
 					글을쓰기 글 = new 커뮤니티(title,content,user); DB.set글DB(글); 
