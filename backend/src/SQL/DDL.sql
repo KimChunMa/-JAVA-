@@ -12,6 +12,3 @@ show databases;
 use test2;
 use test;
 
-drop database test;
-drop database test2;
-drop database test3;
