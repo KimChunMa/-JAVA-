@@ -1,6 +1,6 @@
 package Day13.EX10_MVC;
 
-public class BoardDto {
+public class MemberDto {
 	//필드
 	//= DB와 일치
 	private int mno;
@@ -8,9 +8,9 @@ public class BoardDto {
 	private String mpw;
 	
 	//생성자
-	public BoardDto() {}
+	public MemberDto() {}
 	
-	public BoardDto(int mno, String mid, String mpw) {
+	public MemberDto(int mno, String mid, String mpw) {
 		this.mno = mno;
 		this.mid = mid;
 		this.mpw = mpw;
@@ -41,6 +41,13 @@ public class BoardDto {
 	public void setMpw(String mpw) {
 		this.mpw = mpw;
 	}
+
+	@Override
+	public String toString() {
+		
+		return mno+mid+mpw;
+	}
+	
 	
 	
 	
