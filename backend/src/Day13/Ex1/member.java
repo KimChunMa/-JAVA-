@@ -16,14 +16,10 @@ public class member {
 			// obj -> target 
 		 */
 		
-		
-		
 		if(obj instanceof member ) {
 			member target = (member) obj;
 			if(id.equals(target.id)) {
 				return true;
-			}else {
-				return false;
 			}
 		}
 		return false;
