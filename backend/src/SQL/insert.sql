@@ -64,4 +64,4 @@ insert into product (name) values ('컴퓨터');
 
 select * from product;
 
-
+drop database spring;
