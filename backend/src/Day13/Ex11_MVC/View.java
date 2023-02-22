@@ -13,18 +13,41 @@ public class View {
 	
 	public void index() {
 		while(true) {
-		System.out.println("-------선택란------");
-		System.out.println("1 제품 등록[C]  2 제품 출력[R] 3 제품 수정[U] \n4 제품 재고변경/수정[U] , 5 제품 삭제[D]");
-		int ch = sc.nextInt();
+		System.out.println("1 관리자 2. 사용자"); int ch0 = sc.nextInt();
 		
-		if(ch==1) {pSubmit();}
-		else if(ch==2) {list();}
-		else if(ch==3) {pEdit();}
-		else if(ch==4) {iEdit();}
-		else if(ch==5) {delete();}
-		}
-	}
-	
+			if(ch0==1) {
+				while(true) {
+				System.out.println("-------선택란------");
+				System.out.println("1 제품 등록[C]  2 제품 출력[R] 3 제품 수정[U] \n4 제품 재고변경/수정[U]  5 제품 삭제[D] 6 뒤로가기");
+				int ch = sc.nextInt();
+				
+				if(ch==1) {pSubmit();}
+				else if(ch==2) {list();}
+				else if(ch==3) {pEdit();}
+				else if(ch==4) {iEdit();}
+				else if(ch==5) {delete();}
+				else if(ch==6) {break;}
+				else {System.out.println("잘못된 입력입니다.");}
+				}//while che
+			}
+		
+		
+			else if (ch0==2) {
+			
+				while(true) {
+					clist();
+					System.out.println("0:결제 1:제품번호 입력받기 2:뒤로가기");  int ch1 = sc.nextInt();
+					
+					if(ch1==0) {pay();}
+					else if(ch1==1) {pclick();}
+					else if(ch1==2) {break;}
+					else {System.out.println("잘못된 입력입니다.");}
+				}
+			}
+		
+		}//while(ch0) e
+	}//index e
+	//------------------관리자----------------------
 	//제품 등록
 	public void pSubmit() {
 		System.out.print("제품이름을 입력해주세요."); String pname = sc.next();
@@ -44,7 +67,7 @@ public class View {
 		System.out.printf("%2s \t %8s \t %8s \t %10s\n","번호","이름","가격","재고");
 		ArrayList<ProductDto> result = Controller.getInstand().list();
 		for(ProductDto dto : result) {
-			System.out.printf("%2d \t %10s \t %10d \t %10d\n",
+			System.out.printf("%2d \t %8s \t %8d \t %10d\n",
 			dto.getPno(),dto.getPname(),dto.getPprice(),dto.getInventory());
 		}
 	}//list ()
@@ -77,5 +100,50 @@ public class View {
 		boolean result =Controller.getInstand().delete(pno);
 		if(result) {System.out.println("[알림] 제품 삭제 완료!");}
 		else {System.out.println("[알림] 제품 삭제 실패");}
+	}
+	
+	//---------------사용자---------------
+	//사용자 제품 출력
+	public void clist() {
+		System.out.println("--------출력------");
+		System.out.printf("%2s \t %8s \t %8s \t %10s\n","번호","이름","가격","상태");
+		
+		ArrayList<ProductDto> result = Controller.getInstand().list();
+		for(ProductDto dto : result) {
+			System.out.printf("%2d \t %8s \t %8d \t ",
+			dto.getPno(),dto.getPname(),dto.getPprice());
+			
+			if(dto.getInventory()>=1) {
+				System.out.printf("%10s\n","판매중");
+			}else {
+				System.out.printf("%10s\n","재고부족");
+			}
+		}
+	}//list ()
+	
+	//제품번호받기
+	public void pclick() {
+		System.out.println("선택한 제품번호를 입력해주세요."); int pno = sc.nextInt();
+		boolean result = Controller.getInstand().pclick(pno);
+		
+		if(result) {System.out.println("장바구니에 담겼습니다."); }
+		else {System.out.println("재고가 없습니다.");}
+
+	}//pclick() e
+	
+	//결제
+	public void pay() {
+		
+		ArrayList<ProductDto> result =  Controller.getInstand().blist();
+		
+		 System.out.println("-----장바구니-----");
+		  System.out.printf("%2s \t %8s \t %8s\n","번호","이름","가격"); 
+		  for(ProductDto dto : result) {
+			  System.out.printf("%2d \t %8s \t %10d\n",
+		  dto.getPno(),dto.getPname(),dto.getPprice()); }
+		  
+		  Controller.getInstand().min();
+		  System.out.println("결제완료");
+		
 	}
 }

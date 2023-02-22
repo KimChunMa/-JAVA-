@@ -27,6 +27,7 @@ public class ProductDao {
 	private Connection conn=null;
 	private PreparedStatement ps;
 	private ResultSet rs; 			// sql 결과
+	private ArrayList<ProductDto> basket = new ArrayList<>();
 	
 	
 	//제품등록
@@ -118,9 +119,73 @@ public class ProductDao {
 		} catch (SQLException e) {
 			System.out.println("오류! "+e.getMessage());
 		}
-		
-		
 		return false;
+	}
+	
+	//------------사용자-----------------
+	
+	//제품번호 받기
+	public boolean pclick(int pno) {
+		String sql="select * from product where pno=?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, pno);
+			rs = ps.executeQuery();
+			
+			
+			while(rs.next()) {
+				if(rs.getInt(4)<=0) { //재고가 없으면 null;
+					return false;}
+				
+				ProductDto dto = new ProductDto(
+				rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getInt(4));
+				basket.add(dto);	
+			}
+			return true;
+			
+		} catch (SQLException e) {
+			System.out.println("오류! "+e.getMessage());
+		}
+		return false;
+	}
+	
+	//장바구니 출력
+	public ArrayList<ProductDto> blist() {
+		return basket;}
+	
+	//재고 차감
+	public boolean min() {
+		int pno=0; //제품번호
+		int inventory=0; //재고
+		
+		for(ProductDto dto  :basket ) { 
+			pno= dto.getPno(); 
+			String sql1 = "select * from product where pno=?"; 
+			
+			try {
+				ps=conn.prepareStatement(sql1);
+				ps.setInt(1, pno);
+				rs=ps.executeQuery();
+				
+				while(rs.next()) {
+					inventory=rs.getInt(4);
+					inventory--; //현재 데이터에서 -1 차감
+				}
+				
+				String sql2 = "update product set inventory=? where pno=?";
+				
+				ps=conn.prepareStatement(sql2);
+				ps.setInt(1, inventory);
+				ps.setInt(2, pno);
+				ps.executeUpdate();
+				
+			} catch (SQLException e) {
+				System.out.println("오류! "+e.getMessage());
+				return false;
+			}
+		}
+		return true;
 	}
 	
 }

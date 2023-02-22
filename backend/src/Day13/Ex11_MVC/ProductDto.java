@@ -21,9 +21,6 @@ public class ProductDto {
 		super();
 	}
 
-
-
-
 	//메소드
 	public int getPno() {
 		return pno;

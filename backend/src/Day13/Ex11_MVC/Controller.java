@@ -37,4 +37,26 @@ public class Controller {
 		return result;
 	}
 	
+	//사용자용
+	//사용자 제품 출력
+	public ArrayList<ProductDto> clist() {
+		return  ProductDao.getInstand().list();
+	}
+	
+	//입력시 장바구니 넣기
+	public boolean pclick(int pno) {
+		return ProductDao.getInstand().pclick(pno);
+	}
+	
+	//장바구니 출력
+	public ArrayList<ProductDto> blist() {
+		
+		return ProductDao.getInstand().blist();
+		}
+	
+	
+	//재고감소
+	public boolean min() {
+		return ProductDao.getInstand().min();
+	}
 }
