@@ -1,4 +1,4 @@
-package Day13.EX10_MVC;
+package Day13.Ex10_MVC;
 
 public class MemberDto {
 	//필드
