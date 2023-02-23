@@ -50,9 +50,8 @@ public class Controller {
 	
 	//장바구니 출력
 	public ArrayList<ProductDto> blist() {
-		
 		return ProductDao.getInstand().blist();
-		}
+	}
 	
 	
 	//재고감소
