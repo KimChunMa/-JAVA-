@@ -19,6 +19,10 @@
 	
 	</form>
 	
+	<h3>회원가입 명단</h3>
+	
+	<div class="memberList"></div>
+	
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="/jspWeb/js/member/signup.js"></script>
 </body>
