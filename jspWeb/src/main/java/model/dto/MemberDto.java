@@ -4,18 +4,30 @@ public class MemberDto {
 	int mno; //멤버 번호
     String mid ; //멤버 아이디
     String mpwd ; //멤버 비번
+    String memail ; //멤버 비번
     String mimg  ; // 멤버 이미지
     
-	public MemberDto(int mno, String mid, String mpwd, String mimg) {
+
+
+	public MemberDto(int mno, String mid, String mpwd, String memail, String mimg) {
 		super();
 		this.mno = mno;
 		this.mid = mid;
 		this.mpwd = mpwd;
+		this.memail = memail;
 		this.mimg = mimg;
 	}
 
 	public MemberDto() {
 		super();
+	}
+
+	public String getMemail() {
+		return memail;
+	}
+
+	public void setMemail(String memail) {
+		this.memail = memail;
 	}
 
 	public int getMno() {
