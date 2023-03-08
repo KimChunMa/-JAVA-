@@ -45,4 +45,17 @@ public class MemberDao extends Dao {
 		
 		return null;
 	}
+	
+	//아이디 중복검사
+	public boolean idCheck(String mid) {
+		String sql = "select * from member where mid = '" + mid+"'";
+		
+		try {
+			ps=con.prepareStatement(sql);
+			rs=ps.executeQuery();
+			if(rs.next()) { return true;}
+		} catch (SQLException e) {System.out.println(e);}
+		
+		return false;
+	}
 }
