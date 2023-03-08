@@ -1,6 +1,37 @@
 
 
 function signup(){
+	//첨부파일 있을 때
+		console.log( 'signup 함수 열림');
+
+	// 1. [ 첨부파일 있을때 ] html 에 file input 직접적으로 조작 불가능 
+		// document.querySelector(".mimg").value ,  -- 불가능 
+		// 1. form 객체 가져오기 
+	let signupForm = document.querySelectorAll('.signupForm')[0];	// 첫번째 form 가져오기 
+		// 2. form 안에 있는 data 객체 호출  [ js api 클래스 = FormData ]
+	let signupFormData = new FormData( signupForm );
+		console.log( signupFormData )
+	// 2. [ 첨부파일 있을때 ] ajax 
+	$.ajax({
+		url : "/jspWeb/member",				// 서블릿 주소 
+		method : "post",					// 첨부파일은 무조건 post/put
+		data : signupFormData , 			// FormData 객체 전송 
+		// 첨부파일 있을때 추가되는 속성 
+		contentType : false ,			
+		processData : false ,			
+		success : (r)=>{
+			console.log( 'ajax 응답');
+			console.log( r );
+			if( r == 'true'){
+				alert('회원가입성공');
+				location.href="/jspweb/index.jsp"; // 해당 페이지 이동 
+			}else{ alert('회원가입실패') }
+		}
+	})
+	
+	
+	
+	/* 첨부파일 없을때
 	let info ={
 		mid : document.querySelector(".mid").value,
 		mpwd : document.querySelector(".mpwd").value,
@@ -21,41 +52,6 @@ function signup(){
 		}
 		
 	})
-	
+	*/
 }
 
-//총 멤버 호출
-memberPrint()
-function memberPrint(){
-	$.ajax({
-		url:"/jspWeb/member",
-		method: "get",
-		success : (r)=>{
-			let html = `<table border="1">
-							<tr>
-								<th>  번호 </th>
-								<th>  아이디 </th>
-								<th>  비밀번호 </th>
-								<th>  이미지 </th>
-								<th>  이메일 </th>
-								<th>  비고 </th>
-							</tr>` 
-							
-			r.forEach((o)=>{
-				html += `<tr>
-							<td> ${o.mno} </td>
-							<td> ${o.mid} </td>
-							<td> ${o.mpwd} </td>
-							<td> ${o.mimg} </td>
-							<td> ${o.memail} </td>
-							<td>  </td>
-						 </tr>`
-			})
-			html +=`</table>`
-			
-			document.querySelector('.memberList').innerHTML = html;
-		}
-		
-	})
-	
-}
