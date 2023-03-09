@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
+</head> 
 <body>
 	<%@ include file = "/header.jsp" %>
 	<h3> 모든 회원 명단 </h3>
