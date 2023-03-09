@@ -131,7 +131,7 @@ function idcheck(){
 function pwdcheck(){
 	let mpwd = document.querySelector('.mpwd').value;
 	console.log(mpwd)
-				//시작은 문자 뒤는 숫자+대문자+소문자 가능
+				// 2. 정규표현식 : 영대소문자+숫자 조합 5~20 글자 
 	let mpwdj = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,20}$/
 	console.log(mpwdj.test(mpwd))
 	if(mpwdj.test(mpwd)){
