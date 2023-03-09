@@ -12,12 +12,15 @@
 	<form class="signupForm">	<!-- 폼 전송시 자식 input의 매개변수 식별 : name -->
 		아이디 : 			<input type="text" name="mid" 			class="mid"  
 							   onkeyup="idcheck()" maxlength="30">
-		<span cla	ss="idcheckconfirm"></span><br/>
+			<span class="checkconfirm">X</span><br/>
 		
-		비밀번호 :		<input type="text" name="mpwd" 			class="mpwd" >		<br/>
-		비밀번호 확인 :  	<input type="text" name="mpwdconfirm" 	class="mpwdconfirm">	<br/>
-		이메일 :			<input type="text" name="memail" 		class="memail">		<br/>
-		프로필 : 			<input type="file" name="mimg"	 		class="mimg">		<br/>
+		비밀번호 :		<input onkeyup="pwdcheck()" type="text" name="mpwd" 			class="mpwd" >		
+			<span class="checkconfirm">X</span><br/>
+		비밀번호 확인 :  	<input onkeyup="pwdconfirmcheck()" type="text" name="mpwdconfirm" 	class="mpwdconfirm">	
+			<span class="checkconfirm">X</span><br/>
+		이메일 :			<input type="text" name="memail" 		class="memail">		
+			<span class="checkconfirm">X</span><br/>
+		프로필 : 			<input type="file" name="mimg"	 		class="mimg">	<br/>	
 		<button onclick="signup()" type="button"> 가입 </button>
 	</form>
 	

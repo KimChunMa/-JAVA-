@@ -1,3 +1,5 @@
+let checkconfirm = document.querySelectorAll('.checkconfirm')
+
 function signup(){
 	//첨부파일 있을 때
 
@@ -60,24 +62,24 @@ function idcheck(){
 	console.log(midj.test(mid));
 	
 	if(midj.test(mid)){
-		document.querySelector('.idcheckconfirm').innerHTML = '사용가능한 아이디';
+		document.querySelector('.checkconfirm').innerHTML = 'O';
 	
 		$.ajax({
 			url:"/jspWeb/mconfirm",
 			methond:"get",
-			data:{"mid":mid},
+			data:{mid:mid},
 			success : (r)=>{
 				console.log(r);
 				if(r == 'true'){
-					document.querySelector('.idcheckconfirm').innerHTML = '사용중인 아이디';
+					checkconfirm[0].innerHTML = '사용중인 아이디!';
 				}else{
-					document.querySelector('.idcheckconfirm').innerHTML = '사용가능한 아이디';
+					checkconfirm[0].innerHTML = 'O';
 				}
 			}
 		})
 	
 	}else{
-		document.querySelector('.idcheckconfirm').innerHTML = '영소문자+숫자 조합 5~30사이로 입력해주세요';
+		checkconfirm[0].innerHTML = '영소문자+숫자 조합 5~30사이로 입력해주세요';
 	}
 }
 
@@ -90,12 +92,21 @@ function idcheck(){
 	&/ : 정규 표현 끝
 	[a-z] : 소문자 a-z 집합
 	[A-Z] : 대문자
-	[0-9]
+	[0-9] == \d 
 	[가-힣]
 	{최소길이, 최대길이}
+	+ : 앞에 있는 패턴 1개 이상 반복
+	? : 앞에 있는 패턴 0개 이상 혹은 
 	
 	[a-zA-Z]
 	[a-zA-Z0-9가-힣]:영문+숫자+한글
+	
+	1개이상 문자가 포함되어야하는 경우
+		(?=.*[패턴문자]) : 해당 패턴 문자 하나이상
+	(?=.*[a-z]) : 소문자 하나이상
+	(?=.*[A-Z]) : 대문자 하나이상
+	(?=.*[0-9]) : 숫자 한개 이상
+	(?=.*[!@#$%^&*]) : 해당하는 특수문자 하나이상
 	
 	패턴검사 함수
 	정규표현식.test(데이터) :정확하면 true or false
@@ -103,3 +114,36 @@ function idcheck(){
 	/^[a-z]$/.test(QWE) --> false
 */ 
 
+
+//비밀번호 유효성 검사
+function pwdcheck(){
+	let mpwd = document.querySelector('.mpwd').value;
+	console.log(mpwd)
+				//시작은 문자 뒤는 숫자+대문자+소문자 가능
+	let mpwdj = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,20}$/
+	console.log(mpwdj.test(mpwd))
+	if(mpwdj.test(mpwd)){
+		checkconfirm[1].innerHTML = 'O';
+	}else{
+		checkconfirm[1].innerHTML = '영대소문자+숫자 조합 5~20 글자';
+	}
+}
+
+//비밀번호 확인
+function pwdconfirmcheck(){
+	
+	let mpwd = document.querySelector('.mpwd').value;
+	let mpwdconfirm = document.querySelector('.mpwdconfirm').value ;
+	console.log(mpwdconfirm)
+	//표현식
+	let mpwdj = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{5,20}$/
+	
+	//제어
+	if(mpwdj.test(mpwd)){
+		if(mpwd == mpwdconfirm){ //두 비밀번호가 같으면
+			checkconfirm[2].innerHTML = 'O';
+		}else{ // 다르면
+			checkconfirm[2].innerHTML = '일치하지 않습니다.';
+		}
+	}
+}
