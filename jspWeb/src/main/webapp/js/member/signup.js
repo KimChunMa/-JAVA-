@@ -1,6 +1,15 @@
 let checkconfirm = document.querySelectorAll('.checkconfirm')
 
 function signup(){
+	//유효성 검사 체크
+	let count = 0 ; 
+	
+	for(let i = 0 ; i < checkconfirm.length ; i++ ){
+		if(checkconfirm[i].innerHTML == 'O'){count++;}
+	}
+	
+	if(count != 4){alert('회원가입을 다시 해주세요.'); return;}
+	
 	//첨부파일 있을 때
 
 	// 1. [ 첨부파일 있을때 ] html 에 file input 직접적으로 조작 불가능 
@@ -97,6 +106,9 @@ function idcheck(){
 	{최소길이, 최대길이}
 	+ : 앞에 있는 패턴 1개 이상 반복
 	? : 앞에 있는 패턴 0개 이상 혹은 
+	* : 앞 에 있는 패턴 0개 반복
+	
+	\ : 이스케이프 문자
 	
 	[a-zA-Z]
 	[a-zA-Z0-9가-힣]:영문+숫자+한글
@@ -145,5 +157,40 @@ function pwdconfirmcheck(){
 		}else{ // 다르면
 			checkconfirm[2].innerHTML = '일치하지 않습니다.';
 		}
+	}
+}
+
+//이메일 확인
+function emailcheck(){
+	let memail = document.querySelector('.memail').value;
+	 console.log("이메일 "+memail)
+	let memailj = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-]+$/
+	//[a-zA-Z0-9._-] : 영대소or숫자or_- 
+	//+@ : 1개이상의 []뒤에 @ 
+	//+\. : 뒤에 .
+	//+ co.kr
+	
+	if(memailj.test(memail)){
+		checkconfirm[3].innerHTML = 'O';
+	}else{
+		checkconfirm[3].innerHTML = 'X';
+	}
+}
+
+
+function premimg(e){ //e 해당 함수를 실행시킨 객체
+	console.log('첨부파일 바뀜'+e)
+	console.log(e.files[0]) //현재 이벤트를 실행한 input 파일명 
+	console.log(document.querySelector('.mimg').files[0])//class의 파일명
+	
+	//js 파일클래스
+	let file = new FileReader();  // 파일읽기 클래스
+	console.log(file)
+	
+	file.readAsDataURL(e.files[0]) //파일 읽어오기 file[0]:첨부파일 한개
+	
+	//읽어온 파일 꺼내기 (바이트단위)
+	file.onload = (e) =>{
+		document.querySelector('.premimg').src = e.target.result;
 	}
 }
