@@ -14,9 +14,9 @@
 							   onkeyup="idcheck()" maxlength="30">
 			<span class="checkconfirm">X</span><br/>
 		
-		비밀번호 :		<input onkeyup="pwdcheck()" type="text" name="mpwd" 			class="mpwd" >		
+		비밀번호 :		<input onkeyup="pwdcheck()" maxlength="20" type="password" name="mpwd" class="mpwd" >		
 			<span class="checkconfirm">X</span><br/>
-		비밀번호 확인 :  	<input onkeyup="pwdconfirmcheck()" type="text" name="mpwdconfirm" 	class="mpwdconfirm">	
+		비밀번호 확인 :  	<input onkeyup="pwdconfirmcheck()" maxlength="20" type="password" name="mpwdconfirm" 	class="mpwdconfirm">	
 			<span class="checkconfirm">X</span><br/>
 		이메일 :			<input type="text" name="memail" 		class="memail">		
 			<span class="checkconfirm">X</span><br/>
