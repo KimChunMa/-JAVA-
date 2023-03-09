@@ -7,11 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
+	<%@ include file = "/header.jsp" %>
 	<h3> 회원가입 </h3>
 	<form class="signupForm">	<!-- 폼 전송시 자식 input의 매개변수 식별 : name -->
-		아이디 : 			<input type="text" name="mid" 			class="mid"  onkeyup="idcheck()" >
-		<span class="idcheckconfirm"></span><br/>
+		아이디 : 			<input type="text" name="mid" 			class="mid"  
+							   onkeyup="idcheck()" maxlength="30">
+		<span cla	ss="idcheckconfirm"></span><br/>
 		
 		비밀번호 :		<input type="text" name="mpwd" 			class="mpwd" >		<br/>
 		비밀번호 확인 :  	<input type="text" name="mpwdconfirm" 	class="mpwdconfirm">	<br/>
@@ -22,7 +23,6 @@
 	
 
 	
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="/jspWeb/js/member/signup.js"></script>
 </body>
 </html>
