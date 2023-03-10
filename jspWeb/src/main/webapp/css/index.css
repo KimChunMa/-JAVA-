@@ -1,7 +1,64 @@
 @charset "UTF-8";
 
+*{
+	margin:0px; padding:0px;
+	list-style-type: none;
+}
+
+a{	text-decoration: none;
+	color:black;
+}
+
+@font-face {
+    font-family: 'TheJamsil5Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
 /* --------- 헤더 ----------*/
 /* 헤더 로그인 프로필 */
+
+
+.header{
+	display:flex;
+	align-items: center;
+	justify-content:space-between;
+	margin:20px 0px;
+
+}
+
+/* 로그 */
+.mainlogo{width:20%;} 
+.mainlogo img{width:100%;}
+
+/* 메인 메뉴 */
+.mainmenu{
+	width:60%;
+	display:flex;
+	justify-content: center;
+	margin:0px !important;
+	
+	font-size:16px;
+	font-family: TheJamsil5Bold;
+}
+
+.mainmenu li{
+	margin-left:10px;
+}
+	
+	
+.submenu{
+	font-size:13px;
+	width:20%;
+	font-family: TheJamsil5Bold;	
+	display:flex;
+	justify-content: space-between;
+}
+
+.submenu a {margin-left:10px; }
+
+
 .hpimg{
 	width:	50px;
 	height: 50px;
@@ -9,5 +66,34 @@
 	border-radius: 50%;
 }
 
+.hpimghtn{
+	border:none;
+	background-color:white;
+}
 
+.pimgbox{
+	display:flex; align-items: center;
+}
 
+.preming{
+	width:200px;
+	height:200px;
+	border:1px solid #e8e8e8;
+	border-radius: 50%;
+}
+
+.mimg{
+	width:30%;
+}
+
+.signupbtn{
+	width:100%;
+	border:none;
+	font-weight:bold;
+	background-color:#4d62e1;
+	color:white;
+	padding:20px;
+	margin:20px 0px;
+	border-radius: 20px;
+	font-size:20px;
+}

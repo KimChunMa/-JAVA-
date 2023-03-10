@@ -171,26 +171,94 @@ function emailcheck(){
 	//+ co.kr
 	
 	if(memailj.test(memail)){
-		checkconfirm[3].innerHTML = 'O';
+		checkconfirm[3].innerHTML = '인증버튼을 눌러주세요';
+		document.querySelector('.authbtn').disabled = false;
 	}else{
 		checkconfirm[3].innerHTML = 'X';
 	}
 }
 
 
-function premimg(e){ //e 해당 함수를 실행시킨 객체
-	console.log('첨부파일 바뀜'+e)
-	console.log(e.files[0]) //현재 이벤트를 실행한 input 파일명 
+//이메일 인증버튼
+function getauth(){
+	let html = `
+				<div class="timebox"> 02 : 00 </div>
+					<input onkeyup="emailcheck()" type="text" 
+						   class="authinput" placeholder="인증코드">
+					<button type="button" onclick="authconfirm()"
+					class="authconfirmbtn" >확인</button>	
+				`
+	document.querySelector('.authbox').innerHTML = html;
+	timer = 120; // 인증 시간 대입
+	settimer(); // 타이머 함수
+	auth = 1234; // 인증코드                      
+}
+
+//타이머 함수
+let auth = 0;
+let timer = 0; // 인증시간
+let timerinter; // interval 함수
+function settimer(){
+	 timerinter = setInterval(()=>{
+		let minutes = parseInt( timer / 60); // 분계산
+		let second = parseInt(timer % 60); //분계산후 초
+		
+		minutes = minutes < 10 ? "0" + minutes : minutes;
+		second = second < 10 ? "0" + second : second;
+		
+		let timerHTML = minutes + " : " + second;
+		document.querySelector('.timebox').innerHTML = timerHTML;
+		
+		timer--;
+		
+		//만약 인증시간이 0보다 작으면
+		if(timer < 0 ){
+			clearInterval(timerinter);
+			checkconfirm[3].innerHTML = '인증실패';
+				document.querySelector('.authbox').innerHTML = '';
+		}
+		
+		
+	} , 1000)
+}
+
+function authconfirm(){
+	console.log('함수실행')
+	//1. 입력받은 입력코드 호출
+	let authinput =  document.querySelector('.authinput').value;
+	
+	if(auth == authinput ){//인증코드 일치
+		clearInterval(timerinter);
+		
+		document.querySelector('.authbtn').innerHTML= '완료';
+		document.querySelector('.authbtn').disabled = true;
+		checkconfirm[3].innerHTML = 'O';
+		
+	} else{ // 인증코드 불일치
+		checkconfirm[3].innerHTML = '인증코드 불일치';
+	}
+}
+
+
+
+
+//이미지 미리보기
+function premimg(obj){ //e 해당 함수를 실행시킨 객체
+	console.log('첨부파일 바뀜'+obj)
+	console.log(obj.files[0]) //현재 이벤트를 실행한 input 파일명 
 	console.log(document.querySelector('.mimg').files[0])//class의 파일명
 	
 	//js 파일클래스
 	let file = new FileReader();  // 파일읽기 클래스
 	console.log(file)
 	
-	file.readAsDataURL(e.files[0]) //파일 읽어오기 file[0]:첨부파일 한개
+	file.readAsDataURL(obj.files[0]) //파일 읽어오기 file[0]:첨부파일 한개
+	
 	
 	//읽어온 파일 꺼내기 (바이트단위)
 	file.onload = (e) =>{
+		console.log("가져온파일")
+		console.log(e.target.result)
 		document.querySelector('.premimg').src = e.target.result;
 	}
 }

@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 <!-- 부트스트랩 css -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<!-- 사용자 css -->
 <link href="/jspWeb/css/index.css" rel="stylesheet">
 </head>
 <body>
@@ -39,7 +40,7 @@
 			<!-- 로고 -->
 			<div class="mainlogo">
 				<a href="/jspWeb/index.jsp">
-					<img src="/jspWeb/img/logo.jpg">
+					<img src="/jspWeb/img/logo.ico">
 				</a>
 			</div>
 			<!-- 본메뉴 -->
@@ -52,11 +53,10 @@
 			</ul>
 			<!-- 서브메뉴 -->
 			<div class="submenu">
+			</div> <!-- 서브메뉴 끝 -->
 			
-			</div>
-			
-		</div>
-	</div>
+		</div> <!-- header e -->
+	</div> <!-- container e -->
 	
 	
 	

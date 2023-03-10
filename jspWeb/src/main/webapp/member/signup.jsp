@@ -5,33 +5,62 @@
 <head> 
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link href="/jspWeb/css/signup.css" rel="stylesheet">
 </head>
 <body>
 	<%@ include file = "/header.jsp" %>
-	<h3> 회원가입 </h3>
-	<form class="signupForm">	<!-- 폼 전송시 자식 input의 매개변수 식별 : name -->
-		아이디 : 			<input type="text" name="mid" class="mid"  
-							   onkeyup="idcheck()" maxlength="30">
-			<span class="checkconfirm">X</span><br/>
-		
-		비밀번호 :		<input onkeyup="pwdcheck()" maxlength="20" type="password" name="mpwd" class="mpwd" >		
-			<span class="checkconfirm">X</span><br/>
-			
-		비밀번호 확인 :  	<input onkeyup="pwdconfirmcheck()" maxlength="20" type="password" name="mpwdconfirm" 	class="mpwdconfirm">	
-			<span class="checkconfirm">X</span><br/>
-			
-		이메일 :			<input onkeyup="emailcheck()" type="text" name="memail" class="memail">		
-			<span class="checkconfirm">X</span><br/>
-			
-		프로필 : 			<input onchange="premimg(this)" type="file" name="mimg" class="mimg">	<br/>	
-		
-		미리보기 
-		<img class="premimg" src="/jspWeb/member/pimg/default.webp">
-		
-		
-		<button onclick="signup()" type="button"> 가입 </button>
-	</form>
 	
+	<div class="container"> 
+	
+		<h3> 회원가입 </h3>
+		<form class="signupForm">	<!-- 폼 전송시 자식 input의 매개변수 식별 : name -->
+		
+			<h3> Community</h3>
+			<p> 환영합니다. 다양한 커뮤니티 플랫폼 제공합니다. </p>
+			
+			<div class="title">아이디 	</div> 		
+			<div>
+				<input type="text" name="mid" class="mid"  
+					   onkeyup="idcheck()" maxlength="30">
+				<span class="checkconfirm"></span>
+			</div>
+			
+			<div class="title"> 비밀번호  </div> 	
+			<div>
+				<input onkeyup="pwdcheck()" maxlength="20" 
+					   type="password" name="mpwd" class="mpwd" >		
+				<span class="checkconfirm"></span>
+			</div>
+			
+			<div class="title">비밀번호 확인   </div> 	
+			<div>
+				<input onkeyup="pwdconfirmcheck()" maxlength="20" 
+					   type="password" name="mpwdconfirm" class="mpwdconfirm">	
+				<span class="checkconfirm"></span>
+			</div>
+				
+			<div class="title"> 이메일  </div> 
+				<div class="mailbox">
+					<input onkeyup="emailcheck()" type="text" 
+						   name="memail" class="memail">
+					<button type="button" class="authbtn" onclick="getauth()" 
+					disabled="disabled">인증</button>
+				
+				</div>
+				<div class="authbox"></div>
+					
+				<span class="checkconfirm"></span>
+			
+			<div class="title">	프로필  	</div> 
+			<div class="pimgbox">
+				<input onchange="premimg(this)" type="file" 
+					   name="mimg" class="mimg">
+				<img class="premimg" src="/jspWeb/member/pimg/default.webp">
+			</div>	
+			
+			<button onclick="signup()" type="button" class="signupbtn"> 가입 </button>
+		</form>
+	</div>
 
 	
 	<script src="/jspWeb/js/member/signup.js"></script>
