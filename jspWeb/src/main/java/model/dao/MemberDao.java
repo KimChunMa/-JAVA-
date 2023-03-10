@@ -13,14 +13,14 @@ public class MemberDao extends Dao {
 	
 	//회원가입
 	public boolean signup(MemberDto dto) {
-		String sql = "insert into member(mid,mpwd,memail,mimg) values(?,?,?,?)";
+		String sql = "insert into member(mid,mpwd,mimg,memail) values(?,?,?,?)";
 		
 		try {
 			ps = con.prepareStatement(sql);
 			ps.setString(1, dto.getMid());
 			ps.setString(2, dto.getMpwd());
-			ps.setString(3, dto.getMemail());
-			ps.setString(4, dto.getMimg());
+			ps.setString(3, dto.getMimg());
+			ps.setString(4, dto.getMemail());
 			ps.executeUpdate(); return true;
 		} catch (SQLException e) {System.err.println(e);}
 		return false;
@@ -99,5 +99,46 @@ public class MemberDao extends Dao {
 			
 		}catch(Exception e) {System.out.println(e);}
 		return null;
+	}
+	
+	//아이디 찾기
+	public String findid(String memail) {
+		String sql = "select mid from member where memail = ?";
+		
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setString(1, memail);
+			rs = ps.executeQuery();
+			if(rs.next()) {return rs.getString(1);}
+		} catch (SQLException e) {e.printStackTrace();}
+		return "false";
+	}
+	
+	//비밀번호 찾기
+	public String findpwd(String mid, String memail, String updatePwd) {
+		String sql = "select mid from member where mid=? and memail = ?";
+		
+		try {
+			ps =con.prepareStatement(sql);
+			ps.setString(1, mid);
+			ps.setString(2, memail);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				sql = "update member set mpwd =? where mid =?";
+				ps = con.prepareStatement(sql);
+				ps.setString(1,updatePwd);
+				ps.setString(2, mid);
+				int result = ps.executeUpdate(); //레코드 개수 반환
+				if(result == 1) {//업데이트 레코드 1개면
+					// -- 이메일전송 테스트 되는경우 만 -- //
+					//new MemberDto().sendEmail( memail, updatePwd ); // 임시비밀번호를 이메일로 보내기 
+					//return "true";
+					// -- 이메일전송 테스트 안되는 경우 -- //
+					
+					return updatePwd;
+				}
+			}
+		} catch (SQLException e) {e.printStackTrace();}
+		return "false";
 	}
 }
