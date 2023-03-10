@@ -181,6 +181,20 @@ function emailcheck(){
 
 //이메일 인증버튼
 function getauth(){
+	
+	// ajax가 java에게 이메일 전송후 인증코드 받기
+	$.ajax({
+		url: "/jspWeb/email",
+		method : "post",
+		data:{memail: document.querySelector('.memail').value},
+		success : (r)=>{
+			console.log('통신');
+			console.log(r);
+		}
+	})
+	
+	
+	
 	let html = `
 				<div class="timebox"> 02 : 00 </div>
 					<input onkeyup="emailcheck()" type="text" 
