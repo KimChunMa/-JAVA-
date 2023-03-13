@@ -66,7 +66,7 @@ public class info extends HttpServlet {
 		String memail = multi.getParameter("memail");
 		String mimg = multi.getFilesystemName("mimg");	// 첨부파일된 파일명 호출[  .getFilesystemName ]
 		
-		MemberDto dto = new MemberDto(0, mid, mpwd,  memail, mimg);
+		MemberDto dto = new MemberDto(0, mid, mpwd,  memail, mimg,0);
 			System.out.println( "dto : " + dto );
 		boolean result = MemberDao.getInstance().signup(dto);
 		response.getWriter().print(result);

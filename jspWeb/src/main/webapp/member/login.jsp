@@ -38,7 +38,7 @@
 			</div>
 			<div class=""></div>
 			
-			<button onclick="login()" type="button" class="signupbtn"> 가입 </button>
+			<button onclick="login()" type="button" class="signupbtn"> 로그인 </button>
 		</form>
 	</div>
 	

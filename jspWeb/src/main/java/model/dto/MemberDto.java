@@ -11,11 +11,12 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class MemberDto {
-	int mno; //멤버 번호
-    String mid ; //멤버 아이디
-    String mpwd ; //멤버 비번
-    String memail ; //멤버 비번
-    String mimg  ; // 멤버 이미지
+	private int mno; //멤버 번호
+	private String mid ; //멤버 아이디
+	private String mpwd ; //멤버 비번
+	private String memail ; //멤버 비번
+	private String mimg  ; // 멤버 이미지
+    private int mpoint; //멤버 포인트
     
  // 1. 이메일 전송 메소드 [ 받는사람이메일 , 받는내용 HTML ] 
 	public boolean sendEmail( String toEmail , String contentHTML ) {
@@ -61,13 +62,14 @@ public class MemberDto {
 	}
 
 
-	public MemberDto(int mno, String mid, String mpwd, String memail, String mimg) {
+	public MemberDto(int mno, String mid, String mpwd, String memail, String mimg, int mpoint) {
 		super();
 		this.mno = mno;
 		this.mid = mid;
 		this.mpwd = mpwd;
 		this.memail = memail;
 		this.mimg = mimg;
+		this.mpoint = mpoint;
 	}
 
 	public MemberDto() {
@@ -112,6 +114,16 @@ public class MemberDto {
 
 	public void setMimg(String mimg) {
 		this.mimg = mimg;
+	}
+
+
+	public int getMpoint() {
+		return mpoint;
+	}
+
+
+	public void setMpoint(int mpoint) {
+		this.mpoint = mpoint;
 	}
     
 	

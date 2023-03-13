@@ -21,7 +21,7 @@ public class Login extends HttpServlet {
   
     public Login() {super();}
 
-	//로그인
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 1. 세션[Object]에 담겨진 회원아이디 호출 
@@ -40,7 +40,7 @@ public class Login extends HttpServlet {
 		
 	}
 	
-	
+	//로그인
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	// 1. AJAX에게 데이터 요청
 	String mid = request.getParameter("mid");

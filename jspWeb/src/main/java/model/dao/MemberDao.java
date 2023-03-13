@@ -1,6 +1,7 @@
 package model.dao;
 
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import model.dto.MemberDto;
@@ -16,12 +17,24 @@ public class MemberDao extends Dao {
 		String sql = "insert into member(mid,mpwd,mimg,memail) values(?,?,?,?)";
 		
 		try {
-			ps = con.prepareStatement(sql);
+			/*
+			insert 이후 자동으로 생성된 auto key => pk값 찾기
+		*/
+			ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, dto.getMid());
 			ps.setString(2, dto.getMpwd());
 			ps.setString(3, dto.getMimg());
 			ps.setString(4, dto.getMemail());
-			ps.executeUpdate(); return true;
+			ps.executeUpdate(); 
+			/*방금 회원가입한사람에게 포인트 지급*/
+			rs=ps.getGeneratedKeys(); // pk값을 ps로 받기
+			if(rs.next()) {
+				int pk = rs.getInt(1);
+				setPoint("회원가입축하",100,pk);
+			}
+			
+			
+			return true;
 		} catch (SQLException e) {System.err.println(e);}
 		return false;
 	}
@@ -37,7 +50,7 @@ public class MemberDao extends Dao {
 			while(rs.next()) {
 				MemberDto dto = new MemberDto(
 				rs.getInt(1), rs.getString(2), rs.getString(3),
-				rs.getString(4), rs.getString(5));
+				rs.getString(4), rs.getString(5),0);
 				mlist.add(dto);
 			}
 			return mlist;
@@ -80,8 +93,11 @@ public class MemberDao extends Dao {
 		return false;
 	}
 	
+	//특정회원 1명 알기
 	public MemberDto getMember(String mid) {
-		String sql = "select * from member where mid=?";
+		String sql = "select m.mno , m.mid , m.mimg , m.memail , sum(p.mpamount) as mpoint "
+				+ " from member m , mpoint p "
+				+ " where m.mno = p.mno and m.mid = ?;";
 		
 		try {
 			ps = con.prepareStatement(sql);
@@ -91,7 +107,7 @@ public class MemberDao extends Dao {
 			if(rs.next()) {
 				MemberDto dto = new MemberDto(
 				rs.getInt(1), rs.getString(2), null, 
-				rs.getString(4) , rs.getString(5)
+				rs.getString(4) , rs.getString(3),rs.getInt(5)
 				);
 				return dto;
 			}
@@ -141,4 +157,50 @@ public class MemberDao extends Dao {
 		} catch (SQLException e) {e.printStackTrace();}
 		return "false";
 	}
+	
+	//포인트 설정
+	public boolean setPoint(String content , int point , int mno) {
+		String sql = "insert into mpoint (mpcomment , mpamount ,mno) values (?,?,?)";
+		
+		try {
+			ps=con.prepareStatement(sql);
+			ps.setString(1, content);
+			ps.setInt(2, point);
+			ps.setInt(3, mno);
+			ps.executeQuery();
+			return true;
+		}
+		catch(Exception e ) {System.out.println(e);}
+		return false;
+	}
+	
+	//9. 회원탈퇴 [인수 : mid /반환 : 성공실패 ]
+	public boolean setDelete(String mid) {
+		String sql = "delete from member where mid = ?";
+		
+		try {
+			ps=con.prepareStatement(sql);
+			ps.setString(1, mid);
+			int count = ps.executeUpdate(); // 삭제된 레코드 수 반환
+			if(count==1) {return true;} // 1개삭제시 성공 
+		}
+		catch(Exception e) {}
+		return false;
+	} 
+	
+	//10. 회원수정 [인수 : mpwd, memail 반환: 성공 실패]
+	public boolean update(String mid , String mpwd , String memail) {
+		String sql ="update member set mpwd = ? , memail = ? where mid =?";
+		
+		try {
+			ps=con.prepareStatement(sql);
+			ps.setString(1, mpwd);
+			ps.setString(2, memail);
+			ps.setString(3, mid);
+			int count = ps.executeUpdate(); // 수정된 레코드 수 반환
+			if(count==1) {return true;} // 1개수정시 성공 	
+		}
+		catch(Exception e) {}
+		return false;
+	} 
 }
