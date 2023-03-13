@@ -8,7 +8,7 @@
 </head>
 <body>
 	<%@ include file = "/header.jsp" %>
-	<h3> 대문 </h3>
+	
 	
 	<%@ include file = "/footer.jsp" %>
 	

@@ -13,7 +13,7 @@
 <link href="/jspWeb/css/index.css" rel="stylesheet">
 </head>
 <body>
- 	<h3> 헤더</h3>
+ 	
 <%-- 	<% String login = (String)request.getSession().getAttribute("login"); %>
 	<%=login %>님 안녕하세요 
 		<a href="/jspWeb/index.jsp">홈</a>
