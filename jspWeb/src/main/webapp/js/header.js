@@ -40,7 +40,7 @@ function getLogin(){
 					html += `<a href="/jspWeb/admin/info.jsp">관리자 페이지</a> `
 				}
 			}
-			console.log(html)
+			
 			document.querySelector('.submenu').innerHTML = html;
 		}
 	})

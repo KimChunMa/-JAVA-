@@ -97,7 +97,7 @@ public class MemberDao extends Dao {
 	public MemberDto getMember(String mid) {
 		String sql = "select m.mno , m.mid , m.mimg , m.memail , sum(p.mpamount) as mpoint "
 				+ " from member m , mpoint p "
-				+ " where m.mno = p.mno and m.mid = ?;";
+				+ " where m.mno = p.mno and m.mid = ?";
 		
 		try {
 			ps = con.prepareStatement(sql);
@@ -167,7 +167,7 @@ public class MemberDao extends Dao {
 			ps.setString(1, content);
 			ps.setInt(2, point);
 			ps.setInt(3, mno);
-			ps.executeQuery();
+			ps.executeUpdate();
 			return true;
 		}
 		catch(Exception e ) {System.out.println(e);}

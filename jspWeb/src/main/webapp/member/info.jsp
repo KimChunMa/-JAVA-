@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+	<link href="/jspWeb/css/modal.css" rel="stylesheet"></link>
 </head>
 <body>
 	<%@ include file = "/header.jsp" %>
@@ -33,14 +35,29 @@
 				<div class="mpoint"></div>
 			</div>
 			
-			<button type="button"> 회원수정 </button>
-			<button type="button"> 회원탈퇴 </button>
-			
+			<button onclick="onpenModal()" type="button"> 회원수정 </button>
+			<button onclick="onpenModal()" type="button" onclick="setDelete()"> 회원탈퇴 </button>
 		</div>
-		
 	</div>
 	
+	<!-- 모달 HTML -->
+	<div class="modal_wrap">
+		<div class="modal_box">
+			<h3 class="modal_title">제목</h3>
+			<div class="modal_content">
+			내용
+			</div>
+			<div class="modal_btns">
+				<button onclick="onpenModal()" class="modal_check" 		type="button">등록</button>
+				<button onclick="closeModal()"  class="modal_type=cencel"	type="button">취소</button>
+			</div>
+		</div>
+	</div>
+	
+	<script src="/jspWeb/js/modal.js"></script>
+	
 	<script src="/jspWeb/js/member/info.js"></script>
+	
 </body>
 </html>
 
