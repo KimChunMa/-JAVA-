@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	<link href="/jspWeb/practice/과제1/Company.css " rel="stylesheet">
+	<link href="/jspWeb/practice/과제1/Company.css" rel="stylesheet">
 </head>
 <body>
 	<form class="signupForm">
@@ -62,14 +62,34 @@
 		<button type="button" onclick="regist()">등록</button>
 	 </form>
 	
-
 	------------------------------------------------
 	<br/>
 		<h3> 출력란 </h3>
 		<table class="print" border="1">
 		</table>
-
-
+	<div>
+		
+	</div>
+		
+		
+		
+		<!-- 삭제 모달 HTML -->
+	<div class="modal_wrap2">
+		<div class="modal_box2">
+			<h3 class="modal_title2">
+				사원삭제
+			</h3>
+			<div class="modal_content2">
+				
+				
+			</div>
+			<div class="modal_btns2">
+				
+			</div>
+		</div>
+	</div>
+	
+	
 	<!-- 모달 HTML -->
 	<div class="modal_wrap">
 		<div class="modal_box">
@@ -89,7 +109,7 @@
 			</div>
 		</div>
 	</div>
-
+	
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="/jspWeb/practice/과제1/Company.js"></script>
 </body>

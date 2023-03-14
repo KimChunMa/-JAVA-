@@ -1,10 +1,8 @@
 function regist(){
-	
 	let  signupForm = document.querySelectorAll('.signupForm')[0]
 	console.log(signupForm);
 	let formDate = new FormData(signupForm);
 	console.log(formDate);
-	
 	$.ajax({
 		url:"/jspWeb/Company",
 		method:"post",
@@ -12,7 +10,8 @@ function regist(){
 		contentType : false ,			
 		processData : false ,	
 		success: (r)=>{
-			
+			console.log( 'ajax 응답');
+			console.log( r );
 			if( r == 'true'){
 				alert('회원가입성공');
 				print();
@@ -26,7 +25,9 @@ function print(){
 	$.ajax({
 		url : "/jspWeb/Company" ,
 		method : "get" ,
+		data : {"state" : 1} ,
 		success : (r) =>{console.log('ajax확인')
+		console.log(r)
 		
 			let html = 
 						`<tr>
@@ -41,21 +42,22 @@ function print(){
 							<th> 퇴사사유 </th>
 							<th> 비고 </th>
 						</tr>`;
+			
+			
 			r.forEach((o , i ) => {
 				//<img src="/jspweb/Ex/Member/pimg/${o.mimg == null ? 'X.jpg' : o.mimg}" width="20%">
 				html += 
 						`<tr>
 							<td> ${o.wno}</td>
-							<td><img src="/jspWeb/practice/과제1/img/${o.picture == null ? '' : o.picture}" width="20%"></td>
+							<td><img src="/jspWeb/practice/과제1/img/${o.picture == null ? 'X.jpg' : o.picture}" width="20%"></td>
 							<td> ${o.name}</td>
 							<td> ${o.grade}</td>
 							<td> ${o.worker}</td>
 							<td> ${o.department}</td>
 							<td> ${o.joinDate}</td>
-							<td> ${o.retire}</td>
-							<td> ${o.reason}</td>
-							<td> <button type="button" onclick="upDate(${o.wno})">수정</button>
-								 <button type="button" onclick="del()">삭제</button></td>
+							<td> ${o.retire == null ? ' ' : o.retire}</td>
+							<td> ${o.reason == null ? ' ' : o.retire}</td>
+							<td> <button type="button" onclick="upDate(${o.wno})">수정</button><button type="button" onclick="openModal2(${o.wno})">삭제</button></td>
 						</tr>`;
 			})
 			document.querySelector('.print').innerHTML = html;
@@ -63,20 +65,58 @@ function print(){
 	});	
 }
 
-/*openModal(${o.wno},${o.picture},${o.name},
-${o.grade},${o.worker},${o.department},${o.joinDate},${o.retire},${o.reason})
-*/
+function openModal2(wno){
+	document.querySelector('.modal_wrap2').style.display = 'flex';
+	
+	let html = `<div>선택한 사원번호 : ${wno}</div>
+				삭제할 사원번호 확인 : <input type="text" class="del_wno">`
+	let html2=`<button onclick="del2(${wno})" class="modal_check" 	type="button">확인</button>
+				<button onclick="closeModal2()" class="modal_cencel" type="button">닫기</button>`
+				
+				document.querySelector('.modal_content2').innerHTML =html;
+				document.querySelector('.modal_btns2').innerHTML =html2;
+}
+function closeModal2(){
+	document.querySelector('.modal_wrap2').style.display = 'none';
+}
+function del2(wno){
+	console.log(wno);
+	let del_wno = document.querySelector('.del_wno').value;
+	console.log(del_wno);
+	if(del_wno == wno){
+		$.ajax({
+		url:"/jspWeb/Company",
+		method:"delete",
+		data: {"wno" : wno},
+		success: (r)=>{
+			console.log( 'ajax 응답');
+			console.log( r );
+			if( r == 'true'){
+				alert('삭제성공');
+				closeModal2();
+				print();
+			}else{ alert('삭제실패') }
+		}
+	})
+	}else{alert('삭제실패 : 번호를 확인해주세요.')}
+	
+}
+
+
+/* 수정 */
 
 //수정
 function upDate(wno){
+		document.querySelector('.modal_wrap').style.display = 'flex';
+		
 		$.ajax({
 		url:"/jspWeb/Company",
-		method:"Put",
-		data:{"wno":wno},
+		method:"get",
+		data:{"wno":wno ,
+			"state" : 2
+			},
 		success: (r)=>{
-		
-				document.querySelector('.modal_wrap').style.display = 'flex';
-			let html = `<tr>
+		let html = `<tr>
 							<th width="10%"> 사원번호 </th>
 							<th width="10%" > 사원사진 </th>
 							<th width="10%"> 사원명 </th>
@@ -107,7 +147,7 @@ function upDate(wno){
 						
 	document.querySelector('.edit').innerHTML= html;
 		}
-	})
+	});
 }
 
 function edit(){
@@ -117,8 +157,8 @@ function edit(){
 	console.log(formDate);
 	
 	$.ajax({
-		url:"/jspWeb/Uworker",
-		method:"post",
+		url:"/jspWeb/Company",
+		method:"put",
 		data:formDate,
 		contentType : false ,			
 		processData : false ,	
@@ -128,6 +168,7 @@ function edit(){
 			if( r == 'true'){
 				alert('수정 성공');
 				print();
+				closeModal();
 			}else{ alert('수정 실패') }
 		}
 	})
@@ -136,3 +177,28 @@ function edit(){
 function closeModal(){
 	document.querySelector('.modal_wrap').style.display = 'none';
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
