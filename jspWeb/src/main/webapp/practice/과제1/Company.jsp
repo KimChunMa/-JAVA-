@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form>
+	<form class="signupForm">
 		<div>
 			<div> 사원명
 				  <input type="text" class="name">
@@ -69,6 +69,7 @@
 		
 	</div>
 	
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="/jspWeb/practice/과제1/Company.js"></script>
 </body>
 </html>
