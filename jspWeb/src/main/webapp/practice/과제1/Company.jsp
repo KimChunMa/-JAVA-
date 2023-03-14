@@ -62,6 +62,7 @@
 		<button type="button" onclick="regist()">등록</button>
 	 </form>
 	
+
 	------------------------------------------------
 	<br/>
 		<h3> 출력란 </h3>
@@ -76,9 +77,11 @@
 				회원정보 수정
 			</h3>
 			<div class="modal_content">
-				<table class="edit">
-				
-				</table>
+				<form class="editForm">
+					<table class="edit">
+					
+					</table>
+				</form>	
 			</div>
 			<div class="modal_btns">
 				<button onclick="edit()" class="modal_check" 	type="button">수정하기</button>

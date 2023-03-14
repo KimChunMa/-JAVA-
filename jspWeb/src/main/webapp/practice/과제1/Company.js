@@ -12,8 +12,7 @@ function regist(){
 		contentType : false ,			
 		processData : false ,	
 		success: (r)=>{
-			console.log( 'ajax 응답');
-			console.log( r );
+			
 			if( r == 'true'){
 				alert('회원가입성공');
 				print();
@@ -28,7 +27,7 @@ function print(){
 		url : "/jspWeb/Company" ,
 		method : "get" ,
 		success : (r) =>{console.log('ajax확인')
-		console.log(r)
+		
 			let html = 
 						`<tr>
 							<th> 사원번호 </th>
@@ -75,11 +74,11 @@ function upDate(wno){
 		method:"Put",
 		data:{"wno":wno},
 		success: (r)=>{
-			console.log(r);
+		
 				document.querySelector('.modal_wrap').style.display = 'flex';
 			let html = `<tr>
 							<th width="10%"> 사원번호 </th>
-							<th width="10%" height="30%"> 사원사진 </th>
+							<th width="10%" > 사원사진 </th>
 							<th width="10%"> 사원명 </th>
 							<th width="10%"> 직급 </th>
 							<th width="10%"> 고용형태 </th>
@@ -90,8 +89,8 @@ function upDate(wno){
 					</tr>
 				
 				<tr>
-					<form class="editForm">
-						<td> ${r.wno}</td>
+					
+						<td> <input type="number"   value="${r.wno}" name="wno" readonly></td>
 						<td><img src="/jspWeb/practice/과제1/img/${r.picture == null ? '' : r.picture}" width="40%"
 							 name="picture">
 							<input type="file"  class="picture" name="picture">
@@ -103,7 +102,7 @@ function upDate(wno){
 								<td>  <input type="text" value="${r.joinDate}" name="join"></td>
 								<td>  <input type="text" value="${r.retire}" name="retire"></td>
 								<td>  <input type="text" value="${r.reason}" name="reason"></td>
-					</form>
+					
 				</tr>`;
 						
 	document.querySelector('.edit').innerHTML= html;

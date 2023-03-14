@@ -45,19 +45,22 @@ public class Uworker extends HttpServlet {
 						);
 				
 				// 그외 매개변수 요청 [ request --> multi / form 하위태그내 input 태그의 name 식별자  ]
-				String name = multi.getParameter("name");	// 호출할 input의 name 
+				int wno = Integer.parseInt( multi.getParameter("wno"));
+				String name = multi.getParameter("name");	
 				String grade = multi.getParameter("grade"); 
 				String worker = multi.getParameter("worker");
 				String department = multi.getParameter("department");
 				String join = multi.getParameter("join");
 				String picture = multi.getFilesystemName("picture");	// 첨부파일된 파일명 호출[  .getFilesystemName ]
+				
+				
 				String retire = multi.getParameter("retire");
 				String reason = multi.getParameter("reason"); 
 				
-				CompanyDto dto = new CompanyDto(0,name,grade,worker,department,join,picture,retire,reason);
+				CompanyDto dto = new CompanyDto(wno,name,grade,worker,department,join,picture,retire,reason);
 				System.out.println("tostring "+dto.toString());
 				
-				boolean result =  CompanyDao.getInstance().regist(dto);
+				boolean result =  CompanyDao.getInstance().edit(dto);
 				System.out.println("DB결과: "+result);
 				response.getWriter().print(result);
 	
