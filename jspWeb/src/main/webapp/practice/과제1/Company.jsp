@@ -68,6 +68,8 @@
 		<button type="button" onclick="print()">전체출력</button> 
 		<button type="button" onclick="working_print()">재직</button>
 		<button type="button" onclick="retire_print()">퇴사자</button>
+		검색창 : <input type="text" class="search"> 
+		<button type="button" onclick="search()"> 검색 </button>
 		<table class="print" border="1">
 		</table>
 	<div>

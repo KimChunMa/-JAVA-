@@ -75,6 +75,20 @@ public class Company extends HttpServlet {
 			response.getWriter().print(jsonArray);
 		}
 		
+		else if(state.equals("5")) {
+			request.setCharacterEncoding("UTF-8");
+			String search = request.getParameter("search");
+			
+			ArrayList<CompanyDto> slist = CompanyDao.getInstance().search(search);
+			
+			ObjectMapper objectMapper = new ObjectMapper();
+			String jsonArray = objectMapper.writeValueAsString(slist);
+			
+			response.setContentType("application/json");
+			response.getWriter().print(jsonArray);
+		}
+		
+		
 	}
 
 	//1. 사원 등록 이경석

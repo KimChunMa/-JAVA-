@@ -153,6 +153,7 @@ public class CompanyDao extends Dao{
 			return wlist;
 		}
 		
+		//퇴사자 명단
 		public ArrayList<CompanyDto> retire_print(){
 			String sql = "select * from workers where retire like '2%';";
 			ArrayList<CompanyDto> rlist = new ArrayList<>();
@@ -178,27 +179,32 @@ public class CompanyDao extends Dao{
 			return rlist;
 		}
 		
+		//검색창
+		public ArrayList<CompanyDto> search(String name){
+			String sql = "select * from workers where name like ?" ;
+
+			ArrayList<CompanyDto> slist = new ArrayList<>();
+			try {
+				ps = con.prepareStatement(sql);
+				ps.setString(1, "%"+name+"%");
+				rs = ps.executeQuery();
+				
+				while(rs.next()) {
+					CompanyDto dto = new CompanyDto(
+							rs.getInt(1), 
+							rs.getString(2), 
+							rs.getString(3),
+							rs.getString(4), 
+							rs.getString(5),
+							rs.getString(6),
+							rs.getString(7), 
+							rs.getString(8),
+							rs.getString(9));
+					slist.add(dto);
+				}
+			} catch (Exception e) {System.out.println(e);}
+			return slist;
+		}
+		
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
