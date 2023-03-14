@@ -43,6 +43,20 @@ public class CompanyDto {
 	
 	
 	
+	
+
+
+	
+
+
+	@Override
+	public String toString() {
+		return "CompanyDto [wno=" + wno + ", name=" + name + ", grade=" + grade + ", worker=" + worker + ", department="
+				+ department + ", joinDate=" + joinDate + ", picture=" + picture + ", retire=" + retire + ", reason="
+				+ reason + "]";
+	}
+
+
 	public int getWno() {
 		return wno;
 	}

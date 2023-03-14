@@ -6,15 +6,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 public class Dao {
-	private Connection con;
-	private PreparedStatement ps;
-	private ResultSet rs ;
+	public Connection con;
+	public PreparedStatement ps;
+	public ResultSet rs ;
 
 	public Dao() {
 		 try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/과제1",
+					"jdbc:mysql://localhost:3306/company",
 					"root",
 					"1234"
 					);
