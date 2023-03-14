@@ -26,7 +26,7 @@ public class Company extends HttpServlet {
         super();
     }
 
-
+    //출력
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
@@ -64,27 +64,34 @@ public class Company extends HttpServlet {
 		String join = multi.getParameter("join");
 		String picture = multi.getFilesystemName("picture");	// 첨부파일된 파일명 호출[  .getFilesystemName ]
 		String retire = multi.getParameter("retire");
-		String reason = multi.getParameter("reason");
-		
-		
-		
+		String reason = multi.getParameter("reason"); 
 		
 		CompanyDto dto = new CompanyDto(0,name,grade,worker,department,join,picture,retire,reason);
 		System.out.println("tostring "+dto.toString());
 		
 		boolean result =  CompanyDao.getInstance().regist(dto);
 		System.out.println("DB결과: "+result);
-		
 		response.getWriter().print(result);
-	
+		
+		
 	}
-
-
+	
+	//수정전 출력
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int wno = Integer.parseInt( request.getParameter("wno")); 
+		
+		response.setCharacterEncoding("UTF-8");
+		CompanyDto dto = CompanyDao.getInstance().Eprint(wno);
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		String jsonArray = objectMapper.writeValueAsString(dto);
+		response.setContentType("application/json");
+		response.getWriter().print(jsonArray);
 	}
 
 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
+	
 
 }

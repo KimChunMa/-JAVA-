@@ -11,22 +11,6 @@ public class CompanyDto {
 	private String retire	;		//퇴사일		
 	private String reason	;		//퇴사사유	
 	
-	
-	//현 직무중 생성자
-	public CompanyDto(int wno, String name, String grade, String worker, String department, String joinDate,
-			String picture) {
-		super();
-		this.wno = wno;
-		this.name = name;
-		this.grade = grade;
-		this.worker = worker;
-		this.department = department;
-		this.joinDate = joinDate;
-		this.picture = picture;
-	}
-
-
-	//퇴사자 생성자
 	public CompanyDto(int wno, String name, String grade, String worker, String department, String joinDate,
 			String picture, String retire, String reason) {
 		super();
@@ -41,13 +25,6 @@ public class CompanyDto {
 		this.reason = reason;
 	}
 	
-	
-	
-	
-
-
-	
-
 
 	@Override
 	public String toString() {

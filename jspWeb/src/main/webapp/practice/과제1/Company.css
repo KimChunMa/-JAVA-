@@ -1,1 +1,40 @@
 @charset "UTF-8";
+/*모달 배경*/
+.modal_wrap{
+	background-color:rgba(196,188,188,50%);
+	position: fixed;
+	top : 0; left: 0;
+	width: 100%; height: 100%;
+	justify-content: center; align-items: center;
+	display: none;
+}
+/*모달 상자*/
+.modal_box{
+	background-color: white;
+	width: 80%;
+	padding: 5%;
+	border: 3px solid black;
+	border-radius: 30px;
+	
+}
+
+/*모달 버튼*/
+.modal_btns button{
+	border: none;
+	background-color: #F44336;
+	color: white;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+.edit, .edit td , .edit th{
+	border:1px solid black;
+	border-collapse: collapse;
+	padding:1px;
+	text-align: center;
+}
+
+.edit td input{
+	width:80%;
+}
+
