@@ -55,6 +55,20 @@
 	border-radius: 5px;
 }
 
+.print {
+	text-align: center;
+}
+
+.print th{
+	width:8%;
+}
+
+#wimg{
+	width:15%;
+
+}
+
+
 .edit, .edit td , .edit th{
 	border:1px solid black;
 	border-collapse: collapse;

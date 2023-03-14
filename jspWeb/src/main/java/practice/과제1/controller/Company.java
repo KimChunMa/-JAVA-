@@ -55,6 +55,26 @@ public class Company extends HttpServlet {
 			response.getWriter().print(jsonArray);
 		}
 		
+		else if(state.equals("3")) {
+			ArrayList<CompanyDto> wlist = CompanyDao.getInstance().working_list();
+			
+			ObjectMapper objectMapper = new ObjectMapper();
+			String jsonArray = objectMapper.writeValueAsString(wlist);
+			
+			response.setContentType("application/json");
+			response.getWriter().print(jsonArray);
+		}
+		
+		else if(state.equals("4")) {
+			ArrayList<CompanyDto> rlist = CompanyDao.getInstance().retire_print();
+			
+			ObjectMapper objectMapper = new ObjectMapper();
+			String jsonArray = objectMapper.writeValueAsString(rlist);
+			
+			response.setContentType("application/json");
+			response.getWriter().print(jsonArray);
+		}
+		
 	}
 
 	//1. 사원 등록 이경석
@@ -81,9 +101,6 @@ public class Company extends HttpServlet {
 		String picture = multi.getFilesystemName("picture");	// 첨부파일된 파일명 호출[  .getFilesystemName ]
 		String retire = multi.getParameter("retire");
 		String reason = multi.getParameter("reason");
-		
-		
-		
 		
 		CompanyDto dto = new CompanyDto(0,name,grade,worker,department,join,picture,retire,reason);
 		System.out.println("tostring "+dto.toString());

@@ -19,6 +19,8 @@ function regist(){
 		}
 	})
 }
+
+//전체출력
 print();
 function print(){
 	
@@ -32,7 +34,51 @@ function print(){
 			let html = 
 						`<tr>
 							<th> 사원번호 </th>
-							<th> 사원사진 </th>
+							<th id="wimg"> 사원사진 </th>
+							<th> 사원명 </th>
+							<th> 직급 </th>
+							<th> 고용형태 </th>
+							<th> 부서 </th>
+							<th> 입사일 </th>
+							<th> 퇴사일 </th>
+							<th> 퇴사사유 </th>
+							<th> 비고 </th>
+						</tr>`;
+			
+			
+			r.forEach((o , i ) => {
+				//<img src="/jspweb/Ex/Member/pimg/${o.mimg == null ? 'X.jpg' : o.mimg}" width="20%">
+				html += 
+						`<tr>
+							<td> ${o.wno}</td>
+							<td><img src="/jspWeb/practice/과제1/img/${o.picture == null ? 'X.jpg' : o.picture}" width="20%"></td>
+							<td> ${o.name}</td>
+							<td> ${o.grade}</td>
+							<td> ${o.worker}</td>
+							<td> ${o.department}</td>
+							<td> ${o.joinDate}</td>
+							<td> ${o.retire}</td>
+							<td> ${o.reason} </td>
+							<td> <button type="button" onclick="upDate(${o.wno})">수정</button><button type="button" onclick="openModal2(${o.wno})">삭제</button></td>
+						</tr>`;
+			})
+			document.querySelector('.print').innerHTML = html;
+			}
+	});	
+}
+
+function working_print(){
+	$.ajax({
+		url : "/jspWeb/Company" ,
+		method : "get" ,
+		data : {"state" : 3} ,
+		success : (r) =>{console.log('ajax확인')
+		console.log(r)
+		
+			let html = 
+						`<tr>
+							<th> 사원번호 </th>
+							<th id="wimg"> 사원사진 </th>
 							<th> 사원명 </th>
 							<th> 직급 </th>
 							<th> 고용형태 </th>
@@ -56,7 +102,7 @@ function print(){
 							<td> ${o.department}</td>
 							<td> ${o.joinDate}</td>
 							<td> ${o.retire == null ? ' ' : o.retire}</td>
-							<td> ${o.reason == null ? ' ' : o.retire}</td>
+							<td> ${o.reason == null ? ' ' : o.reason}</td>
 							<td> <button type="button" onclick="upDate(${o.wno})">수정</button><button type="button" onclick="openModal2(${o.wno})">삭제</button></td>
 						</tr>`;
 			})
@@ -64,6 +110,56 @@ function print(){
 			}
 	});	
 }
+
+
+function retire_print(){
+	$.ajax({
+		url : "/jspWeb/Company" ,
+		method : "get" ,
+		data : {"state" : 4} ,
+		success : (r) =>{console.log('ajax확인')
+		console.log(r)
+		
+			let html = 
+						`<tr>
+							<th> 사원번호 </th>
+							<th id="wimg"> 사원사진 </th>
+							<th> 사원명 </th>
+							<th> 직급 </th>
+							<th> 고용형태 </th>
+							<th> 부서 </th>
+							<th> 입사일 </th>
+							<th> 퇴사일 </th>
+							<th> 퇴사사유 </th>
+							<th> 비고 </th>
+						</tr>`;
+			
+			
+			r.forEach((o , i ) => {
+				//<img src="/jspweb/Ex/Member/pimg/${o.mimg == null ? 'X.jpg' : o.mimg}" width="20%">
+				html += 
+						`<tr>
+							<td> ${o.wno}</td>
+							<td><img src="/jspWeb/practice/과제1/img/${o.picture == null ? 'X.jpg' : o.picture}" width="20%"></td>
+							<td> ${o.name}</td>
+							<td> ${o.grade}</td>
+							<td> ${o.worker}</td>
+							<td> ${o.department}</td>
+							<td> ${o.joinDate}</td>
+							<td> ${o.retire == null ? ' ' : o.retire}</td>
+							<td> ${o.reason == null ? ' ' : o.reason}</td>
+							<td> <button type="button" onclick="upDate(${o.wno})">수정</button><button type="button" onclick="openModal2(${o.wno})">삭제</button></td>
+						</tr>`;
+			})
+			document.querySelector('.print').innerHTML = html;
+			}
+	});	
+}
+
+
+
+
+
 
 function openModal2(wno){
 	document.querySelector('.modal_wrap2').style.display = 'flex';
@@ -177,25 +273,6 @@ function edit(){
 function closeModal(){
 	document.querySelector('.modal_wrap').style.display = 'none';
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

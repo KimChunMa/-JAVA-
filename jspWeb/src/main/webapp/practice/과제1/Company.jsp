@@ -43,7 +43,7 @@
 			</div>
 			
 			<div> 입사일
-				  <input type="text" class="join" name="join">
+				  <input type="date" class="join" name="join">
 			</div>
 			
 			<div> 사원 사진
@@ -51,7 +51,7 @@
 			</div>
 			
 			<div> 퇴사일
-				  <input type="text" class="retire" name="retire">
+				  <input type="date" class="retire" name="retire">
 			</div>
 			
 			<div> 퇴사 사유
@@ -65,6 +65,9 @@
 	------------------------------------------------
 	<br/>
 		<h3> 출력란 </h3>
+		<button type="button" onclick="print()">전체출력</button> 
+		<button type="button" onclick="working_print()">재직</button>
+		<button type="button" onclick="retire_print()">퇴사자</button>
 		<table class="print" border="1">
 		</table>
 	<div>
