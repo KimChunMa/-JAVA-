@@ -14,36 +14,46 @@
 		</div>
 		
 		<div> 직급
-			  <input type="text" class="grade">
+			  <select class="grade"> 
+					<option value="staff"> 사원 </option>
+					<option value="Amanager"> 대리 </option>
+					<option value="Gmanager"> 부장 </option>
+					<option value="manager"> 과장 </option>
+					<option value="ceo"> 대표 </option>
+				</select> 
 		</div>
 		
-		<div> 
-				<select> 고용형태
-					<option> 일용직 </option>
-					<option> 정규직 </option>
-					<option> 임원 </option>
+		<div>  고용형태
+				<select class="wroker"> 
+					<option value="daily"> 일용직 </option>
+					<option value="employee"> 정규직 </option>
+					<option value="executives"> 임원 </option>
+				</select> 
+		</div>
+		
+		<div> 부서
+				<select class="department"> 
+					<option value="personnel"> 인사팀 </option>
+					<option value="Sales"> 영업팀 </option>
+					<option value="Develop"> 개발팀 </option>
 				</select> 
 			  
 		</div>
 		
-		<div> 부서
-			  
-		</div>
-		
 		<div> 입사일
-			  <input type="text" class="name">
+			  <input type="text" class="join">
 		</div>
 		
 		<div> 사원 사진
-			  <input type="text" class="name">
+			  <input type="file" class="picture">
 		</div>
 		
 		<div> 퇴사일
-			  <input type="text" class="name">
+			  <input type="text" class="retire">
 		</div>
 		
 		<div> 퇴사 사유
-			  <input type="text" class="name">
+			  <input type="text" class="reason">
 		</div>
 	</div>
 	
