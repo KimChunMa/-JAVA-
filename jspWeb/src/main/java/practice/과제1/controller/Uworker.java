@@ -51,11 +51,14 @@ public class Uworker extends HttpServlet {
 				String worker = multi.getParameter("worker");
 				String department = multi.getParameter("department");
 				String join = multi.getParameter("join");
-				String picture = multi.getFilesystemName("picture");	// 첨부파일된 파일명 호출[  .getFilesystemName ]
-				
-				
 				String retire = multi.getParameter("retire");
-				String reason = multi.getParameter("reason"); 
+				String reason = multi.getParameter("reason");
+				
+				String picture = multi.getFilesystemName("picture");	// 첨부파일된 파일명 호출[  .getFilesystemName ]
+
+				if(picture == null) {
+					picture = CompanyDao.getInstance().Eprint(wno).getPicture();
+				}
 				
 				CompanyDto dto = new CompanyDto(wno,name,grade,worker,department,join,picture,retire,reason);
 				System.out.println("tostring "+dto.toString());
