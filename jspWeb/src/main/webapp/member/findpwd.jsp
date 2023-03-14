@@ -29,7 +29,7 @@
 			<input type="text" name="memail" 	class="memail" >
 			
 			<span class="checkconfirm"></span>
-			<button class="signupbtn" onclick="findpwd()" type="button"> 아이디찾기 </button>
+			<button class="signupbtn" onclick="findpwd()" type="button"> 패스워드 찾기 </button>
 		</form>
 	</div>
 	

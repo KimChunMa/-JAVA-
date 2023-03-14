@@ -16,8 +16,8 @@
 /* 모달 상자 */
 .modal_box{
 	background-color:white;
-	width:30%; 
-	padding:5%;
+	width:50%; 
+	padding:2%;
 	border: 3px solid #c9c7c7;
 	border-radius: 30px;
 }

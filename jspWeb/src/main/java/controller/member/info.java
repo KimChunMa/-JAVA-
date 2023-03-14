@@ -105,14 +105,64 @@ public class info extends HttpServlet {
 		response.getWriter().print(jsonArray);			// 응답 데이터 보내기
 	}
 
-	// 3. 회원 정보 수정 
-	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
 	// 4. 회원탈퇴
-	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			// 1. 로그인된 회원탈퇴
+				// 1. 로그인된 회원아이디 가져오기 [ 세션(object) ]
+			String mid =(String)request.getSession().getAttribute("login");		System.out.println( "mid:"+mid );
+			String mpwd = request.getParameter("mpwd");							System.out.println( "mpwd:"+mpwd );								
+			
+				// 2. Dao에게 요청후 결과 받기 
+			boolean result = MemberDao.getInstance().setDelete(mid, mpwd);				System.out.println( "result : " + request );
+				// 3. 결과 ajax에게 보내기 
+			response.getWriter().print(result);
+		}
 		
-	}
+		// 3. 회원 정보 수정 
+		protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			
+			//업로드 할 서버 경로
+			String path = request.getSession().getServletContext().getRealPath("/member/pimg");
+				//객체
+			MultipartRequest multi = new MultipartRequest(
+					request, path ,  1024*1024*10 , "UTF-8" ,new DefaultFileRenamePolicy() );
+			// 2. 
+			String mid = (String)request.getSession().getAttribute("login");	System.out.println( "mid:"+mid);
+			String mpwd = multi.getParameter("mpwd");							System.out.println( "mpwd:"+mpwd);
+			String newmpwd = multi.getParameter("newmpwd");						System.out.println( "newmpwd:"+newmpwd);
+			String memail = multi.getParameter("memail");						System.out.println( "memail:"+memail);
+			String newmimg = multi.getFilesystemName("newmimg");				System.out.println( "newmimg:"+newmimg);
+			String defaultimg = multi.getParameter("defaultimg");				System.out.println( "defaultimg:"+defaultimg);
+			
+			
+			// 3. 만약에 새로운 첨부파일이 없으면 
+			if( newmimg == null ) { // 기존 이미지 파일 그대로 사용 
+				newmimg = MemberDao.getInstance().getMember( mid ).getMimg();
+			}
+			// 3. 만약에 기본프로필 사용체크 했으면
+			if(  defaultimg.equals( "true" ) ) { // 기본프로필 사용 
+				newmimg = null;
+			}
+			// *추후: 프로필 변경시 기존프로필 실제파일을 서버에서 삭제
+			
+			
+			boolean result = MemberDao.getInstance().update(mid, mpwd, newmpwd, memail, newmimg);
+			
+			response.getWriter().print(result);
+			
+			
+			//첨부파일 없을 때
+			/*
+			 * // 1. 로그인된 회원수정 // 1. 필요한 데이터 요청 String mid =
+			 * (String)request.getSession().getAttribute("login"); System.out.println(
+			 * "mid:"+mid); String mpwd = request.getParameter("mpwd"); System.out.println(
+			 * "mpwd:"+mpwd); String memail = request.getParameter("memail");
+			 * System.out.println( "memail:"+memail); String newmpwd =
+			 * request.getParameter("newmpwd"); System.out.println("newmpwd"+ newmpwd); //
+			 * 2. boolean result = MemberDao.getInstance().update(mid, mpwd, memail,
+			 * newmpwd); // 3. response.getWriter().print(result);
+			 */
+		}
 
 }
 

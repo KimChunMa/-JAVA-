@@ -175,12 +175,12 @@ public class MemberDao extends Dao {
 	}
 	
 	//9. 회원탈퇴 [인수 : mid /반환 : 성공실패 ]
-	public boolean setDelete(String mid) {
-		String sql = "delete from member where mid = ?";
+	public boolean setDelete(String mid , String mpwd) {
+		String sql = "delete from member where mid = ? and mpwd=?";
 		
 		try {
 			ps=con.prepareStatement(sql);
-			ps.setString(1, mid);
+			ps.setString(1, mid); ps.setString(2, mpwd);
 			int count = ps.executeUpdate(); // 삭제된 레코드 수 반환
 			if(count==1) {return true;} // 1개삭제시 성공 
 		}
@@ -189,14 +189,17 @@ public class MemberDao extends Dao {
 	} 
 	
 	//10. 회원수정 [인수 : mpwd, memail 반환: 성공 실패]
-	public boolean update(String mid , String mpwd , String memail) {
-		String sql ="update member set mpwd = ? , memail = ? where mid =?";
+	public boolean update(String mid , String mpwd , String newmpwd , String memail , String newmimg) {
+		System.out.println("dao newmimg : "+ newmimg);
+		String sql ="update member set mpwd = ? , memail = ?  , mimg = ? where mid =? and mpwd =?" ;
 		
 		try {
 			ps=con.prepareStatement(sql);
-			ps.setString(1, mpwd);
-			ps.setString(2, memail);
-			ps.setString(3, mid);
+			ps.setString(1, newmpwd);
+			ps.setString(2, memail	);
+			ps.setString(3, newmimg);
+			ps.setString(4, mid);
+			ps.setString(5, mpwd);
 			int count = ps.executeUpdate(); // 수정된 레코드 수 반환
 			if(count==1) {return true;} // 1개수정시 성공 	
 		}
