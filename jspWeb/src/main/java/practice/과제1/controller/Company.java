@@ -1,6 +1,7 @@
 package practice.과제1.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -25,7 +27,18 @@ public class Company extends HttpServlet {
     }
 
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		
+		ArrayList<CompanyDto> list = CompanyDao.getInstance().list();
+		
+		ObjectMapper objectMapper = new ObjectMapper();
+		String jsonArray = objectMapper.writeValueAsString(list);
+		
+		//System.out.println(jsonArray);
+		response.setContentType("application/json");
+		response.getWriter().print(jsonArray);
 	}
 
 	//1. 사원 등록 이경석

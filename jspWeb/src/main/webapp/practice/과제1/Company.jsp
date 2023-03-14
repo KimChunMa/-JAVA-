@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+	<link href="/jspWeb/practice/과제1/Company.css">
 </head>
 <body>
 	<form class="signupForm">
@@ -16,27 +17,27 @@
 			
 			<div> 직급
 				  <select class="grade" name="grade"> 
-						<option value="staff" > 사원 </option>
-						<option value="Amanager" > 대리 </option>
-						<option value="Gmanager" > 부장 </option>
-						<option value="manager" > 과장 </option>
-						<option value="ceo" > 대표 </option>
+						<option value="사원" > 사원 </option>
+						<option value="대리" > 대리 </option>
+						<option value="부장" > 부장 </option>
+						<option value="과장" > 과장 </option>
+						<option value="대표" > 대표 </option>
 					</select> 
 			</div>
 			
 			<div>  고용형태
 					<select class="worker" name="worker"> 
-						<option value="daily" > 일용직 </option>
-						<option value="employee" > 정규직 </option>
-						<option value="executives" > 임원 </option>
+						<option value="일용직" > 일용직 </option>
+						<option value="정규직" > 정규직 </option>
+						<option value="임원" > 임원 </option>
 					</select> 
 			</div>
 			
 			<div> 부서
 					<select class="department" name="department"> 
-						<option value="personnel" > 인사팀 </option>
-						<option value="Sales"> 영업팀 </option>
-						<option value="Develop" > 개발팀 </option>
+						<option value="인사팀" > 인사팀 </option>
+						<option value="영업팀"> 영업팀 </option>
+						<option value="개발팀" > 개발팀 </option>
 					</select> 
 				  
 			</div>
@@ -64,10 +65,14 @@
 	------------------------------------------------
 	<br/>
 		<h3> 출력란 </h3>
-		
+		<table class="print" border="1">
+		</table>
 	<div>
 		
 	</div>
+	
+	
+	
 	
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="/jspWeb/practice/과제1/Company.js"></script>
