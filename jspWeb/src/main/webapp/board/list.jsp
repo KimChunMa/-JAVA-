@@ -13,9 +13,14 @@
 	
 		<h3> 게시물 목록 </h3>
 		<a href="write.jsp">게시물 쓰기</a>
-	
+		
+		<table class="boardTable table table-hover">
+		
+			
+			
+		</table>
 	</div>
 	
-	
+	<script src="/jspWeb/js/board/list.js"></script>
 </body>
 </html>

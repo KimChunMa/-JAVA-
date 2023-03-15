@@ -1,6 +1,7 @@
 package controller.board;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -26,6 +28,36 @@ public class Boardinfo extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		int type = Integer.parseInt( request.getParameter("type") );
+		
+		if(type==1) { //전체 출력
+			ArrayList<BoardDto> result =  BoardDao.getInstance().getBoardList();
+			
+			System.out.println("게시물 : "+result);
+			
+			ObjectMapper objMapper = new ObjectMapper(); 
+			//[json 객체] json 형식 변환(문자열로 변환)
+			// jackson 라이브러리에서 제공하는 클래스
+			//DAO로 부터 받은 리스트를 json형식의 문자열로 변환 
+			String jsonArray = objMapper.writeValueAsString(result); 
+		
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("application/json"); // 전달[전송]타입을 json 명시 
+			response.getWriter().print(jsonArray ); // 변환된 json형식의 문자열 전달
+		}	
+		else if (type==2) { //개별 출력
+			int bno = Integer.parseInt(request.getParameter("bno"));
+			System.out.println("bno"+bno);
+			
+			//Dao
+			
+			//형변환
+			
+			//응답
+			
+		}
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

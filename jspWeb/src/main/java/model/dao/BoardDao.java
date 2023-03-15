@@ -1,6 +1,7 @@
 package model.dao;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import model.dto.BoardDto;
 
@@ -9,9 +10,9 @@ public class BoardDao extends Dao{
 	private BoardDao() {};
 	public static BoardDao getInstance() {return dao;}
 	
-	// 글쓰기
+	// 1. 글쓰기
 	public boolean bwrite(BoardDto dto) {
-		String sql ="insert into board(btitle, bcontent, bfile, mno_fk, cno_fk) "
+		String sql ="insert into board(btitle, bcontent, bfile, mno, cno) "
 				+ " value(?,?,?,?,?)";
 		
 		try {
@@ -23,4 +24,31 @@ public class BoardDao extends Dao{
 		} catch (SQLException e) {System.err.println(e);}
 		return false;
 	}
+	
+	//2. 모든 글 출력
+	public ArrayList<BoardDto> getBoardList(){
+		
+		ArrayList<BoardDto> list = new ArrayList<>();
+		
+		String sql = "select * from board b  join member m on m.mno = b.mno;";
+		
+		try {
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				BoardDto dto = new BoardDto(
+				rs.getInt(1) , rs.getString(2) , rs.getString(3), 
+				rs.getString(4), rs.getString(5), rs.getInt(6),
+				rs.getInt(7), rs.getInt(8), rs.getString(9), 
+				rs.getInt(10), rs.getInt(11),rs.getString(13));
+				list.add(dto);
+			}
+			return list;
+		} catch (SQLException e) {System.err.println();}
+		return null;
+	}
+	
+	
+	
 }
