@@ -45,7 +45,7 @@
 			</div>
 			<!-- 본메뉴 -->
 			<ul class="mainmenu">
-				<li> <a href="#"> 기본메뉴1 </a> </li>
+				<li> <a href="/jspWeb/board/list.jsp"> 게시물 목록 </a> </li>
 				<li> <a href="#"> 기본메뉴1 </a> </li>
 				<li> <a href="#"> 기본메뉴1 </a> </li>
 				<li> <a href="#"> 기본메뉴1 </a> </li>

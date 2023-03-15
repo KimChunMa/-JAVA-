@@ -1,6 +1,7 @@
 package controller.board;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
+import model.dao.BoardDao;
+import model.dao.MemberDao;
+import model.dto.BoardDto;
 
 
 @WebServlet("/board/info")
@@ -46,13 +51,19 @@ public class Boardinfo extends HttpServlet {
 		String bfile = multi.getFilesystemName("bfile");	// 첨부파일된 파일명 호출[  .getFilesystemName ]
 		System.out.println("bfile: "+bfile);
 		
-		//dto
+		String mid = (String)request.getSession().getAttribute("login");
 		
+		int mno = MemberDao.getInstance().getMno(mid);
 		
-		//dao
+		//Dto
+		BoardDto dto = new BoardDto(btilte, bcontent,bfile,cno,mno);
+			System.out.println("dto : "+dto);
+		
+		//Dao
+		boolean result = BoardDao.getInstance().bwrite(dto);
 		
 		//응답
-		
+		response.getWriter().print(result);
 		
 	}
 

@@ -24,9 +24,8 @@ function bwrite(){
 			console.log( 'ajax 응답');
 			console.log( r );
 			if( r == 'true'){
-				alert('성공');
-		
-			}else{ alert('실패') }
+				alert('글쓰기 성공');
+			}else{ alert('글쓰기 실패') }
 		}
 	})
 }
