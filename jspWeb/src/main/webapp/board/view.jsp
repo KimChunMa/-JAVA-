@@ -19,7 +19,7 @@
 		
 		<div> 
 			<div> 게시물 번호  </div> 
-			<div class="bno"> <%=bno %>  </div>
+			<div class="bno"><%=bno %></div>
 		</div>	
 		
 		<div> 
@@ -28,7 +28,7 @@
 		</div>	
 		
 		<div> 
-			<div> 작성일[프로필]  </div> 
+			<div> 작성자[프로필]  </div> 
 			<div class="pimgbox"> </div>
 		</div>
 		

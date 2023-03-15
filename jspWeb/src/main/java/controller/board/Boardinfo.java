@@ -48,22 +48,26 @@ public class Boardinfo extends HttpServlet {
 		}	
 		else if (type==2) { //개별 출력
 			int bno = Integer.parseInt(request.getParameter("bno"));
-			System.out.println("bno"+bno);
+			System.out.println("bno : "+bno);
 			
 			//Dao
-			
+			BoardDto bto = BoardDao.getInstance().getBoard(bno);
 			//형변환
+			ObjectMapper objMapper = new ObjectMapper(); 
+			String jsonArray = objMapper.writeValueAsString(bto); 
 			
 			//응답
-			
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("application/json"); // 전달[전송]타입을 json 명시 
+			response.getWriter().print(jsonArray ); // 변환된 json형식의 문자열 전달
 		}
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// * 현재 서버의 배포된 프로젝트내 폴더 경로 찾기 
 		String uploadpath = request.getSession().getServletContext().getRealPath("/board/bfile");
+		
 		System.out.println( "path : "+uploadpath );
 		
 		// * 업로드 [ 유저파일 --> 서버폴더내 이동 ]

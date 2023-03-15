@@ -20,6 +20,9 @@ public class BoardDto {
    //빈 생성자
     public BoardDto() {}
     
+    
+    
+    
     //풀 생성자
 	public BoardDto(int bno, String btitle, String bcontent, String bfile, String bdate, int bview, int likes,
 			int hates, String bwriter, int cno_fk, int mno_fk) {
