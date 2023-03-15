@@ -10,6 +10,24 @@
 	<%@ include file ="/header.jsp" %>
 	<h3> 글쓰기 </h3>
 	
+	<script>
+	if(memberInfo.mno==0){
+		
+		alert('회원제 기능입니다. 로그인후 작성해주세요');
+		location.href="/jspWeb/member/login.jsp"
+	}
+	</script>
+	
+	<% 
+		//jsp 로그인 여부 제어
+		Object obj = request.getSession().getAttribute("login");
+	if(obj == null){
+		response.sendRedirect("/jspWeb/member/login.jsp");
+	}
+	%>
+	
+	
+	
 	<div class="container">
 		<form class="writeForm" >
 			카테고리 : <select name="cno">
@@ -27,7 +45,7 @@
 	</div>
 	
 	
-	<script src="/jspWeb/js/board/write.js"></script>
+	
 	
 	<!--
 		html -> form [동기식: 페이지전환 있음] 
@@ -41,7 +59,7 @@
 		
 		>
 	 -->
-	
+	<script src="/jspWeb/js/board/write.js"></script>
 	
 </body>
 </html>

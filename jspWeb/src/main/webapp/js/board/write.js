@@ -1,4 +1,11 @@
 
+console.log(memberInfo.mno);
+if(memberInfo.mno==0){
+	
+	alert('회원제 기능입니다. 로그인후 작성해주세요');
+	location.href="/jspWeb/member/login.jsp"
+}
+
 function bwrite(){
 	
 	//1. 폼 문자열로 가져오기

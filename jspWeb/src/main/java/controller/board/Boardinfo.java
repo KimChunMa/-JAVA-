@@ -51,9 +51,13 @@ public class Boardinfo extends HttpServlet {
 		String bfile = multi.getFilesystemName("bfile");	// 첨부파일된 파일명 호출[  .getFilesystemName ]
 		System.out.println("bfile: "+bfile);
 		
+		//서버세션값 가져오기
 		String mid = (String)request.getSession().getAttribute("login");
 		
+		//회원번호가 존재하지않으면 글쓰기 불가능
 		int mno = MemberDao.getInstance().getMno(mid);
+		
+		if(mno==0) {response.getWriter().print("false");}
 		
 		//Dto
 		BoardDto dto = new BoardDto(btilte, bcontent,bfile,cno,mno);
