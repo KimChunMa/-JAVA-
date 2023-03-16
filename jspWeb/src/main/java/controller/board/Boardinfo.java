@@ -50,7 +50,7 @@ public class Boardinfo extends HttpServlet {
 			// ------------- page 처리 ----------------
 			// 1. 현재페이지 [요청] , 2.페이지당 표시할 게시물 수 ,2. 현재페이지 [게시물시작, 끝번호 ]
 			int page = Integer.parseInt(request.getParameter("page")); 
-			int listsize = 3; 
+			int listsize = Integer.parseInt(request.getParameter("listsize"));  //화면에 표시할 게시물 수
 			int startrow = (page-1)*listsize;//해당 페이지에서의 게시물의 시작번호 
 							//1-1 * 3 = 0 부터 게시물 시작
 			

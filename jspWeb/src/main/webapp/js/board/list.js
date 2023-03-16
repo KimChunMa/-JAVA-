@@ -4,7 +4,8 @@ let pageObject ={
 	key : "",
 	keyword:"",
 	type:1,
-	cno:document.querySelector('.cno').value //카테고리
+	cno:document.querySelector('.cno').value, //카테고리
+	listsize : 3
 }
 
 let cnameHTML ='';
@@ -18,9 +19,6 @@ document.querySelector('.cname').innerHTML = cnameHTML;
 getBoardList(1);
 function getBoardList( page ){
 		pageObject.page = page; // 인수로 받은 현재페이지를 객체에 대입
-		console.log('pageobject')
-		console.log(pageObject)
-		
 		
 		$.ajax({
 			url: "/jspWeb/board/info", 		
@@ -74,10 +72,15 @@ function getBoardList( page ){
 				`<button onclick="getBoardList(${page+1})" type="button"> 이후 </button>`; 
 				
 				document.querySelector('.pagebox').innerHTML = html;
+				// -------------------- 게시물 수 출력 ----------------
+				document.querySelector('.seachcount').innerHTML = `게시물 수 : ${r.totalsize}`;
+			
+			
 			}//success end
 		})//ajax end
 }
 
+//검색 기능
 function getsearch(){
 	console.log(pageObject)
 	pageObject.key = document.querySelector('.key').value;
@@ -86,6 +89,26 @@ function getsearch(){
 	getBoardList(1);
 }
 
+//전체보기
+function allPrint(){
+	pageObject.key = '';
+	pageObject.keyword = '';
+	getBoardList(1);
+}
+
+
+function setlistsize(){
+	
+	//1. select에서 선택된 값 가져오기
+	let listsize =  document.querySelector('.listsize').value;
+	console.log('listsize '+listsize);
+	
+	pageObject.listsize = listsize;
+	
+	
+	getBoardList(1);
+	
+}
 
 
 /* 

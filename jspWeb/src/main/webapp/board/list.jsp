@@ -28,6 +28,14 @@
 		<h3 class="cname"> 게시물 목록 </h3>
 		<a href="write.jsp">게시물 쓰기</a>
 		
+		<button type="button" onclick="allPrint()">전체보기</button>
+		<div class="seachcount"> 총 게시물 수 : </div>		
+		<select class="listsize" onchange="setlistsize()">
+			<option>3</option>
+			<option>5</option>
+			<option>10</option>
+		</select>
+		
 		<table class="boardTable table table-hover">
 		</table>
 		
