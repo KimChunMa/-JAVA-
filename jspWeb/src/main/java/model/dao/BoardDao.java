@@ -25,15 +25,35 @@ public class BoardDao extends Dao{
 		return false;
 	}
 	
+	//2-1 게시물 수 구하기
+	public int gettotalsize() {
+		String sql= "select count(*) from member m natural join board b ;";
+		
+		try {
+			ps=con.prepareStatement(sql);
+			rs=ps.executeQuery();
+			if(rs.next()) {return rs.getInt(1);}
+		} catch (SQLException e) {System.err.println(e);}
+		return 0 ;
+	}
+	
+	
+	
+	
+	
+	
 	//2. 모든 글 출력
-	public ArrayList<BoardDto> getBoardList(){
+	public ArrayList<BoardDto> getBoardList(int startrow, int listsize){
 		
 		ArrayList<BoardDto> list = new ArrayList<>();
 		
-		String sql = "select * from board b  join member m on m.mno = b.mno;";
+		
+		String sql = "select b.* , m.mid from member m natural join board b limit ?,?;";
 		
 		try {
 			ps = con.prepareStatement(sql);
+			ps.setInt(1, startrow);
+			ps.setInt(2, listsize);
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
@@ -41,11 +61,11 @@ public class BoardDao extends Dao{
 				rs.getInt(1) , rs.getString(2) , rs.getString(3), 
 				rs.getString(4), rs.getString(5), rs.getInt(6),
 				rs.getInt(7), rs.getInt(8), rs.getString(9), 
-				rs.getInt(10), rs.getInt(11),rs.getString(13));
+				rs.getInt(10), rs.getInt(11),rs.getString(12));
 				list.add(dto);
 			}
 			return list;
-		} catch (SQLException e) {System.err.println();}
+		} catch (SQLException e) {System.err.println(e);}
 		return null;
 	}
 	

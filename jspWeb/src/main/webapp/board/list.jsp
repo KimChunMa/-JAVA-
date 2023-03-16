@@ -15,11 +15,12 @@
 		<a href="write.jsp">게시물 쓰기</a>
 		
 		<table class="boardTable table table-hover">
-		
-			
-			
 		</table>
+		<div class="pagebox">
+		</div>
 	</div>
+	
+
 	
 	<script src="/jspWeb/js/board/list.js"></script>
 </body>

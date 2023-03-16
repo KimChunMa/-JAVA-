@@ -16,6 +16,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import model.dao.BoardDao;
 import model.dao.MemberDao;
 import model.dto.BoardDto;
+import model.dto.PageDto;
 
 
 @WebServlet("/board/info")
@@ -32,15 +33,36 @@ public class Boardinfo extends HttpServlet {
 		int type = Integer.parseInt( request.getParameter("type") );
 		
 		if(type==1) { //전체 출력
-			ArrayList<BoardDto> result =  BoardDao.getInstance().getBoardList();
+			
+			// ------------- page 처리 ----------------
+			// 1. 현재페이지 [요청] , 2.페이지당 표시할 게시물 수 ,2. 현재페이지 [게시물시작, 끝번호 ]
+			int page = Integer.parseInt(request.getParameter("page")); 
+			int listsize = 3;
+			int startrow = (page-1)*listsize;//해당 페이지에서의 게시물의 시작번호
+			
+			// -------------------- page 버튼 ----------------------------
+			
+			int totalsize = BoardDao.getInstance().gettotalsize();
+			int totalpage = totalsize % listsize == 0 ? // 전체 게시판 % 페이지 글 제한 == 0 이면 
+							totalsize/listsize :  totalsize/listsize+1; // 몫이있으면 게시판 +1
+			
+			System.out.println("size "+totalsize);
+			System.out.println("page "+totalpage);
+			
+			ArrayList<BoardDto> result =  BoardDao.getInstance().getBoardList(startrow,listsize );
 			
 			System.out.println("게시물 : "+result);
+			
+			
+			PageDto pageDto = new PageDto(page, listsize, startrow, totalsize, totalpage, result);
+			
+			
 			
 			ObjectMapper objMapper = new ObjectMapper(); 
 			//[json 객체] json 형식 변환(문자열로 변환)
 			// jackson 라이브러리에서 제공하는 클래스
 			//DAO로 부터 받은 리스트를 json형식의 문자열로 변환 
-			String jsonArray = objMapper.writeValueAsString(result); 
+			String jsonArray = objMapper.writeValueAsString(pageDto); 
 		
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("application/json"); // 전달[전송]타입을 json 명시 
