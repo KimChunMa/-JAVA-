@@ -1,21 +1,39 @@
+// pageObject : 현재페이지, 검색, 전송타입 보관된 객체
+let pageObject ={
+	page : 1 ,
+	key : "",
+	keyword:"",
+	type:1,
+	cno:document.querySelector('.cno').value //카테고리
+}
+
+let cnameHTML ='';
+if(pageObject.cno ==1){cnameHTML='공지사항'}
+if(pageObject.cno ==2){cnameHTML='커뮤니티'}
+if(pageObject.cno ==3){cnameHTML='QnA'}
+if(pageObject.cno ==4){cnameHTML='노하우'}
+document.querySelector('.cname').innerHTML = cnameHTML;
+
 
 getBoardList(1);
 function getBoardList( page ){
+		pageObject.page = page; // 인수로 받은 현재페이지를 객체에 대입
+		console.log('pageobject')
+		console.log(pageObject)
+		
+		
 		$.ajax({
 			url: "/jspWeb/board/info", 		
 			method: "get", // 첨부파일은 무조건 post/put
-			data:{"type":1, "page":page},
+			data:pageObject,
 			success: (r)=>{
 				console.log(r)
-				
-				
-				
-				
+				console.log(r.boardList)
 				//--------------------------페이징 출력-------------------------
 				let html =`<tr>
 								<th> 게시물 번호</th>
-								<th>	제목</th>
-								<th> 작성자</th>
+								<th> 제목 </th>
+								<th> 작성자 </th>
 								<th> 작성일 </th>
 								<th> 조회수 </th>
 								<th> 좋아요 </th>
@@ -60,6 +78,13 @@ function getBoardList( page ){
 		})//ajax end
 }
 
+function getsearch(){
+	console.log(pageObject)
+	pageObject.key = document.querySelector('.key').value;
+	pageObject.keyword = document.querySelector('.keyword').value;
+	
+	getBoardList(1);
+}
 
 
 

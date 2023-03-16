@@ -45,10 +45,10 @@
 			</div>
 			<!-- 본메뉴 -->
 			<ul class="mainmenu">
-				<li> <a href="/jspWeb/board/list.jsp"> 게시물 목록 </a> </li>
-				<li> <a href="#"> 기본메뉴1 </a> </li>
-				<li> <a href="#"> 기본메뉴1 </a> </li>
-				<li> <a href="#"> 기본메뉴1 </a> </li>
+				<li> <a href="/jspWeb/board/list.jsp?cno=1"> 공지사항 </a> </li>
+				<li> <a href="/jspWeb/board/list.jsp?cno=2"> 커뮤니티 </a> </li>
+				<li> <a href="/jspWeb/board/list.jsp?cno=3"> QnA </a></li>
+				<li> <a href="/jspWeb/board/list.jsp?cno=4"> 노하우 </a></li>
 				<li> <a href="#"> 기본메뉴1 </a> </li>
 			</ul>
 			<!-- 서브메뉴 -->
