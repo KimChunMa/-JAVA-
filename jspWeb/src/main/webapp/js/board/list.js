@@ -37,14 +37,23 @@ function getBoardList( page ){
 				})
 				document.querySelector('.table').innerHTML=html;
 				//--------------------------- 페이징 버튼 출력 ---------------
-				html = `<button onclick="getBoardList(${page-1})" type="button"> 이전 </button>`; 
+				//이전
+				html = '';
+				html +=  page <= 1 ?
+				`` 
+				:
+				`<button onclick="getBoardList(${page-1})" type="button" > 이전 </button>`
 				
 				//페이징 번호버튼 들
-				for(let i = 1 ; i <= r.totalpage ; i++){ // 1부터 마지막 페이지 수
+				for(let i = r.startbtn ; i <= r.endbtn ; i++){ // 1부터 마지막 페이지 수
 					html += `<button onclick="getBoardList(${i})" type="button"> ${i} </button>`;
 				}
 				
-				html += `<button onclick="getBoardList(${page+1})" type="button"> 이후 </button>`; 
+				//이후
+				html += page >= r.totalpage ? 
+				``
+				:
+				`<button onclick="getBoardList(${page+1})" type="button"> 이후 </button>`; 
 				
 				document.querySelector('.pagebox').innerHTML = html;
 			}//success end

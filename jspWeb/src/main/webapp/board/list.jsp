@@ -5,6 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<style>
+	.pagebox button{padding:10px 15px; margin:10px;}
+</style>
+
 </head>
 <body>
 	<%@ include file ="/header.jsp" %>
@@ -16,7 +21,8 @@
 		
 		<table class="boardTable table table-hover">
 		</table>
-		<div class="pagebox">
+		
+		<div class="pagebox" >
 		</div>
 	</div>
 	

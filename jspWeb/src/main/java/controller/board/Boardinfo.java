@@ -37,24 +37,39 @@ public class Boardinfo extends HttpServlet {
 			// ------------- page 처리 ----------------
 			// 1. 현재페이지 [요청] , 2.페이지당 표시할 게시물 수 ,2. 현재페이지 [게시물시작, 끝번호 ]
 			int page = Integer.parseInt(request.getParameter("page")); 
-			int listsize = 3;
-			int startrow = (page-1)*listsize;//해당 페이지에서의 게시물의 시작번호
+			int listsize = 3; 
+			int startrow = (page-1)*listsize;//해당 페이지에서의 게시물의 시작번호 
+							//1-1 * 3 = 0 부터 게시물 시작
 			
 			// -------------------- page 버튼 ----------------------------
-			
+			//전체 게시물개수
 			int totalsize = BoardDao.getInstance().gettotalsize();
+			//페이징 버튼 개수
 			int totalpage = totalsize % listsize == 0 ? // 전체 게시판 % 페이지 글 제한 == 0 이면 
 							totalsize/listsize :  totalsize/listsize+1; // 몫이있으면 게시판 +1
 			
-			System.out.println("size "+totalsize);
-			System.out.println("page "+totalpage);
+			
+			int btnsize = 5;// 최대 페이징 출력수
+			int startbtn = ( (page-1)/btnsize) * btnsize +1;//시작 버튼
+			/*
+			1페이지 	: 1-1 / 5 	*5 +1			-> 	0*5+1	 	1 
+  			2페이지	: 2-1 / 5	*5 +1			->	0*5+1		1
+  			3페이지 	: 3-1 / 5	*5 +1			->  0*5+1		1
+  			4페이지	: 4-1 / 5	*5 +1			->	0*5+1		1
+  			5페이지	: 5-1 / 5	*5 +1			->  0*5+1		1
+  			6페이지	: 6-1 / 5 	*5 +1			->  1*5+1 		6
+  			7페이지	: 7-1 / 5	*5 +1			->	1*5+1		6
+			 */			
+			
+			int endbtn = startbtn + (btnsize-1);  // 끝버튼
+			if(endbtn > totalpage) {endbtn = totalpage;}
+			
+			
 			
 			ArrayList<BoardDto> result =  BoardDao.getInstance().getBoardList(startrow,listsize );
 			
-			System.out.println("게시물 : "+result);
 			
-			
-			PageDto pageDto = new PageDto(page, listsize, startrow, totalsize, totalpage, result);
+			PageDto pageDto = new PageDto(page, listsize, startrow, totalsize, totalpage, btnsize, startbtn, endbtn, result);
 			
 			
 			

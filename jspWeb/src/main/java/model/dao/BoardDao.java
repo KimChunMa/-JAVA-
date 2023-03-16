@@ -38,10 +38,6 @@ public class BoardDao extends Dao{
 	}
 	
 	
-	
-	
-	
-	
 	//2. 모든 글 출력
 	public ArrayList<BoardDto> getBoardList(int startrow, int listsize){
 		
