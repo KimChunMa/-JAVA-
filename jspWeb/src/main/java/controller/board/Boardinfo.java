@@ -1,5 +1,6 @@
 package controller.board;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -33,8 +34,6 @@ public class Boardinfo extends HttpServlet {
 		int type = Integer.parseInt( request.getParameter("type") );
 		
 		if(type==1) { //전체 출력
-			
-			
 			// 카테고리 별 출력
 			int cno = Integer.parseInt( request.getParameter("cno"));
 			
@@ -42,10 +41,6 @@ public class Boardinfo extends HttpServlet {
 			//1. 검색에 필요한 매개변수 요청 [key, keyword] 2.
 			String key = request.getParameter("key");			System.out.println(key);
 			String keyword = request.getParameter("keyword");	System.out.println(keyword);
-			
-				
-			
-			
 			
 			// ------------- page 처리 ----------------
 			// 1. 현재페이지 [요청] , 2.페이지당 표시할 게시물 수 ,2. 현재페이지 [게시물시작, 끝번호 ]
@@ -157,10 +152,67 @@ public class Boardinfo extends HttpServlet {
 
 
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String path = request.getSession().getServletContext().getRealPath("/board/bfile");
+		
+		//업로드
+		MultipartRequest multi = new MultipartRequest(
+				request ,  path ,  1024*1024*10 , "UTF-8" ,
+				new DefaultFileRenamePolicy() );
+			
+		//정보
+		int bno = Integer.parseInt( multi.getParameter("bno"));
+		int cno = Integer.parseInt( multi.getParameter("cno") );
+		String btitle = multi.getParameter("btitle");
+		String bcontent = multi.getParameter("bcontent");
+		String bfile = multi.getFilesystemName("bfile");
+		System.out.println("bfile : "+bfile);
+		//수정후 파일 처리
+		String oldfile = BoardDao.getInstance().getBoard(bno).getBfile();
+		String filepath = request.getSession().getServletContext().getRealPath("/board/bfile/"+oldfile);
+		
+		System.out.println("filepath : "+filepath);
+		
+		if(bfile == null) {
+		
+		}else {//새로운 첨부파일이 있다면
+			File file = new File(path); if(file.exists()) {file.delete();}
+		}
+		
+		//dto
+		BoardDto dto = new BoardDto(bno,btitle, bcontent, bfile,cno);
+		boolean result = BoardDao.getInstance().bupdate(dto);
+		response.getWriter().print(result);
 	}
 
 	
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int bno = Integer.parseInt(request.getParameter("bno"));
+		int type = Integer.parseInt(request.getParameter("type"));
+		
+		//파일명
+		String bfile = BoardDao.getInstance().getBoard(bno).getBfile();
+		//삭제 결과값
+		boolean result = true;
+		
+		if(type == 1) { // db삭제 + 파일 삭제
+			//데이터베이스 삭제
+			result= BoardDao.getInstance().bdelete(bno);
+			//삭제전 첨부파일명 구하기
+		}else if (type==2) { // 파일만 삭제
+			result = BoardDao.getInstance().bfiledelete(bno);
+		}
+		
+		
+		
+		//첨부파일 있을경우 같이 삭제
+		if(result) { // db에서 삭제시 
+			String path = request.getSession().getServletContext().getRealPath("/board/bfile/"+bfile);
+			File file = new File(path); // 객체화
+			if(file.exists()){//만약 파일이 존재하면
+				file.delete();//파일삭제
+			}
+		}
+		response.getWriter().print(result);
 	}
 
 }

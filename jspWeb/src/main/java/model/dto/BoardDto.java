@@ -20,7 +20,16 @@ public class BoardDto {
    //빈 생성자
     public BoardDto() {}
     
-    
+    //업데이트용도
+	public BoardDto(int bno, String btitle, String bcontent, String bfile, int cno_fk) {
+		super();
+		this.bno = bno;
+		this.btitle = btitle;
+		this.bcontent = bcontent;
+		this.bfile = bfile;
+		this.cno_fk = cno_fk;
+	}
+
     
     
     //풀 생성자
@@ -39,7 +48,9 @@ public class BoardDto {
 		this.cno_fk = cno_fk;
 		this.mno_fk = mno_fk;
 	}
-	
+
+
+
 	//제목,내용,파일,카테고리 번호, 멤버 번호
 	public BoardDto(String btitle, String bcontent, String bfile, int cno_fk, int mno_fk) {
 		super();

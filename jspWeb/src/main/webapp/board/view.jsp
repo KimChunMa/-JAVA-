@@ -47,6 +47,10 @@
 			<div class="bfile">   </div>
 		</div>	
 		
+		
+		<br/>
+		<div class="btnbox">
+		</div>
 	</div>
 	
 	<script src="/jspWeb/js/board/view.js"></script>
