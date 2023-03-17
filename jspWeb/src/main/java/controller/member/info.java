@@ -15,6 +15,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import model.dao.MemberDao;
 import model.dto.MemberDto;
+import model.dto.PageDto;
 
 @WebServlet("/member")
 public class info extends HttpServlet {
@@ -94,11 +95,47 @@ public class info extends HttpServlet {
     
     // 2. 로그인 / 회원1명 / 회원 여러명 호출 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//------------page-------------
+		//현재 페이지
+		int page = Integer.parseInt(request.getParameter("page")); 
+		// 페이지마다 출력할 갯수
+		int listsize = Integer.parseInt(request.getParameter("listsize"));  //화면에 표시할 게시물 수
+		//출력할 레코드 계산
+		int startrow = (page-1)*listsize; // limit startrowl,ㅣistsize
+		
+		//-------------- page 버튼----------------
+		// 회원 전체 크기
+		int totalsize = MemberDao.getInstance().getMemberCount();
+		System.out.println(totalsize);
+		// 전체페이지 = 회원 전체크기 / 페이지마다 출력할 갯수  
+		int totalpage = totalsize % listsize == 0 ? // 전체 게시판 % 페이지 글 제한 == 0 이면 
+				totalsize/listsize :  totalsize/listsize+1;
+		//총 페이지 출력수
+		int btnsize = 3;
+		int startbtn = ( (page-1)/btnsize) * btnsize +1;
+		/*
+		  	1-1 / 3	* 3 +1 = 0 *3 +1 =1
+		  	2-1 / 3	* 3 +1 = 0 *3 +1 =1
+		  	3-1 / 3	* 3 +1 = 0 *3 +1 =1
+		  	4-1 / 3	* 3 +1 = 1 *3 +1 =4 // 4페이지부터
+		 */
+		
+		int endbtn = startbtn + (btnsize-1);  // 끝버튼
+		//1 + (3-1) =3 	1~3페이지
+		// 4 + (3-1) = 6	4~6페이지
+		if(endbtn > totalpage) {endbtn = totalpage;}
+		
+		
+		// ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ명단ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 		// 1. Dao 에게 모든 회원명단 요청후 저장 
-		ArrayList<MemberDto> result = MemberDao.getInstance().memberPrint();	System.out.println( "result : " + result );
+		ArrayList<MemberDto> result = MemberDao.getInstance().memberPrint(startrow, listsize);	
+		
+		PageDto pageDto = new PageDto(result, page, listsize, startrow, totalsize, totalpage, btnsize, startbtn, endbtn);
+		
+		
 		// 2. JAVA객체 ---> JS객체 형변환 [ 서로 다른 언어 사용하니까 ]
 		ObjectMapper mapper = new ObjectMapper();
-		String jsonArray = mapper.writeValueAsString( result );					System.out.println( "jsonArray : " + jsonArray );
+		String jsonArray = mapper.writeValueAsString( pageDto );					System.out.println( "jsonArray : " + jsonArray );
 		// 3. 응답 
 		response.setCharacterEncoding("UTF-8");			// 응답 데이터 한글 인코딩 
 		response.setContentType("application/json");	// 응답 데이터 타입

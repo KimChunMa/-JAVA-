@@ -15,13 +15,26 @@ public class PageDto {
 	
 	// !! : 게시물 목록
 	ArrayList<BoardDto> boardList;
-
 	
-	
+	ArrayList<MemberDto> memberList;
+
+	public PageDto(ArrayList<MemberDto> memberList ,int page, int listsize, int startrow, int totalsize, int totalpage, int btnsize, int startbtn,
+			int endbtn) {
+		super();
+		this.page = page;
+		this.listsize = listsize;
+		this.startrow = startrow;
+		this.totalsize = totalsize;
+		this.totalpage = totalpage;
+		this.btnsize = btnsize;
+		this.startbtn = startbtn;
+		this.endbtn = endbtn;
+		this.memberList = memberList;
+	}
 
 
 
-
+	//게시판 목록
 	public PageDto(int page, int listsize, int startrow, int totalsize, int totalpage, int btnsize, int startbtn,
 			int endbtn, ArrayList<BoardDto> boardList) {
 		super();
@@ -142,6 +155,18 @@ public class PageDto {
 
 	public void setBoardList(ArrayList<BoardDto> boardList) {
 		this.boardList = boardList;
+	}
+
+
+
+	public ArrayList<MemberDto> getMemberList() {
+		return memberList;
+	}
+
+
+
+	public void setMemberList(ArrayList<MemberDto> memberList) {
+		this.memberList = memberList;
 	}
 	
 	
