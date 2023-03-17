@@ -27,25 +27,22 @@ function getBoard(){
 					cnoSelect.options[i].selected = true;
 				}
 			}
-			
-			let html = '';
-			if(r.bfile == null){//없을때
-				html += `첨부파일 없음`;
-			}else{ // 있을때 
-				html += `
-				<div>
-			기존 첨부파일 : <span class="oldfile"></span>
-			<button type="button" onclick="bfiledelete()">삭제</button>
-			 </div>
-			 
-			 `
-			document.querySelector('.bfilebox').innerHTML = html;
+						// 2. 첨부파일 있을때 / 없을때
+			let html = ''
+			if(r.bfile == null ){ // 없을때 
+				html += `<div>첨부파일없음</div>`;
+			}else{ // 있을때
+				html += `<div>
+						기존 첨부파일 : <span class="oldbfile"> </span> 
+						<button onclick="bfiledelete()" type="button">삭제</button>
+						</div>
+						`
 			}
-			html += `<div>
-			변경할 첨부파일 : <input type="file" name="bfile" class="bfile">
-			</div>`
-			document.querySelector('.oldfile').innerHTML = r.bfile;
 			
+			html += `변경할 첨부파일 : 	<input name="bfile" type="file">`
+			document.querySelector('.bfilebox').innerHTML = html;
+			
+			document.querySelector('.oldbfile').innerHTML = r.bfile;
 		}
 	})
 }
@@ -83,16 +80,18 @@ function bupdate(){
 
 //3첨부파일만 삭제
 function bfiledelete(){
-	alert('첨부파일 삭제')
 	
 	$.ajax({
 		url:"/jspWeb/board/info",
 		method:"delete",
-		data:{"type":2},//1 게시판 삭제 2 첨부파일 삭제
+		data:{"type":2,"bno":bno },//1 게시판 삭제 2 첨부파일 삭제
 		success:(r)=>{
 			if(r=='true'){
-				alert('파일삭제')}
-				else{
+				//특정 div만 reload(랜더링) 방법
+				
+					//주의 location.href + ' 띄어쓰기'
+				$(".bfilebox").load(location.href+'.bfiebox');
+				}else{
 					alert('파일삭제 실패')
 				}
 		}

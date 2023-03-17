@@ -45,6 +45,7 @@
 			내용 : <textarea rows="10" cols="40" name="bcontent" class="bcontent"></textarea> <br/>
 			
 			<div class="bfilebox"></div>
+			<div class="bfilebox2"></div>
 			
 			<button type="button" onclick="bupdate()"> 수정 </button>
 		</form>
