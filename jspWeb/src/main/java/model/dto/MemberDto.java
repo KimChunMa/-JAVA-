@@ -18,6 +18,8 @@ public class MemberDto {
 	private String mimg  ; // 멤버 이미지
     private int mpoint; //멤버 포인트
     
+    private int count;//총회원
+    
  // 1. 이메일 전송 메소드 [ 받는사람이메일 , 받는내용 HTML ] 
 	public boolean sendEmail( String toEmail , String contentHTML ) {
 		// 1.보내는 사람의 정보 
@@ -71,6 +73,24 @@ public class MemberDto {
 		this.mimg = mimg;
 		this.mpoint = mpoint;
 	}
+	
+	
+
+	public int getCount() {
+		return count;
+	}
+
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+
+	public MemberDto(int count) {
+		super();
+		this.count = count;
+	}
+
 
 	public MemberDto() {
 		super();

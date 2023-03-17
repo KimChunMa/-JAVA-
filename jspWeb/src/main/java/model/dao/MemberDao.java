@@ -40,8 +40,18 @@ public class MemberDao extends Dao {
 	}
 	
 	//멤버 명단 출력
-	public ArrayList<MemberDto> memberPrint(int startrow, int listsize) {
-		String sql = "select * from member limit "+startrow+" , "+listsize;
+	public ArrayList<MemberDto> memberPrint(int startrow, int listsize, String key, String searchtext) {
+		String sql ="";
+		
+		if(key.equals("") && searchtext.equals("") ) {
+		 sql = "select * from member limit "+startrow+" , "+listsize;
+		 
+		}else {
+			sql = "select * from member m where "
+					+key+" like '%"+searchtext+"%' "
+					+ "limit "+startrow+" , "+listsize;
+		}
+		
 		ArrayList<MemberDto> mlist = new ArrayList<>();
 		try {
 			ps=con.prepareStatement(sql);
@@ -222,16 +232,39 @@ public class MemberDao extends Dao {
 	
 	
 	//12 총 회원 구하기
-	public int getMemberCount() {
-		String sql = "select count(*) from member";
-		
-		try {
-			ps=con.prepareStatement(sql);
-			rs=ps.executeQuery();
-			if(rs.next()) return rs.getInt(1);
-		} catch (SQLException e) {System.err.println(e);}
-		
-		return 0;
+	public MemberDto getMemberCount(String key , String searchtext) {
+		String sql ="";
+		if(key.equals("") && searchtext.equals("")) {
+		 sql = "select count(*) from member";
+		 
+		 try {
+				ps=con.prepareStatement(sql);
+				rs=ps.executeQuery();
+				while(rs.next()) {
+					MemberDto member = new MemberDto(
+							rs.getInt(1));
+					return member;
+				} 
+			} catch (SQLException e) {System.err.println(e);}
+			
+			return null;
+			
+		}else {
+			sql = "select * from member m where "+key+" like '%"+searchtext+"%'";
+			
+			try {
+				ps=con.prepareStatement(sql);
+				rs=ps.executeQuery();
+				while(rs.next()) {
+					MemberDto member = new MemberDto(
+					rs.getInt(1), rs.getString(2),rs.getString(3),
+					rs.getString(5),rs.getString(4),0);
+					return member;
+				}
+			} catch (SQLException e) {System.err.println(e);}
+		}
+		return null;
 	}
 	
+
 }

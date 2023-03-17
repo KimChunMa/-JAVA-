@@ -95,6 +95,10 @@ public class info extends HttpServlet {
     
     // 2. 로그인 / 회원1명 / 회원 여러명 호출 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String key = request.getParameter("key");
+		String searchtext = request.getParameter("searchtext");
+		
 		//------------page-------------
 		//현재 페이지
 		int page = Integer.parseInt(request.getParameter("page")); 
@@ -105,8 +109,7 @@ public class info extends HttpServlet {
 		
 		//-------------- page 버튼----------------
 		// 회원 전체 크기
-		int totalsize = MemberDao.getInstance().getMemberCount();
-		System.out.println(totalsize);
+		int totalsize = MemberDao.getInstance().getMemberCount(key, searchtext).getCount();
 		// 전체페이지 = 회원 전체크기 / 페이지마다 출력할 갯수  
 		int totalpage = totalsize % listsize == 0 ? // 전체 게시판 % 페이지 글 제한 == 0 이면 
 				totalsize/listsize :  totalsize/listsize+1;
@@ -128,18 +131,22 @@ public class info extends HttpServlet {
 		
 		// ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ명단ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 		// 1. Dao 에게 모든 회원명단 요청후 저장 
-		ArrayList<MemberDto> result = MemberDao.getInstance().memberPrint(startrow, listsize);	
+		ArrayList<MemberDto> result = MemberDao.getInstance().memberPrint(startrow, listsize,key, searchtext);	
 		
 		PageDto pageDto = new PageDto(result, page, listsize, startrow, totalsize, totalpage, btnsize, startbtn, endbtn);
 		
 		
 		// 2. JAVA객체 ---> JS객체 형변환 [ 서로 다른 언어 사용하니까 ]
 		ObjectMapper mapper = new ObjectMapper();
-		String jsonArray = mapper.writeValueAsString( pageDto );					System.out.println( "jsonArray : " + jsonArray );
+		String jsonArray = mapper.writeValueAsString( pageDto );			
 		// 3. 응답 
 		response.setCharacterEncoding("UTF-8");			// 응답 데이터 한글 인코딩 
 		response.setContentType("application/json");	// 응답 데이터 타입
 		response.getWriter().print(jsonArray);			// 응답 데이터 보내기
+	
+	
+	
+	
 	}
 
 	// 4. 회원탈퇴
