@@ -1,6 +1,10 @@
+//현재 보고있는 게시물 번호
+let bno = document.querySelector('.bno').innerHTML ;
+
+//해당 게시물 호출
 getBoard();
 function getBoard(){
-	let bno = document.querySelector('.bno').innerHTML ;
+	
 	
 		$.ajax({
 			url: "/jspWeb/board/info", 		
@@ -43,6 +47,7 @@ function getBoard(){
 		}) // ajax e
 }// getBoard e
 
+//2. 파일 다운로드
 function bdownload(bfile){
 	console.log(bfile)
 	/*
@@ -103,6 +108,83 @@ function bupdate(bno){
 	location.href="/jspWeb/board/update.jsp?bno="+bno;
 }
 
+//6. 댓글 쓰기
+function rwrite(){
+	$.ajax({
+		url:"/jspWeb/board/reply",
+		method:"post",
+		data:{"bno":bno, "rcontent":document.querySelector('.rcontent').value
+			 ,"type":1},
+		success: (r)=>{
+			console.log(r)
+			if(r=="true"){
+				alert('댓글작성완료');
+				getReplayList();
+				document.querySelector('.rcontent').value='';
+				
+				location.reload(); //전체페이지 새로고침 				
+			}else{
+				alert('실패')
+			}
+		}
+	})
+}
+
+//댓글 출력
+getReplayList()
+function getReplayList(){
+	$.ajax({
+		url:"/jspWeb/board/reply",
+		method:"get",
+		data:{"bno":bno},
+		success: (r)=>{
+			console.log(r)
+			
+			let html = '';
+			
+			r.forEach((o,i) =>{
+				
+				html += `
+						<div>
+							<span> ${o.ming} </span>
+							<span> ${o.mid} </span>
+							<span> ${o.rdate} </span>
+							<span> ${o.rcontent} </span>
+							<button type="button" onclick="rereplayview(${o.rno})" 
+							> 답글 쓰기</button>
+							<div class="rereplybox${o.rno}"></div>
+						</div>`;
+			})
+			console.log(html)
+			document.querySelector('.replylistbox').innerHTML = html;
+		}
+	})
+}
+
+//하위 댓글 구역 표시
+function rereplayview(rno){
+	
+	let html = `
+				<textarea class="rrcontent${rno}"> </textarea>
+				<button type="button" onclick="rrwirte(${rno})"> 대댓글 작성</button>
+				`;
+	
+	document.querySelector(`.rereplybox${rno}`).innerHTML = html;
+}
+
+function rrwirte(rno){
+	//bno , mno. rrcontent, rindex(상위댓글번호)
+	
+	$.ajax({
+		url:"/jspWeb/board/reply",
+		method:"post",
+		data:{"type":2, "bno":bno , "rindex":rno , 
+			  "rcontent":document.querySelector(`.rrcontent${rno}`).value},
+		success: (r)=>{
+			console.log(r)
+		}
+	})
+}
 
 
 
