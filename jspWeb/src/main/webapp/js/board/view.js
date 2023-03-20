@@ -1,3 +1,12 @@
+
+if(memberInfo.mid == null){
+	document.querySelector('.rcontent').disabled = true;
+	document.querySelector('.rcontent').value = '로그인후 작성가능';
+	document.querySelector('.rwritebtn').disabled = true;
+}
+
+	document.querySelector('.rcontent').disabled = false;
+
 //현재 보고있는 게시물 번호
 let bno = document.querySelector('.bno').innerHTML ;
 
@@ -130,13 +139,13 @@ function rwrite(){
 	})
 }
 
-//댓글 출력
+//7. 상위 댓글 출력
 getReplayList()
 function getReplayList(){
 	$.ajax({
 		url:"/jspWeb/board/reply",
 		method:"get",
-		data:{"bno":bno},
+		data:{"bno":bno , "type":1},
 		success: (r)=>{
 			console.log(r)
 			
@@ -144,34 +153,65 @@ function getReplayList(){
 			
 			r.forEach((o,i) =>{
 				
-				html += `
-						<div>
-							<span> ${o.ming} </span>
-							<span> ${o.mid} </span>
-							<span> ${o.rdate} </span>
-							<span> ${o.rcontent} </span>
-							<button type="button" onclick="rereplayview(${o.rno})" 
-							> 답글 쓰기</button>
-							<div class="rereplybox${o.rno}"></div>
-						</div>`;
+					html += `
+							<div>
+								<span> ${o.ming} </span>
+								<span> ${o.mid} </span>
+								<span> ${o.rdate} </span>
+								<span> ${o.rcontent} </span>
+								<button type="button" onclick="rereplyview(${o.rno})">
+								 답글 쓰기</button>
+								  
+								<div class="rereplybox${o.rno}"></div>
+							</div>`;
+			 
+				
 			})
-			console.log(html)
+			
 			document.querySelector('.replylistbox').innerHTML = html;
 		}
 	})
 }
 
 //하위 댓글 구역 표시
-function rereplayview(rno){
+function rereplyview(rno){
 	
-	let html = `
-				<textarea class="rrcontent${rno}"> </textarea>
-				<button type="button" onclick="rrwirte(${rno})"> 대댓글 작성</button>
-				`;
 	
-	document.querySelector(`.rereplybox${rno}`).innerHTML = html;
+		
+	$.ajax({
+		url:"/jspWeb/board/reply",
+		async:'false',	//동기화 통신
+		method:"get",
+		data:{"type":2, "rindex":rno, "bno":bno},
+		success: (r)=>{
+			console.log(r);
+			
+		
+			let html = '';
+			r.forEach((o)=>{
+				html += `
+						<div>
+							<span> ${o.ming} </span>
+							<span> ${o.mid} </span>
+							<span> ${o.rdate} </span>
+							<span> ${o.rcontent} </span>
+							
+						</div>`
+			})//foreach
+			 html += `
+						<textarea class="rrcontent${rno}"> </textarea>
+						<button type="button" onclick="rrwirte(${rno})"> 대댓글 작성</button>
+						`;
+			
+			console.log(html)
+			document.querySelector(`.rereplybox${rno}`).innerHTML = html;
+		}//success
+	})//$.ajax
+	
+	
 }
 
+//대댓글 쓰기
 function rrwirte(rno){
 	//bno , mno. rrcontent, rindex(상위댓글번호)
 	
@@ -182,9 +222,15 @@ function rrwirte(rno){
 			  "rcontent":document.querySelector(`.rrcontent${rno}`).value},
 		success: (r)=>{
 			console.log(r)
+			getReplayList()
+			alert('대댓글 작성완료')
+			location.reload(); 
 		}
 	})
+
 }
+
+
 
 
 

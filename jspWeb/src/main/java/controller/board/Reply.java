@@ -34,7 +34,22 @@ public class Reply extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int bno = Integer.parseInt(
 				request.getParameter("bno"));
-		ArrayList<ReplyDto> result =  BoardDao.getInstance().getReplyList(bno);
+		
+		int type = Integer.parseInt(
+				request.getParameter("type"));
+		
+		int rindex=0;
+		
+		if(type == 1) { // 상위댓글
+			
+		}else if(type == 2) { //하위댓글
+			rindex = Integer.parseInt(
+					request.getParameter("rindex"));
+		}
+		
+		
+		
+		ArrayList<ReplyDto> result =  BoardDao.getInstance().getReplyList(bno,rindex);
 		
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonArray = mapper.writeValueAsString(result);

@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -58,11 +59,11 @@ public class BoardDao extends Dao{
 		String sql ="";
 		
 		if(key.equals("") && keyword.equals("")) { // 검색이 있다.
-			sql = "select b.* , m.mid from member m natural join board b where b.cno = "+cno
+			sql = "select b.* , m.mid , m.mimg from member m natural join board b where b.cno = "+cno
 					+ " order by b.bdate desc limit ?,?;";
 			
 		}else {//검색이 있다
-			 sql = "select b.* , m.mid from member m natural join board b "
+			 sql = "select b.* , m.mid , m.mimg from member m natural join board b "
 						+ " where "+key+" like '%"+keyword+"%' and b.cno = "+cno
 						+ " order by b.bdate desc limit ? , ?";
 		}
@@ -79,6 +80,12 @@ public class BoardDao extends Dao{
 				rs.getString(4), rs.getString(5), rs.getInt(6),
 				rs.getInt(7), rs.getInt(8), rs.getString(9), 
 				rs.getInt(10), rs.getInt(11),rs.getString(12));
+				dto.setMimg(rs.getString(13)); 
+				
+				sql = "select count(*) from reply where bno= "+dto.getBno(); 
+				ps = con.prepareStatement(sql);
+				ResultSet rs2 = ps.executeQuery();
+				if(rs2.next()) {dto.setRcount(rs2.getInt(1));}
 				list.add(dto);
 			}
 			return list;
@@ -194,12 +201,20 @@ public class BoardDao extends Dao{
 	}
 	
 	//9. 댓글 출력
-	public ArrayList<ReplyDto> getReplyList(int bno){
-		String sql = "select r.* , m.mid , m.mimg  "
-				+ " from reply r natural join member m "
-				+ " where r.bno = "+bno;
+	public ArrayList<ReplyDto> getReplyList(int bno, int rindex){
 		
 		ArrayList<ReplyDto> list = new ArrayList<>();
+		String sql = "";
+		if(rindex == 0 ) { // 상위댓글
+			sql = "select r.* , m.mid , m.mimg  "
+					+ " from reply r natural join member m "
+					+ " where r.rindex = 0 and r.bno = "+bno;
+		
+		}else {//하위댓글
+			sql = "select r.* , m.mid , m.mimg  "
+					+ " from reply r natural join member m "
+					+ " where r.rindex = "+rindex+" and r.bno = "+bno;
+		}
 		
 		try {
 			ps = con.prepareStatement(sql);

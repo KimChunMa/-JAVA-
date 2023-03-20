@@ -28,48 +28,52 @@ function getBoardList( page ){
 				console.log(r)
 				console.log(r.boardList)
 				//--------------------------페이징 출력-------------------------
-				let html =`<tr>
-								<th> 게시물 번호</th>
-								<th> 제목 </th>
-								<th> 작성자 </th>
-								<th> 작성일 </th>
-								<th> 조회수 </th>
-								<th> 좋아요 </th>
-								<th> 싫어요</th>
-								<th> 카테고리</th>
-						   </tr>`;
-						   
-				r.boardList.forEach((o)=>{
-					html += `<tr>
-								<td> ${o.bno}</td>
-								<td><a href="/jspWeb/board/view.jsp?bno=${o.bno}">${o.btitle}</a></td>
-								<td> ${o.mid}</td>
-								<td> ${o.bdate}</td>
-								<td> ${o.bview}</td>
-								<td> ${o.likes}</td>
-								<td> ${o.hates}</td>
-								<td> ${o.cno_fk}</td>
-						   </tr>`;
-				})
-				document.querySelector('.table').innerHTML=html;
+				let html = ``;
+			
+			r.boardList.forEach( ( o , i ) => {
+				html += `
+						<div class="boardcontent">
+							<div>
+								<img alt="" class="hpimg" 
+								src="/jspWeb/member/pimg/
+								${o.mimg == null ? 'default.webp' : o.mimg}
+								">
+								
+								<span class="mid"> ${o.mid} </span>
+								<span class="bdate"> ${o.bdate} </span>
+							</div>
+							<div class="btitle"> 
+								<a href="/jspWeb/board/view.jsp?bno=${o.bno}">${o.btitle}</a> 
+							</div>
+							<div class="cbottom">
+								<span> <i class="far fa-eye"></i> <span class="bview">${o.bview}</span> </span>
+								<span> <i class="far fa-thumbs-up"></i> <span class="bup">${o.likes}</span> </span>
+								<span> <i class="far fa-thumbs-down"></i> <span class="bdown">${o.hates}</span> </span>
+								<span> <i class="far fa-comment-dots"></i> <span class="rcount">${o.rcount} </span> </span>
+							</div>
+						</div>`;
+			})
+			document.querySelector('.boardTable').innerHTML = html;
+			//-------------------------------------------
+			
 				//--------------------------- 페이징 버튼 출력 ---------------
 				//이전
 				html = '';
 				html +=  page <= 1 ?
 				`` 
 				:
-				`<button onclick="getBoardList(${page-1})" type="button" > 이전 </button>`
+				`<button onclick="getBoardList(${page-1})" type="button" class="pagebtns" > 이전 </button>`
 				
 				//페이징 번호버튼 들
 				for(let i = r.startbtn ; i <= r.endbtn ; i++){ // 1부터 마지막 페이지 수
-					html += `<button onclick="getBoardList(${i})" type="button"> ${i} </button>`;
+					html += `<button onclick="getBoardList(${i})" class="pagebtns"  type="button"> ${i} </button>`;
 				}
 				
 				//이후
 				html += page >= r.totalpage ? 
 				``
 				:
-				`<button onclick="getBoardList(${page+1})" type="button"> 이후 </button>`; 
+				`<button onclick="getBoardList(${page+1})" type="button" class="pagebtns"> 이후 </button>`; 
 				
 				document.querySelector('.pagebox').innerHTML = html;
 				// -------------------- 게시물 수 출력 ----------------

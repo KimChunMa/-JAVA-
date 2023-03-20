@@ -5,6 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+	<link href="/jspWeb/css/view.css" rel="stylesheet">
+
 </head>
 <body>
 	<%@ include file ="/header.jsp" %>
@@ -54,8 +56,8 @@
 		
 		
 		<div>
-			<textarea rows="" cols="" class="rcontent"></textarea>
-			<button type="button" onclick="rwrite()">댓글 작성</button>
+			<textarea rows="" cols="" class="rcontent" ></textarea>
+			<button type="button" class="rwritebtn" onclick="rwrite()">댓글 작성</button>
 		</div>
 		
 		<div class="replylistbox">

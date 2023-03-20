@@ -1,0 +1,81 @@
+@font-face {
+    font-family: '잠실';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302_01@1.0/TheJamsil5Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+
+/* 게시물 리스트 출력 구역 */
+.boardbox{
+	width:80%;
+	margin:70px auto;
+}
+
+.boardtop{
+	text-align: center;
+}
+
+.cname{
+	font-family: '잠실';
+}
+
+.boardtopetc{
+	display:flex;
+	justify-content: space-between;
+}
+
+.bbtn{
+	border:none;
+	padding:5px 10px;
+	background-color: #139ab8;
+	color:white;
+	border-radius: 10px;
+}
+
+.boardcontent{
+	margin: 30px 0px;
+    border-top: 2px solid #eeeeee;
+    border-bottom: 2px solid #eeeeee;
+    padding: 20px 20px;
+}
+
+/*날짜*/
+.bdate{
+	font-size:8px;
+}
+
+.btitle{
+	margin-top:30px;
+	font-weight: bold; 
+	font-size:18px;
+}
+
+.cbottom{
+	text-align: right;
+}
+.cbottom span{
+	padding-left:10px;
+}
+
+.boardbottom{
+	text-align: center;
+    border-top: 1px solid #eeeeee;
+    padding-top: 30px;
+    margin: 50px 0px;
+}
+
+.pagebtns{
+	border:none;
+	background-color:transparent;
+	font-weight: bold;
+	margin:0px 3px;
+	padding:10px;
+	
+}
+
+.keyword{
+	border:1px solid #eeeeee;
+	border-radius: 10px;
+	padding: 5px 10px;
+}
