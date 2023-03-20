@@ -1,4 +1,11 @@
 
+  $(document).ready(function() {
+        $('#summernote').summernote(
+			{height:500}
+		);
+    });
+    
+
 console.log(memberInfo.mno);
 if(memberInfo.mno==0){
 	

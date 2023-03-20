@@ -8,12 +8,11 @@ if(memberInfo.mid == null){
 	document.querySelector('.rcontent').disabled = false;
 
 //현재 보고있는 게시물 번호
-let bno = document.querySelector('.bno').innerHTML ;
-
+let bno = document.querySelector('.bno').value ;
+console.log('view bno : '+ bno)
 //해당 게시물 호출
 getBoard();
 function getBoard(){
-	
 	
 		$.ajax({
 			url: "/jspWeb/board/info", 		
@@ -30,6 +29,14 @@ function getBoard(){
 				 /
 				 <button onclick="bIncrease(3)" type="button">${r.hates}</button>`;
 				
+				document.querySelector('.hpimg').src =`/jspWeb/member/pimg/${r.mimg == null ? `default.webp`:r.mimg}`;
+				document.querySelector('.mid').innerHTML = r.mid;
+				document.querySelector('.bview').innerHTML = r.bview;
+				document.querySelector('.bup').innerHTML = r.likes;
+				document.querySelector('.bdown').innerHTML = r.hates;
+				document.querySelector('.bdate').innerHTML = r.bdate;
+				document.querySelector('.bdate').innerHTML = r.bdate;
+				
 				document.querySelector('.infobox').innerHTML = html;
 				
 				document.querySelector('.pimgbox').innerHTML = r.mid;
@@ -39,7 +46,6 @@ function getBoard(){
 				document.querySelector('.bcontent').innerHTML = r.bcontent;
 				
 				if(r.bfile == null){
-					document.querySelector('.bfile').innerHTML = '첨부파일없음';
 				}else {
 					html = ` ${r.bfile} <button type="button" onclick="bdownload( '${r.bfile}' )"> 다운로드 </button>`;
 					document.querySelector('.bfile').innerHTML = html
@@ -47,8 +53,8 @@ function getBoard(){
 				
 				if(memberInfo.mid == r.mid){
 					html =`
-						<button type="button" onclick="bdelete(${r.bno} , ${r.cno_fk})" > 삭제 </button>
-						<button type="button" onclick="bupdate(${r.bno})" > 수정 </button>`;
+						<button type="button" class="bbtn" onclick="bdelete(${r.bno} , ${r.cno_fk})" > 삭제 </button>
+						<button type="button" class="bbtn" onclick="bupdate(${r.bno})" > 수정 </button>`;
 					document.querySelector('.btnbox').innerHTML = html;
 				}
 				
@@ -77,7 +83,7 @@ function bdownload(bfile){
 bIncrease(1); // 현재 jsp/js열리는 순간 증가
 function bIncrease(type){
 	//현재 게시물 번호
-	let bno = document.querySelector('.bno').innerHTML;
+	bno = document.querySelector('.bno').innerHTML;
 	console.log("bno : " + bno);
 	
 	$.ajax({

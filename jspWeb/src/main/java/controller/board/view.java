@@ -22,7 +22,7 @@ public class view extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int type = Integer.parseInt(request.getParameter("type")); System.out.println("type : " + type);
-		int bno = Integer.parseInt(request.getParameter("bno"));	System.out.println("bno : " + bno);
+		int bno = Integer.parseInt(request.getParameter("bno"));	System.out.println(" controller bno : " + bno);
 		
 		/*
 			-하루에 한번씩 조회수 또는 좋아요수 또는 싫어요수 증가 가능
