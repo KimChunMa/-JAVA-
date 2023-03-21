@@ -16,9 +16,10 @@
 		<div id="clickLatlng"></div>
 		뮤
 	</div>
-	
+	<!-- 하나만 추가  
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4315de7458dfbfb39489765a36f6371c"></script>
-	
+	-->
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4315de7458dfbfb39489765a36f6371c&libraries=clusterer"></script>
 	<script src="/jspWeb/js/api/api2.js"></script>
 </body>
 </html>
