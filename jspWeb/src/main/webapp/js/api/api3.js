@@ -1,4 +1,4 @@
-let xy = []; //좌표저장
+let markers = []; //좌표저장
 
 
 // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 지도 생성 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
@@ -14,7 +14,7 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 
 
 //--------------------마커 이미지 변경------------
-var imageSrc = '/jspWeb/img/번개.png', // 마커이미지의 주소입니다    
+var imageSrc = '/jspWeb/img/약국.png', // 마커이미지의 주소입니다    
     imageSize = new kakao.maps.Size(50, 45), // 마커이미지의 크기입니다
     imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
       
@@ -46,7 +46,7 @@ $.ajax({
 					
 					//좌표
 			        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-					xy.push(coords)
+					markers.push(coords)
 			        // 결과값으로 받은 위치를 마커로 표시합니다
 			        var marker = new kakao.maps.Marker({
 			            map: map,
@@ -95,7 +95,7 @@ $.ajax({
 		})//forEach e
 	
 		
-		
+		onClusterer(markers); // 클러스터러
 	}//success e
 })// $.ajax e
 
@@ -105,28 +105,33 @@ $.ajax({
         map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
         averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
         minLevel: 10 // 클러스터 할 최소 지도 레벨 
+        
     });
 
 
-console.log(xy)
-onClusterer(xy);
-function onClusterer(xy){
+
+function onClusterer(markers){
+	console.log(markers)	
         // 데이터에서 좌표 값을 가지고 마커를 표시합니다
         // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
-        var markers = xy.map(function(La, Ma) {
-			console.log(La, Ma);
-            return new kakao.maps.Marker({
-                position : new kakao.maps.LatLng(La,Ma)
+        var markerss = markers.map(function(o) {
+			console.log('a');
+			console.log(o.La)
+			let marker =  new kakao.maps.Marker({
+            position : new kakao.maps.LatLng(o.La, o.Ma),
+            image: markerImage 
             });
+			
+           return marker;
         });
-		console.log(markers);
+		console.log(markerss);
         // 클러스터러에 마커들을 추가합니다
         clusterer.addMarkers(markers);
  };
 
-let a =xy.map((La,Ma)=>{
-	{[La ,Ma]}
-})
+
+
+
 
 
 
