@@ -147,7 +147,12 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
             });
             
             kakao.maps.event.addListener(marker, 'click', function() {
-				alert(positions[i].title+' 마커클릭했습니다.')
+				
+				//모달 띄우기
+				onpenModal();
+				document.querySelector('.modal_title').innerHTML = o.충전소명;				
+				document.querySelector('.modal_title').style.fontSize='10px';
+				document.querySelector('.modal_content').innerHTML = o.충전소명;
 			});
             
             //리턴해서 markers에 대입
@@ -160,7 +165,12 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     
     
 			
-
+function onpenModal(){
+	document.querySelector('.modal_wrap').style.display ='flex';
+}
+function closeModal(){
+	document.querySelector('.modal_wrap').style.display ='none';
+}
 
 
 
