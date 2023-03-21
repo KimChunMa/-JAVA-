@@ -115,7 +115,7 @@ function onClusterer(markers){
         // 데이터에서 좌표 값을 가지고 마커를 표시합니다
         // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
         var markerss = markers.map(function(o) {
-			console.log('a');
+			console.log('a'); //map 실행이 안됨
 			console.log(o.La)
 			let marker =  new kakao.maps.Marker({
             position : new kakao.maps.LatLng(o.La, o.Ma),
