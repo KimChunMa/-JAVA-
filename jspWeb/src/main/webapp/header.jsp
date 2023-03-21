@@ -49,7 +49,7 @@
 				<li> <a href="/jspWeb/board/list.jsp?cno=2"> 커뮤니티 </a> </li>
 				<li> <a href="/jspWeb/board/list.jsp?cno=3"> QnA </a></li>
 				<li> <a href="/jspWeb/board/list.jsp?cno=4"> 노하우 </a></li>
-				<li> <a href="#"> 기본메뉴1 </a> </li>
+				<li> <a href="/jspWeb/api/api1.jsp"> api1 </a> </li>
 			</ul>
 			<!-- 서브메뉴 -->
 			<div class="submenu">
