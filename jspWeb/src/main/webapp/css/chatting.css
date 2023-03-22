@@ -11,6 +11,7 @@
 	height:700px;
 	overflow-y:scroll;
 	padding:20px; 
+	margin:15px;
 }
 
 .secontent{ /* 보낼때*/
@@ -18,10 +19,15 @@
 	justify-content:flex-end;
 	align-items:flex-end;
 	font-size:12px;
+	margin:15px;
 }
 
-.data{ /* 시간 */
+.date{ /* 시간 */
 	font-size:2px; margin:0px 5px
+}
+
+.name{/* 이름 */
+	font-size:10px;
 }
 
 .content{	/* 채팅내용  */
@@ -40,6 +46,12 @@
 	background-color: #b1c3d6;
 	border-radius: 10px;
 }
+
+.tocontent{
+	display:flex;
+	justify-content: flex-start;
+}
+
 
 
 .msgbox{
@@ -62,3 +74,16 @@
 	border-radius: 5px;
 }
 
+.rcontent{
+	margin-left:8px;
+}
+
+.contentdate{
+	display:flex;
+	align-items: flex-end;;
+	justify-content: flex-start;
+}
+
+.secontent .content{
+	background-color: #ffeb33;
+}

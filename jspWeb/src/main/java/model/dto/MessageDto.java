@@ -31,7 +31,8 @@ public class MessageDto {
 			if(dto.getSession() == session ) {
 				this.frommid = dto.getMid();
 				this.frommimg = MemberDao.getInstance().getMember(this.frommid).getMimg();
-				this.time = new SimpleDateFormat("hh:mm:ss").format(new Date());
+												//aa 시간
+				this.time = new SimpleDateFormat("aa hh:mm").format(new Date());
 			}
 		}
 	}

@@ -55,7 +55,7 @@ if(memberInfo.mid == null){ //헤더 js
 	location.href="/jspWeb/member/login.jsp";
 }else{
 	//1. 클라이언트소켓 생성				//소켓 클래스와 경로 같이
-	클라이언트소켓 = new WebSocket('ws://localhost:8080/jspWeb/chatting/'+memberInfo.mid);
+	클라이언트소켓 = new WebSocket('ws://192.168.17.34:8080/jspWeb/chatting/'+memberInfo.mid);
 	console.log(클라이언트소켓);
 }
 
@@ -70,7 +70,11 @@ if(memberInfo.mid == null){ //헤더 js
 
 //2. 클라이언트 소켓이 접속했을때 이벤트/함수 정의
 //접속했을때 하고싶은 js함수 정의
-function 서버소켓연결(e){ contentbox.innerHTML += '<div> ----- 채팅방 입장 ----- </div>'} 
+function 서버소켓연결(e){ contentbox.innerHTML += 
+	`<div class="alarm"> 
+		<span>채팅창에 입장하셨습니다 </span>
+	</div>`
+} 
 
 
 
@@ -83,7 +87,6 @@ function send(){
 	//메세지전송
 	클라이언트소켓.send(msgbox) // @onMessage
 	
-	alert('전송완료!')
 	//채팅창 보낼시 초기화
 	document.querySelector('.msgbox').value=''
 }
@@ -93,7 +96,36 @@ function 메세지받기(e){ // <--- e <--- getBasicRemote()
 	console.log(e);
 	console.log(e.data);
 	console.log(JSON.parse(e.data)); // 문자열 json -> 객체json 형변환
-	contentbox.innerHTML += `<div> ${e.data} </div>`
+	
+	let data= JSON.parse(e.data);
+	
+	//보낸사람 == 현재유저 일치시
+	if(data.frommid == memberInfo.mid){
+		contentbox.innerHTML += `
+								<div class="secontent">
+									<div class="date"> ${data.time} </div>
+									<div class="content"> ${data.msg}  </div>
+								</div>`;
+	}else{//받은 사람
+				contentbox.innerHTML += `<div class="tocontent">
+									<div><img src="/jspWeb/member/pimg/${ data.frommimg==null ? 'default.webp' : data.frommimg  }" class="hpimg"></div>
+									<div class="rcontent">
+										<div class="name"> ${ data.frommid } </div>
+										<div class="contentdate">
+											<div class="content"> ${ data.msg } </div>
+											<div class="date"> ${ data.time } </div>
+										</div>
+									</div>
+								</div>`
+	}
+	let top = contentbox.scrolltop; // 현재 스크롤상단위치 좌표
+		console.log(top)
+	let height = contentbox.scrollHeight; //현재 스크롤 높이 [기본값 contentbox ]
+		console.log(height)
+	
+	//상단위치를 바닥으로 
+	contentbox.scrollTop = contentbox.scrollHeight; 
+	
 }
 
 
@@ -102,6 +134,13 @@ function 연결해제(e){
 	console.log('연결해제')
 }
 
+//6 엔터키
+function enterkey(){
+	// 입력한 키코드가 13[엔터면] 메세지 전송
+	if(window.event.keyCode == 13){
+		send();
+	}
+}
 
 /*
 	클라이언트소켓 필드				서버소켓
