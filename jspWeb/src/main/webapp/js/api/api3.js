@@ -73,6 +73,7 @@ $.ajax({
 					      infowindow.open(map, marker);  
 					});
 							 
+							 clusterer.addMarker(marker);
 			 		
 			 		
 			 		
@@ -95,7 +96,7 @@ $.ajax({
 		})//forEach e
 	
 		
-		onClusterer(markers); // 클러스터러 함수
+		// onClusterer(markers); // 클러스터러 함수
 	}//success e
 })// $.ajax e
 
@@ -104,7 +105,7 @@ $.ajax({
     var clusterer = new kakao.maps.MarkerClusterer({
         map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
         averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
-        minLevel: 10 // 클러스터 할 최소 지도 레벨 
+        minLevel: 5 // 클러스터 할 최소 지도 레벨 
         
     });
 
@@ -126,7 +127,7 @@ function onClusterer(markers){
         });
 		console.log(markerss);
         // 클러스터러에 마커들을 추가합니다
-        clusterer.addMarkers(markers);
+        
  };
 
 
