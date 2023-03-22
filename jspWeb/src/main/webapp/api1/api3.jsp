@@ -10,7 +10,7 @@
 </head>
 <body>
 	<%@include file ="/header.jsp" %>
-	
+	<p>//현재 약국좌표가 저장된 xy(=markers)를 map으로 하려했으나 map이 실행이안됨 </p>
 	<!-- 1.지도 생성 -->
 	<div class="container">
 		<div id="map" style="width:100%;height:450px;"></div>
