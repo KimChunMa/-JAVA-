@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+.cattingbox{
+	margin: 50px auto;
+    width: 40%;
+}
+
+.contentbox{
+	border:1px solid black;
+	background-color: #bacee0;
+	height:700px;
+	overflow-y:scroll;
+	padding:20px; 
+}
+
+.secontent{ /* 보낼때*/
+	display:flex;
+	justify-content:flex-end;
+	align-items:flex-end;
+	font-size:12px;
+}
+
+.data{ /* 시간 */
+	font-size:2px; margin:0px 5px
+}
+
+.content{	/* 채팅내용  */
+	background-color:#ffffff;
+	border-radius: 10px;
+	padding:10px;
+	max-width:70%; /*해당구역크기의 최대 사이즈*/
+	word-break: break-all; /* 자동줄바꿈 */
+	font-size:12px;
+}
+
+.alarm{	/* 알림 */
+	text-align:center;
+	font-size:8px;
+	width: 70%; margin:20px auto;
+	background-color: #b1c3d6;
+	border-radius: 10px;
+}
+
+
+.msgbox{
+	width:100%;
+	border:1px solid #eeeeee;
+	padding:15px;
+	resize:none;
+}
+
+.cattingbtnbox{
+	display:flex;
+	justify-content: flex-end;
+}
+
+.sendbtn{
+	padding:10px;
+	font-size:10px;
+	background-color: yellow;
+	border:none;
+	border-radius: 5px;
+}
+
