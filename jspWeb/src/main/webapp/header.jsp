@@ -53,6 +53,7 @@
 				<li> <a href="/jspWeb/api1/api2.jsp"> api2 </a> </li>
 				<li> <a href="/jspWeb/api1/api3.jsp"> api3[과제] </a> </li>
 				<li> <a href="/jspWeb/board/chatting.jsp"> 채팅 </a> </li>
+				<li> <a href="/jspWeb/product/write.jsp"> 상품등록 </a> </li>
 				<li> <a href="#"> 부가기능 </a> </li>
 			</ul>
 			<!-- 서브메뉴 -->
