@@ -55,7 +55,7 @@ if(memberInfo.mid == null){ //헤더 js
 	location.href="/jspWeb/member/login.jsp";
 }else{
 	//1. 클라이언트소켓 생성				//소켓 클래스와 경로 같이
-	클라이언트소켓 = new WebSocket('ws://192.168.17.34:8080/jspWeb/chatting/'+memberInfo.mid);
+	클라이언트소켓 = new WebSocket('ws://192.168.17.148:8080/jspWeb/chatting/'+memberInfo.mid);
 	console.log(클라이언트소켓);
 }
 
@@ -70,26 +70,47 @@ if(memberInfo.mid == null){ //헤더 js
 
 //2. 클라이언트 소켓이 접속했을때 이벤트/함수 정의
 //접속했을때 하고싶은 js함수 정의
-function 서버소켓연결(e){ contentbox.innerHTML += 
-	`<div class="alarm"> 
-		<span>채팅창에 입장하셨습니다 </span>
-	</div>`
+function 서버소켓연결(e){
+	자료보내기(memberInfo.mid+"님 이 채팅방에 접속하셨습니다.",'alarm')
 } 
 
 
 
 
 
-//3. 클라이언트소켓이 서버에게 메세지 보내기 [@OnMessage]
+//3. 클라이언트소켓이 서버에게 메세지 보내기 [@OnMessage] 
+//(1. 보내기 버튼 누를떄 2. 입력창에서 엔터) type="msg""
 function send(){
 	let msgbox = document.querySelector('.msgbox').value
 	
 	//메세지전송
-	클라이언트소켓.send(msgbox) // @onMessage
+		//json형식의 문자열 타입 만들어서 문자열로 타입으로 전송
+		// JSON.parse(JSON형식의 문자열 타입) : String --> json변환
+		// JSON.stringify(JSON형식의 문자열 타입) : json변환 --> String
+	let msg = {
+		type: 'msg',
+		msgbox : msgbox
+	}
+	
+	클라이언트소켓.send(JSON.stringify(msg)) // @onMessage
 	
 	//채팅창 보낼시 초기화
 	document.querySelector('.msgbox').value=''
 }
+
+
+//4-2 type에 따른 HTML 구별
+function 메시지타입구분(msg){
+	let json = JSON.parse(msg);
+	let html = '';
+	if(json.type == 'msg'){
+		html += `<div class="content"> ${json.msgbox}  </div>`
+	}else if(json.type=='emo'){
+		html += `<div class="content emocontent"><img src="/jspWeb/img/imoji/emo${json.msgbox}.gif" width="50px"></div>`
+	}
+	return html;
+}
+
 
 //4. 서버로부터 메세지가 왔을떄 메세지 받기
 function 메세지받기(e){ // <--- e <--- getBasicRemote()
@@ -99,12 +120,37 @@ function 메세지받기(e){ // <--- e <--- getBasicRemote()
 	
 	let data= JSON.parse(e.data);
 	
+	//명단 [여러개 = list/Array] vs 메세지 정보 [1개=dto/obj]
+		// Array 타입 확인 : array.isArray(객체) :해당 객체가 배열/리스트면 true
+	if( Array.isArray(data) ){
+		let html = '';
+		console.log(data)
+		data.forEach((o)=>{
+			html += `
+					<div class="connetbox">		<!-- 접속 명단 1명 기준 -->
+						<div> <img src="/jspWeb/member/pimg/${ o.frommimg==null ? 'default.webp' : o.frommimg  }" class="hpimg"> </div>
+						<div class="name"> ${o.frommid} </div> 
+					</div>
+					`;
+		})
+		console.log('a')
+		console.log(html)
+		document.querySelector('.connectlistbox').innerHTML = html;
+	
+	}
+	
+	else if( JSON.parse(data.msg).type=='alarm'){
+			contentbox.innerHTML += 
+				`<div class="alarm"> 
+					<span> ${JSON.parse(data.msg).msgbox }</span>
+				</div>`
+	}
 	//보낸사람 == 현재유저 일치시
-	if(data.frommid == memberInfo.mid){
+	else if(data.frommid == memberInfo.mid){
 		contentbox.innerHTML += `
 								<div class="secontent">
 									<div class="date"> ${data.time} </div>
-									<div class="content"> ${data.msg}  </div>
+									<div class="content"> ${메시지타입구분(data.msg)}  </div>
 								</div>`;
 	}else{//받은 사람
 				contentbox.innerHTML += `<div class="tocontent">
@@ -112,16 +158,14 @@ function 메세지받기(e){ // <--- e <--- getBasicRemote()
 									<div class="rcontent">
 										<div class="name"> ${ data.frommid } </div>
 										<div class="contentdate">
-											<div class="content"> ${ data.msg } </div>
+											<div class="content">  ${메시지타입구분(data.msg)} </div>
 											<div class="date"> ${ data.time } </div>
 										</div>
 									</div>
 								</div>`
 	}
 	let top = contentbox.scrolltop; // 현재 스크롤상단위치 좌표
-		console.log(top)
 	let height = contentbox.scrollHeight; //현재 스크롤 높이 [기본값 contentbox ]
-		console.log(height)
 	
 	//상단위치를 바닥으로 
 	contentbox.scrollTop = contentbox.scrollHeight; 
@@ -131,7 +175,8 @@ function 메세지받기(e){ // <--- e <--- getBasicRemote()
 
 //5. 서버와 연결이 끊겼을때 . [클라이언소켓 객체가 초기화될때 -> F5, 페이지전환할때 ]
 function 연결해제(e){
-	console.log('연결해제')
+	//세션종료후 발생함으로 알릴수없음
+	//자료보내기(memberInfo.mid+"님 이 채팅방에 나가셨습니다.",'alarm')
 }
 
 //6 엔터키
@@ -140,6 +185,25 @@ function enterkey(){
 	if(window.event.keyCode == 13){
 		send();
 	}
+}
+
+//7 이모티콘 출력
+getemo();
+function getemo(){
+	let html = '';
+	for(let i = 1 ; i<=43 ; i++){
+		html += `<img onclick="자료보내기(${i},'emo')" src="/jspWeb/img/imoji/emo${i}.gif" width="50px">`
+	}
+	document.querySelector('.enolist').innerHTML = html;
+}
+
+//자료 보내기
+function 자료보내기(msgbox, type){
+	let msg = {
+		type: type,
+		msgbox : msgbox
+	}
+	클라이언트소켓.send(JSON.stringify(msg));
 }
 
 /*
