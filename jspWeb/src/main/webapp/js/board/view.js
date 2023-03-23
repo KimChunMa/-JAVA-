@@ -29,7 +29,8 @@ function getBoard(){
 				 /
 				 <button onclick="bIncrease(3)" type="button">${r.hates}</button>`;
 				
-				document.querySelector('.hpimg').src =`/jspWeb/member/pimg/${r.mimg == null ? `default.webp`:r.mimg}`;
+				document.querySelector('.mimg').src =`/jspWeb/member/pimg/${r.mimg == null ? `default.webp` : r.mimg}`;
+				console.log(r.mimg)
 				document.querySelector('.mid').innerHTML = r.mid;
 				document.querySelector('.bview').innerHTML = r.bview;
 				document.querySelector('.bup').innerHTML = r.likes;

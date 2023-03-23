@@ -3,6 +3,8 @@ package model.dto;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import model.dao.MemberDao;
+
 public class BoardDto {
 	private int bno ;
     private String btitle ;
@@ -96,6 +98,8 @@ public class BoardDto {
 		this.cno_fk = cno_fk;
 		this.mno_fk = mno_fk;
 		this.mid = mid;
+		this.mimg = MemberDao.getInstance().getMember(mid).getMimg();
+		System.out.println(mimg);
 	}
 
 	

@@ -24,7 +24,7 @@
 		<div class="boardbox">
 			<div class="viewtop">
 				<div>
-					<img src="" class="hpimg">
+					<img src="" class="hpimg mimg">
 				</div>
 				
 				<div class="rviewtop">
