@@ -31,7 +31,8 @@ public class ProductDao extends Dao{
 	
 	//2.제품 호출
 	public ArrayList<ProductDto> getProductList( String 동, String 서 , String 남 , String 북){
-		String sql = "select * from product where "+동+" <= plng and "+서+" >= plng and  "+남+" >= plat and "+북+" <=plat ";
+		String sql = "SELECT * FROM product where "+동+" >= plng and "+서+" <= plng "
+				+ " and "+남+" <= plat and "+북+" >= plat";
 		
 		ArrayList<ProductDto> list = new ArrayList<>();
 		
