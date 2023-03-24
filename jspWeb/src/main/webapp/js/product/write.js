@@ -36,24 +36,6 @@ function onwrite(){
 	})
 }
 
-//2. 제품 출력
-Pprint();
-function Pprint(){
-		$.ajax({
-		url : "/jspWeb/product/info",
-		method : "get",
-		success : (r) =>{
-			console.log(r);
-			
-		}
-		
-	})
-	
-}
-
-
-
-
 
 
 // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 지도생성 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ

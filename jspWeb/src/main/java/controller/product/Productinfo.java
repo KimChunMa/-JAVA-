@@ -26,8 +26,17 @@ public class Productinfo extends HttpServlet {
     
     ObjectMapper mapper = new ObjectMapper();
 
+    //제품 호출
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<ProductDto> result = ProductDao.getInstance().getProductList();
+		
+		request.setCharacterEncoding("UTF-8");
+		String 동 = request.getParameter("동"); System.out.println("동 : "+동);
+		String 서 = request.getParameter("서"); System.out.println("서 : "+서);
+		String 남 = request.getParameter("남"); System.out.println("남 : "+남);
+		String 북 = request.getParameter("북"); System.out.println("북 : "+북);
+		
+		
+		ArrayList<ProductDto> result = ProductDao.getInstance().getProductList(동,서,남,북);
 		System.out.println("result 결과 : ");
 		System.out.println(result);
 		String jsonarray = mapper.writeValueAsString(result);
@@ -37,7 +46,7 @@ public class Productinfo extends HttpServlet {
 		response.getWriter().print(jsonarray);
 	}
 
-
+	//제품 등록
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String path = request.getSession().getServletContext().getRealPath("/product/pimg");
 		

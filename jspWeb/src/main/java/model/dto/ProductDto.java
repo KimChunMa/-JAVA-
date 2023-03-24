@@ -3,22 +3,22 @@ package model.dto;
 public class ProductDto {
 	private int pno; 		// #제품번호
 	private String pname ;	//# 제품명  
-	private String pcommnet; 	//#제품설명
+	private String pcomment; 	//#제품설명
 	private int pprice; 	//#제품가격
-	private int psatus; 	// #상태 [1:판매중 2:거래중 3:판매완료]
+	private int pstate; 	// #상태 [1:판매중 2:거래중 3:판매완료]
 	private String plat; 	// #위도
 	private String plng; 	// #경도
 	private int pview; 		// #조회수
 	private String pdate; 	// #등록일
 	
-	public ProductDto(int pno, String pname, String  pcommnet, int pprice, int psatus, String plat, String plng, int pview,
+	public ProductDto(int pno, String pname, String  pcomment, int pprice, int pstate, String plat, String plng, int pview,
 			String pdate) {
 		super();
 		this.pno = pno;
 		this.pname = pname;
-		this. pcommnet =  pcommnet;
+		this. pcomment =  pcomment;
 		this.pprice = pprice;
-		this.psatus = psatus;
+		this.pstate = pstate;
 		this.plat = plat;
 		this.plng = plng;
 		this.pview = pview;
@@ -27,10 +27,10 @@ public class ProductDto {
 	
 	
 	//1. 상품등록
-	public ProductDto(String pname, String pcommnet, int pprice, String plat, String plng) {
+	public ProductDto(String pname, String pcomment, int pprice, String plat, String plng) {
 		super();
 		this.pname = pname;
-		this.pcommnet = pcommnet;
+		this.pcomment = pcomment;
 		this.pprice = pprice;
 		this.plat = plat;
 		this.plng = plng;
@@ -60,14 +60,14 @@ public class ProductDto {
 
 	
 
-	public String getPcommnet() {
-		return pcommnet;
+	public String getPcomment() {
+		return pcomment;
 	}
 
 
 
-	public void setPcommnet(String pcommnet) {
-		this.pcommnet = pcommnet;
+	public void setPcomment(String pcommnet) {
+		this.pcomment = pcommnet;
 	}
 
 
@@ -80,12 +80,12 @@ public class ProductDto {
 		this.pprice = pprice;
 	}
 
-	public int getPsatus() {
-		return psatus;
+	public int getPstate() {
+		return pstate;
 	}
 
-	public void setPsatus(int psatus) {
-		this.psatus = psatus;
+	public void setPstate(int psatus) {
+		this.pstate = psatus;
 	}
 
 	public String getPlat() {
@@ -120,11 +120,7 @@ public class ProductDto {
 		this.pdate = pdate;
 	}
 
-	@Override
-	public String toString() {
-		return "ProductDto [pno=" + pno + ", pname=" + pname + ",  pcommnet=" +  pcommnet + ", pprice=" + pprice + ", psatus="
-				+ psatus + ", plat=" + plat + ", plng=" + plng + ", pview=" + pview + ", pdate=" + pdate + "]";
-	}
+
 
 	
 	

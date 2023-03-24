@@ -14,12 +14,12 @@ public class ProductDao extends Dao{
 	
 	//1. 제품 등록
 	public boolean write (ProductDto dto) {
-		String sql = "insert into product(pname, pcommnet, pprice , plat , plng) " +
+		String sql = "insert into product(pname, pcomment, pprice , plat , plng) " +
 					" values(?,?,?,?,?) ";
 		
 		try {
 			ps = con.prepareStatement(sql);
-			ps.setString(1, dto.getPname());	ps.setString(2, dto.getPcommnet());
+			ps.setString(1, dto.getPname());	ps.setString(2, dto.getPcomment());
 			ps.setInt(3, dto.getPprice());		ps.setString(4, dto.getPlat());
 			ps.setString(5, dto.getPlng());		ps.executeUpdate();
 			return true;
@@ -29,9 +29,9 @@ public class ProductDao extends Dao{
 		return false; 
 	}
 	
-	//2.제품
-	public ArrayList<ProductDto> getProductList(){
-		String sql = "select * from product";
+	//2.제품 호출
+	public ArrayList<ProductDto> getProductList( String 동, String 서 , String 남 , String 북){
+		String sql = "select * from product where "+동+" <= plng and "+서+" >= plng and  "+남+" >= plat and "+북+" <=plat ";
 		
 		ArrayList<ProductDto> list = new ArrayList<>();
 		
