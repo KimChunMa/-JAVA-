@@ -72,9 +72,11 @@ function getproductlist(동, 서, 남, 북){
 					<div> ${ p.pstate }  </div>
 					<div> ${ p.pview }  </div>
 					<div> ${ p.pdate }  </div>
-					<div> <button type="button" onclick="setplike(${p.pno})"> ♡ </button> </div>
+					<div> <button class="plikebtn" type="button" onclick="setplike(${p.pno})"> </button> </div>
 				</div>`
+			
 			document.querySelector('.productlistbox').innerHTML = html;
+			getplike(p.pno)
 		});
             return marker;
         });
@@ -128,57 +130,58 @@ function setplike(pno){
 		alert('회원기능입니다. 로그인후 사용해주세요'); return;
 	}
 	
-	$.ajax({
-		url:"/jspWeb/product/like?pno="+pno,
-		method : "get",
-		data: {"pno":pno },
-		success : (r) => {console.log(r);}
-	})
-	
+
 	$.ajax({
 		url:"/jspWeb/product/like",
 		method : "post",
 		data: {"pno":pno },
 		success : (r) => {console.log(r);
 			if(r=='true'){
-				alert('찜하기')
+				alert('찜하기');
+				document.querySelector('.plikebtn').innerHTML = "★";
 			}else{
 				alert('삭제');
+				document.querySelector('.plikebtn').innerHTML = "☆";
 			}
 		}
 	})
 	
+	// vs
+	// $.get( "/jspweb/product/like?pno="+pno , (r)=>{} )
+	// $.ajax({ url : "/jspweb/product/like?pno="+pno , success : (r)=>{ console.log(r); } })
 	
-	/*
-	vs
-	1)
-	$.get ("/jspWeb/product/like?pno="+pno, () => {} )
-	$.ajax({
-		url:"/jspWeb/product/like?pno="+pno,
-		method : "get",
-		data: {"pno":pno },
-		success : (r) => {console.log(r);}
-	})
+	// $.get( "/jspweb/product/like , { "data" : data } , (r)=>{} )
+	// $.ajax({ url : "/jspweb/product/like" , data : { "data" : data } , success : (r)=>{ console.log(r); } })
 	
-	2)
-	$.get ("/jspWeb/product/like, {"data":data}, () => {} )
-	
-	$.ajax({
-		url:"/jspWeb/product/like,
-		method : "get",
-		data: {"data":data },
-		success : (r) => {console.log(r);}
-	})
-	
-	3)
-		$.post("/jspWeb/product/like")	
-		$.ajax({
-		url:"/jspWeb/product/like",
-		method : "post",
-		data: {"data":data },
-		success : (r) => {console.log(r);}
-	})
-	
-	*/
+	// $.post( "/jspweb/product/like , { "data" : data } , (r)=>{} )
+	// $.ajax({ url : "/jspweb/product/like", method : "post" , data : { "data" : data } , success : (r)=>{ console.log(r); } })
+
+	 
+        // $(r).map( (인덱스,반복객체명) =>{ } ) 		실행문에서 return 값을 배열에 대입  
+        // r.map( (반복객체명,인덱스) =>{ } ) 		실행문에서 return 값을 배열에 대입  
+        // vs 
+        // .forEach( (반복객체명,인덱스) => { } ) 	실행문에서 return X
+	 
+	 
 }
+
+//4. 현재회원이 해당 제품의 찜하기 상태 호출
+function getplike(pno){
+	console.log(pno)
+	
+	if( memberInfo.mid == null ){return "☆";}
+	
+	$.ajax({
+		url:"/jspWeb/product/like",
+		method : "get",
+		async: 'false',
+		data: {"pno":pno },
+		success : (r) => {
+			console.log( r )
+			if(r == "true"){ document.querySelector('.plikebtn').innerHTML = '☆'; }
+			else{ document.querySelector('.plikebtn').innerHTML = '★'; }
+		}
+	})
+}
+
 

@@ -18,16 +18,24 @@ public class ProductLike extends HttpServlet {
   
     public ProductLike() {super();}
 
-
+    //찜목록 얻어오기
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int pno = Integer.parseInt( request.getParameter("pno")); System.out.println("pno :"+pno );
+		int mno = MemberDao.getInstance().getMno( 
+				(String)request.getSession().getAttribute("login") ); System.out.println("mno :"+mno );
+		
+		boolean result =ProductDao.getInstance().getplikc(pno, mno);
+		System.out.println(result);
+		response.getWriter().print(result);
 	}
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int pno = Integer.parseInt( request.getParameter("pno"));
+		int pno = Integer.parseInt( request.getParameter("pno"));	
 		int mno = MemberDao.getInstance().getMno( 
-				(String)request.getSession().getAttribute("login") );
+				(String)request.getSession().getAttribute("login") ); 
 		
+		//찜목록에 있으면 false  없으면 true
 		boolean result =ProductDao.getInstance().setplike(pno, mno);
 		response.getWriter().print(result);
 		

@@ -77,9 +77,21 @@ public class ProductDao extends Dao{
 				return true; // 찜하기시 t
 			}
 		} catch (SQLException e) {System.err.println(e);}
-		
-		
-		
 		return false;
+	}
+	
+	//4. 현재 회원이 해당 제품의 찜하기 상태 확인
+	public boolean getplikc(int pno, int mno) {
+		//1. 등록할지 취소할지 검색 먼저
+		String sql = "select * from plike "
+				   + " where pno = "+pno+" and mno = "+mno;
+				
+		try {
+			ps=con.prepareStatement(sql); rs=ps.executeQuery();
+				if(rs.next()) { 
+					return false; //찜목록에 있으면 false 
+				}
+			} catch (SQLException e) {System.err.println(e);}
+				return true; // 찜목록에 없으면 true 
 	}
 }
