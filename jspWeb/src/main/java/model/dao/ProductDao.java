@@ -55,4 +55,31 @@ public class ProductDao extends Dao{
 		
 		return null;
 	}
+	
+	// 3. 찜하기 등록 / 취소
+	public boolean setplike(int pno , int mno) {
+		//1. 등록할지 취소할지 검색 먼저
+		String sql = "select * from plike "
+				+ " where pno = "+pno+" and mno = "+mno;
+		
+		try {
+			ps=con.prepareStatement(sql); rs=ps.executeQuery();
+			if(rs.next()) { // 해당 회원이 이미 찜하기를 한 제품 => 취소하기
+				
+				sql = "delete from plike where pno = "+pno+" and mno = "+mno;
+				ps = con.prepareStatement(sql);
+				ps.executeUpdate();
+				return false; // 삭제시 e
+			}else { // 해당 회원이 찜하기를 하지 않은 제품 --> 등록하기
+				sql = "insert into plike(pno, mno) values ("+pno+", "+mno+")";
+				ps = con.prepareStatement(sql);
+				ps.executeUpdate();
+				return true; // 찜하기시 t
+			}
+		} catch (SQLException e) {System.err.println(e);}
+		
+		
+		
+		return false;
+	}
 }

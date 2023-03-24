@@ -14,11 +14,11 @@ var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표�
         minLevel: 4 // 클러스터 할 최소 지도 레벨 
     });
   
-   
-   // --------------------- 지도 중심좌표 이동 이벤트 --------------------
-// 지도가 이동, 확대, 축소로 인해 중심좌표가 변경되면 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
-kakao.maps.event.addListener(map, 'dragend', function() {
-	 // 지도의 현재 영역을 얻어옵니다 
+
+// 2. 현재 지도의 좌표 얻기
+get동서남북(); // 처음 드래그안하고 한번
+function get동서남북(){
+	// 지도의 현재 영역을 얻어옵니다 
     var bounds = map.getBounds();
     // 영역의 남서쪽 좌표를 얻어옵니다 
     var swLatLng = bounds.getSouthWest(); 
@@ -31,10 +31,16 @@ kakao.maps.event.addListener(map, 'dragend', function() {
 	let 동 = neLatLng.getLng();
 
 	getproductlist(동, 서, 남, 북) // 제품목록호출
-});
+}
+   
+   // --------------------- 지도 중심좌표 이동 이벤트 --------------------
+// 지도가 이동, 확대, 축소로 인해 중심좌표가 변경되면 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
+kakao.maps.event.addListener(map, 'dragend', () => {get동서남북();});
 
 //------------------ 제품목록 호출 [1. 현재 보고있는 지도 좌표내 포함된 제품만]
 function getproductlist(동, 서, 남, 북){
+	
+	clusterer.clear(); //클러스터 비우기 (누적금지)
 	$.ajax({
 		url:"/jspWeb/product/info",
 		method : "get",
@@ -66,7 +72,7 @@ function getproductlist(동, 서, 남, 북){
 					<div> ${ p.pstate }  </div>
 					<div> ${ p.pview }  </div>
 					<div> ${ p.pdate }  </div>
-					<div> <button type="button"> ♡ </button> </div>
+					<div> <button type="button" onclick="setplike(${p.pno})"> ♡ </button> </div>
 				</div>`
 			document.querySelector('.productlistbox').innerHTML = html;
 		});
@@ -80,11 +86,6 @@ function getproductlist(동, 서, 남, 북){
 
 }//function e
    
-   
-   
-   
-
-
     
 //------------ 클릭시 제품정보 출력 함수 -------------------    
 function produclistprint(  ){
@@ -102,7 +103,7 @@ function produclistprint(  ){
 	document.querySelector('.productlistbox').innerHTML = html;
 }
   
- /* object로 넘어옴 (ㅐㄱ체)
+ /* object로 넘어옴 (객체)
   function productlistprint(r){
 	 	let html = '<h3> 제품 상세 페이지</h3>';
 		r.forEach( (p)=> {
@@ -121,4 +122,63 @@ function produclistprint(  ){
   }
 */
 
+
+function setplike(pno){
+	if(memberInfo.mid == null){
+		alert('회원기능입니다. 로그인후 사용해주세요'); return;
+	}
+	
+	$.ajax({
+		url:"/jspWeb/product/like?pno="+pno,
+		method : "get",
+		data: {"pno":pno },
+		success : (r) => {console.log(r);}
+	})
+	
+	$.ajax({
+		url:"/jspWeb/product/like",
+		method : "post",
+		data: {"pno":pno },
+		success : (r) => {console.log(r);
+			if(r=='true'){
+				alert('찜하기')
+			}else{
+				alert('삭제');
+			}
+		}
+	})
+	
+	
+	/*
+	vs
+	1)
+	$.get ("/jspWeb/product/like?pno="+pno, () => {} )
+	$.ajax({
+		url:"/jspWeb/product/like?pno="+pno,
+		method : "get",
+		data: {"pno":pno },
+		success : (r) => {console.log(r);}
+	})
+	
+	2)
+	$.get ("/jspWeb/product/like, {"data":data}, () => {} )
+	
+	$.ajax({
+		url:"/jspWeb/product/like,
+		method : "get",
+		data: {"data":data },
+		success : (r) => {console.log(r);}
+	})
+	
+	3)
+		$.post("/jspWeb/product/like")	
+		$.ajax({
+		url:"/jspWeb/product/like",
+		method : "post",
+		data: {"data":data },
+		success : (r) => {console.log(r);}
+	})
+	
+	*/
+}
 
