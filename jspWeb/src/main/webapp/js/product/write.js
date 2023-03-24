@@ -14,6 +14,8 @@ function onwrite(){
 	writeFormData.set("plng", plng);
 	console.log(writeFormData)
 	
+	if(plat == 0 || plng == 0){alert('위치를 등록해주세요'); return;}
+	
 	$.ajax({
 		url : "/jspWeb/product/info",
 		method : "post",
@@ -22,9 +24,31 @@ function onwrite(){
 		processData : false,
 		success : (r) =>{
 			console.log(r);
+			
+			if(r == 'true'){
+				alert('상품등록 성공');
+				location.href="/jspWeb/index.jsp"
+			}else{
+				alert('상품등록 실패')
+			}
 		}
 		
 	})
+}
+
+//2. 제품 출력
+Pprint();
+function Pprint(){
+		$.ajax({
+		url : "/jspWeb/product/info",
+		method : "get",
+		success : (r) =>{
+			console.log(r);
+			
+		}
+		
+	})
+	
 }
 
 
@@ -35,7 +59,7 @@ function onwrite(){
 // ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ 지도생성 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(37.31756000352892 , 126.8332584339037), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
     };
 
@@ -49,6 +73,7 @@ var marker = new kakao.maps.Marker({
 }); 
 // 지도에 마커를 표시합니다
 marker.setMap(map);
+
 
 //-------------------------- 지도클릭 이벤트 ------------
 // 지도에 클릭 이벤트를 등록합니다
@@ -73,5 +98,11 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
    plng = latlng.getLng();
    console.log("위도 : "+  latlng.getLat())
    console.log("위도 : "+   latlng.getLng())
+   
+    var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+    message += '경도는 ' + latlng.getLng() + ' 입니다';
+    
+    var resultDiv = document.getElementById('clickLatlng'); 
+    resultDiv.innerHTML = message;
     
 });

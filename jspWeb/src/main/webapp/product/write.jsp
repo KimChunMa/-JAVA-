@@ -14,9 +14,12 @@
 			제품명 :	<input type="text" name="pname"> 
 			제품설명 : <input type="text" name="pcomment"> 
 			제품가격 : <input type="text" name="pprice"> 
+			<div>
 			위도 : 
+			<span id="clickLatlng"></span>
 			<div id="map" style="width:100%;height:350px;"></div>
 			<button onclick="onwrite()" type="button"> 제품 등록 </button>
+			</div>
 		</form>
 		
 	</div>
