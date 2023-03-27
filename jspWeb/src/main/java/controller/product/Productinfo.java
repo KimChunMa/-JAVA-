@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +19,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import model.dao.MemberDao;
 import model.dao.ProductDao;
 import model.dto.ProductDto;
 
@@ -67,6 +69,7 @@ public class Productinfo extends HttpServlet {
 		DiskFileItemFactory 파일저장소 = new DiskFileItemFactory();
 		파일저장소.setRepository(저장경로객체);		//파일저장소 위치 대입
 		파일저장소.setSizeThreshold( 1024 * 1024 * 10);		// 파일 저장소에 저장할 수 있는 최대 용량범위
+		파일저장소.setDefaultCharset("UTF-8");		//한글 인코딩
 		
 		//4. 파일업로드 객체
 		ServletFileUpload 파일업로드객체 = new ServletFileUpload(파일저장소);
@@ -74,13 +77,59 @@ public class Productinfo extends HttpServlet {
 		try {
 			// 5. 매개변수 요청해서 리스트에 담기 [예외]
 			List<FileItem> 파일아이템목록 = 파일업로드객체.parseRequest(request);
-			for( FileItem item : 파일아이템목록 ) { 
+			// DB에 저장할 데이터를 분류
+			List<String> 일반필드목록 = new ArrayList<>();
+			List<String> 파일필드목록 = new ArrayList<>();
+			
+			for( FileItem item : 파일아이템목록 ) {
+					
+					//첨부파일이면 true 아니면 false
+				if(item.isFormField() ) {
+					System.out.println(" [첨부파일 아닌 필드명] :  " + item.getFieldName());
+					System.out.println(" [첨부파일 아닌 필드의 값] :  " + item.getString());
+					일반필드목록.add(item.getString()); 
+					
+				}else {
+					System.out.println(" [첨부파일 인 필드명 ] " + item.getFieldName() );
+					System.out.println(" [첨부파일 인 필드의 값] :  " + item.getName()); //첨부파일이름
+					
+					//9. 첨부파일 이름 식별 이름 변경 
+						//1. 파일명의 공백이 존재하면 - 로 치환[.replaceAll("기존문자","새로운 문자") 문자열 치환함수]
+						//2. UUID : 범용 고유 식별자 [중복이 없는 식별자 만들기 ] 
+						//3. 최종 식별 파일명 : UUID 파일명
+					String filename = UUID.randomUUID() + " " + (item.getName().replaceAll(" ", "-"));
+					
+					파일필드목록.add(filename); // 첨부된 파일의 이름을 요청해서 리스트 저장
+					
+					//7.저장할 경로 + / + 파일명의 파일을 객체화
+					File 업로드할파일 = new File( path+"/"+filename);
+					
+					// 8 . 해당 파일 객체 저장
+					item.write(업로드할파일);
+				}
+				
+				/*
 				// 요청된 모든 매개변수들을 반복문 돌려서 확인
 				System.out.println("필드명 : "+ item.getFieldName()); // 매개변수 명 확인
 				System.out.println("파일명 : "+ item.getName() ); // 매개변수가 파일일경우 파일명 확인
+				
+				//7.저장할 경로 + / + 파일명의 파일을 객체화
+				File 업로드할파일 = new File( path+"/"+item.getFieldName());
+				// 8 . 해당 파일 객체 저장
+				item.write(업로드할파일);
+				*/
 			}
-		} catch (FileUploadException e) {System.err.println(e);} 
-		
+			
+			System.out.println(일반필드목록.toString());
+			System.out.println(파일필드목록.toString());
+			
+			int mno =MemberDao.getInstance().getMno( (String)request.getSession().getAttribute("login"));
+			
+			ProductDto dto = new ProductDto(일반필드목록.get(0), 일반필드목록.get(1), 
+			Integer.parseInt( 일반필드목록.get(2)), 일반필드목록.get(3),일반필드목록.get(4),  mno , 파일필드목록);
+			System.out.println("dto : " + dto.toString());
+			
+		}catch (Exception e) {System.err.println(e);} 
 		
 		
 		

@@ -10,11 +10,23 @@ function onwrite(){
 	//2. 폼 데이터 객체 선언
 	let writeFormData = new FormData(writeForm);
 	//3. 좌표[위도/경도]
+		//set 중복불가능
 	writeFormData.set("plat", plat);	
 	writeFormData.set("plng", plng);
 	console.log(writeFormData)
 	
 	if(plat == 0 || plng == 0){alert('위치를 등록해주세요'); return;}
+	
+	if(fileList.length < 1){
+		alert('하나이상의 이미지를 등록해주세요');
+		return;
+	}
+	
+	//폼에 드래그된 파일들을 등록
+		//중복가능
+	fileList.forEach( (f)=>{ 
+		writeFormData.append("fileList",f)
+	})
 	
 	$.ajax({
 		url : "/jspWeb/product/info",
@@ -88,3 +100,52 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
     resultDiv.innerHTML = message;
     
 });
+
+
+// -------------------------- 드래그앤 드랍 구현 -------------
+// 1. 드래그앤드랍할 구역 [DOM] 객체 호출
+let fileDrop = document.querySelector('.fileDrop');
+
+let fileList = []; 
+
+// 2. 해당구역에 이벤트 등록
+	// 1. dragenter
+fileDrop.addEventListener("dragenter", (r) =>{
+	console.log('드래그 요소가 해당 구역에닿았을떄')
+	e.preventDefault(); // 고유 이벤트 제거
+})
+
+	//2. 
+fileDrop.addEventListener('dragover', (e)=>{
+	console.log('드래그 요소가 해당 구역에 위치했을떄');
+	e.preventDefault(); // 고유 이벤트 제거
+})
+
+	//3. 
+fileDrop.addEventListener('dragleave', (e)=>{
+	console.log('드래그 요소가 해당 구역에 나갔을때');
+	e.preventDefault(); // 고유 이벤트 제거
+})
+
+	//4. 
+fileDrop.addEventListener('drop', (e)=>{
+	console.log('드래그 요소가 해당 구역에 드랍 되었을때');
+	//문제 : 브라우저에 드랍했을떄 해당 페이지 열림
+	e.preventDefault(); // 고유 이벤트 제거
+	//1. 드랍된 파일을 호출 
+	let files = e.dataTransfer.files
+	console.log(files);
+	
+	for(let i = 0 ; i < files.length ; i++){
+		console.log(files[i])
+		if(f != null && f != undefined){
+			//비어있지않고 정의되어 있으면
+			fileList.push(files[i]);
+		}
+	}//for e
+	console.log(fileList)
+})
+
+
+
+
