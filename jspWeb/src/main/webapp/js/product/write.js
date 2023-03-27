@@ -1,3 +1,14 @@
+//회원제 페이지
+if(memberInfo.mid == null){
+	alert('로그인후 제품 등록이 가능합니다.')
+	location.href="/jspWeb/member/login.jsp"
+}
+
+
+
+
+
+
 //0.좌표
 let plat=0;
 let plng = 0;
@@ -106,28 +117,28 @@ kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 // 1. 드래그앤드랍할 구역 [DOM] 객체 호출
 let fileDrop = document.querySelector('.fileDrop');
 
-let fileList = []; 
-
 // 2. 해당구역에 이벤트 등록
 	// 1. dragenter
 fileDrop.addEventListener("dragenter", (r) =>{
 	console.log('드래그 요소가 해당 구역에닿았을떄')
-	e.preventDefault(); // 고유 이벤트 제거
 })
 
 	//2. 
 fileDrop.addEventListener('dragover', (e)=>{
 	console.log('드래그 요소가 해당 구역에 위치했을떄');
 	e.preventDefault(); // 고유 이벤트 제거
+	fileDrop.style.backgroundColor = "#e8e8e8"
 })
 
 	//3. 
 fileDrop.addEventListener('dragleave', (e)=>{
 	console.log('드래그 요소가 해당 구역에 나갔을때');
 	e.preventDefault(); // 고유 이벤트 제거
+	fileDrop.style.backgroundColor = "#ffffff"
 })
 
-	//4. 
+	//4.
+let fileList = [];  
 fileDrop.addEventListener('drop', (e)=>{
 	console.log('드래그 요소가 해당 구역에 드랍 되었을때');
 	//문제 : 브라우저에 드랍했을떄 해당 페이지 열림
@@ -138,14 +149,35 @@ fileDrop.addEventListener('drop', (e)=>{
 	
 	for(let i = 0 ; i < files.length ; i++){
 		console.log(files[i])
-		if(f != null && f != undefined){
+		if(files[i] != null && files[i] != undefined){
 			//비어있지않고 정의되어 있으면
 			fileList.push(files[i]);
 		}
 	}//for e
+	printfiles();
+	fileDrop.style.backgroundColor = "#ffffff"
 	console.log(fileList)
 })
 
-
-
-
+//3. 해당구역에 드랍된 파일 목록 출력
+function printfiles(){
+	let html = ``;
+	fileList.forEach( (f,i)=>{
+		let fname = f.name; // 파일명
+		console.log(f.name);
+		let fsize = (f.size /1024).toFixed(1) ; //파일용량 [바이트 --> mb]
+			//toFixed (표시할소수자리수)
+		console.log(f.size);
+		
+		html += `<div> 
+					<span> ${fname}  </span>
+					<span> ${fsize}KB </span>
+					<span> <button type="button> onclick="filedelete(${i})">삭제 </button> </span>
+				</div>`
+	})
+	fileDrop.innerHTML = html;
+}
+//4. 드래그앤드랍된 파일 목록에 특정 파일 제거
+function filedelete(i){
+	fileList.splice(i,1); printfiles();
+}

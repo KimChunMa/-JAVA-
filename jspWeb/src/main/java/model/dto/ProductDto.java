@@ -16,6 +16,7 @@ public class ProductDto {
 	private int mno; //등록한 회원번호
 	private String mid;//등록한 회원아이디
 	private List<String> pimglist; //등록한 사진목록
+	private String mimg; // 등록한 회원의 프로필
 	
 	//등록용 생성자 [제품명, 설명, 가격, 위도, 경로, 등록한사람 회원번호, 사진목록]
 	public ProductDto(String pname, String pcomment, int pprice, String plat, String plng, int mno,
@@ -31,8 +32,11 @@ public class ProductDto {
 	}
 
 
+	
+	
+	
 	public ProductDto(int pno, String pname, String pcomment, int pprice, int pstate, String plat, String plng,
-			int pview, String pdate, int mno, String mid, List<String> pimglist) {
+			int pview, String pdate, int mno, String mid, List<String> pimglist, String mimg) {
 		super();
 		this.pno = pno;
 		this.pname = pname;
@@ -46,7 +50,36 @@ public class ProductDto {
 		this.mno = mno;
 		this.mid = mid;
 		this.pimglist = pimglist;
+		this.mimg = mimg;
 	}
+
+
+
+
+
+	@Override
+	public String toString() {
+		return "ProductDto [pno=" + pno + ", pname=" + pname + ", pcomment=" + pcomment + ", pprice=" + pprice
+				+ ", pstate=" + pstate + ", plat=" + plat + ", plng=" + plng + ", pview=" + pview + ", pdate=" + pdate
+				+ ", mno=" + mno + ", mid=" + mid + ", pimglist=" + pimglist + "]";
+	}
+	
+	
+
+
+
+	public String getMimg() {
+		return mimg;
+	}
+
+
+
+
+	public void setMimg(String mimg) {
+		this.mimg = mimg;
+	}
+
+
 
 
 	public ProductDto() {
@@ -55,12 +88,7 @@ public class ProductDto {
 	
 	
 	
-	@Override
-	public String toString() {
-		return "ProductDto [pno=" + pno + ", pname=" + pname + ", pcomment=" + pcomment + ", pprice=" + pprice
-				+ ", pstate=" + pstate + ", plat=" + plat + ", plng=" + plng + ", pview=" + pview + ", pdate=" + pdate
-				+ ", mno=" + mno + ", mid=" + mid + ", pimglist=" + pimglist + "]";
-	}
+
 
 
 	public int getPno() {
