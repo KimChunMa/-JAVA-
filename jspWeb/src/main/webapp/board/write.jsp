@@ -44,7 +44,7 @@
 			제목 : <input type="text" name="btitle"> <br/>
 			내용 : <textarea rows="10" cols="40" name="bcontent" id="summernote"
 			></textarea> <br/>
-			첨부파일 : <input type="file" name="bfile"><br/>
+			첨부파일 : <input type="file" name="bfile" accept="image/*"><br/>
 			
 			<button type="button" onclick="bwrite()"> 쓰기 </button>
 		</form>
