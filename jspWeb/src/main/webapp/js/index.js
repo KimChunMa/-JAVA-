@@ -110,7 +110,6 @@ function produclistprint(  ){
 					</div>
 				</div>
 			</div>
-		
 		`;
 	});
 	document.querySelector('.productlistbox').innerHTML = html;
@@ -160,7 +159,7 @@ function productprint( i ){
 			<div class="pviewbox">
 				<div class="pviewinfo">
 					<div class="mimgbox">
-						<img src="/jspWeb/member/pimg/${p.pimg == null ? 'default.webp' : p.mimg}" class="hpimg">
+						<img src="/jspWeb/product/pimg/${p.pimg == null ? 'default.webp' : p.pimg}" class="hpimg">
 						<span class="mid"> ${p.mid} </span>
 					</div>
 					
@@ -200,8 +199,8 @@ function productprint( i ){
 			</div>
 			
 			<div class="pviewbtnbox">
-				<button type="button"> <i class="far fa-heart"></i> </button>
-				<button type="button"> 채팅 </button>
+				<button type="button" onclick="setplike(${p.pno})"> <i class="far fa-heart"></i> </button>
+				<button type="button" onclick="chatprint(${i})"> 채팅 </button>
 			</div>
 			
 			</div>`
@@ -209,6 +208,58 @@ function productprint( i ){
 			getplike(p.pno)
 }
 
+//채팅페이지 이동
+function chatprint(i){
+	
+	if(memberInfo.mid == null){
+		alert('회원기능 입니다.'); return;
+	}
+	
+	let p = productList[i];
+	let html = `
+				<div class="chatbox">
+				<div class="pviewinfo">
+					<div class="mimgbox">
+						<img src="/jspWeb/product/pimg/${p.pimglist[0]}" class="hpimg">
+						<span class="pname"> ${p.pname} </span>
+					</div>
+					
+					<div>
+						<button type="button" class="pbadge" onclick="produclistprint()">목록보기</button>
+					</div>
+				</div>
+				
+				<div class="chatcontent">
+					<div class="sendbox"> 구매 가능할까요?</div>
+					<div class="receivebox"> 네 구매 가능 합니다.</div>
+				</div>
+				
+				<div class="chatbtn">
+					<textarea rows="" cols="" class="ncontentinput"></textarea>
+					<button type="button" onclick="sendchat(${p.pno})"> 전송 </button>
+				</div>
+				
+			</div>	<!-- chatbox -->
+			`
+	document.querySelector('.productlistbox').innerHTML = html;
+}
+
+function sendchat (pno){
+	let ncontent = document.querySelector('.ncontentinput').value;
+	
+	$.ajax({
+		url:"",
+		method:"post",
+		data: {"pno":pno, "ncontent":ncontent},
+		success:(r)=>{
+			console.log(r)
+		}
+		
+	})
+	
+	document.querySelector('.ncontentinput').value = '';
+	
+}
 function setplike(pno){
 	if(memberInfo.mid == null){
 		alert('회원기능입니다. 로그인후 사용해주세요'); return;
