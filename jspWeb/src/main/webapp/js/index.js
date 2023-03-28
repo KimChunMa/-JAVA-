@@ -14,6 +14,16 @@ var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표�
         minLevel: 4 // 클러스터 할 최소 지도 레벨 
     });
   
+  // ----------------------- 마커 이미지 변경 ------------------------------------ //
+var imageSrc = '/jspWeb/img/ezenlogo.png', // 마커이미지의 주소입니다    
+    imageSize = new kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
+    imageOption = {offset: new kakao.maps.Point(10, 20)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+      
+// 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
+    markerPosition = new kakao.maps.LatLng(37.54699, 127.09598); // 마커가 표시될 위치입니다
+
+
 
 // 2. 현재 지도의 좌표 얻기
 get동서남북(); // 처음 드래그안하고 한번
@@ -47,7 +57,7 @@ function getproductlist(동, 서, 남, 북){
 		async:false,
 		data: {"동": 동 , "서":서 , "남":남 , "북":북},
 		success: (r)=>{
-			
+	console.log(r)		
 //------------------------- 사이드바 제품 목록 ---------------------
   	productList = r;	// 제품목록 결과를 전역변수 담아주기 
 	produclistprint(  );
@@ -57,7 +67,8 @@ function getproductlist(동, 서, 남, 북){
         //마커의 추가 코드를 작성하기위해 변수화
         let markers = r.map((p,i)=> { console.log(p)
             let marker = new kakao.maps.Marker({
-                position : new kakao.maps.LatLng(p.plat, p.plng)
+                position : new kakao.maps.LatLng(p.plat, p.plng),
+                image: markerImage
             });
             
 //-------------------------- 클릭 이벤트 ----------------------
