@@ -159,7 +159,7 @@ function productprint( i ){
 			<div class="pviewbox">
 				<div class="pviewinfo">
 					<div class="mimgbox">
-						<img src="/jspWeb/product/pimg/${p.pimg == null ? 'default.webp' : p.pimg}" class="hpimg">
+						<img src="/jspWeb/member/pimg/${p.mimg == null ? 'default.webp' : p.mimg}" class="hpimg">
 						<span class="mid"> ${p.mid} </span>
 					</div>
 					
@@ -188,7 +188,7 @@ function productprint( i ){
 			<!-- 제품 상세 내용물  -->
 			<div class="pdate"> ${p.pdate} </div>
 			<div class="pname">  ${p.pname} </div>
-			<div class="pcomment"> ${p.comment} </div>
+			<div class="pcomment"> ${p.pcomment} </div>
 			<div > <span class="pbadge" > ${p.pstate == 1 ? "판매중" : p.pastate == 2 ? "거래중": "거래완료"} </span> </div>
 			<div class="pprice">${ p.pprice } </div>
 			<div class="petc">  
@@ -199,13 +199,13 @@ function productprint( i ){
 			</div>
 			
 			<div class="pviewbtnbox">
-				<button type="button" onclick="setplike(${p.pno})"> <i class="far fa-heart"></i> </button>
+				<button type="button" onclick="setplike(${p.pno})"> <span class="plikebtn"> <i class="far fa-heart"></i> </span> </button>
 				<button type="button" onclick="chatprint(${i})"> 채팅 </button>
 			</div>
 			
 			</div>`
 			document.querySelector('.productlistbox').innerHTML = html;
-			getplike(p.pno)
+			getplike(p.pno) //찜하기
 }
 
 //채팅페이지 이동
@@ -216,6 +216,30 @@ function chatprint(i){
 	}
 	
 	let p = productList[i];
+	
+	//채팅창 가져오기
+	let chathtml = '';
+	$.ajax({
+		url:"/jspWeb/product/chat",
+		method:"get",
+		data: {"pno":p.pno, },
+		async:false, //동기식
+		success:(r)=>{
+			console.log(r);
+			
+			r.forEach( (o)=>{
+				if(o.frommno == memberInfo.mno){
+					chathtml += `<div class="sendbox">${o.ncontent}</div>`
+				}else{
+					chathtml += `<div class="receivebox">${o.ncontent}</div>`
+				}
+			})
+			
+		}
+	})
+	
+	
+	
 	let html = `
 				<div class="chatbox">
 				<div class="pviewinfo">
@@ -230,13 +254,12 @@ function chatprint(i){
 				</div>
 				
 				<div class="chatcontent">
-					<div class="sendbox"> 구매 가능할까요?</div>
-					<div class="receivebox"> 네 구매 가능 합니다.</div>
+					${ chathtml }
 				</div>
 				
 				<div class="chatbtn">
 					<textarea rows="" cols="" class="ncontentinput"></textarea>
-					<button type="button" onclick="sendchat(${p.pno})"> 전송 </button>
+					<button type="button" onclick="sendchat(${p.pno}, ${p.mno})"> 전송 </button>
 				</div>
 				
 			</div>	<!-- chatbox -->
@@ -244,22 +267,28 @@ function chatprint(i){
 	document.querySelector('.productlistbox').innerHTML = html;
 }
 
-function sendchat (pno){
+//채팅 보내기
+function sendchat (pno, tomno){
 	let ncontent = document.querySelector('.ncontentinput').value;
-	
 	$.ajax({
-		url:"",
+		url:"/jspWeb/product/chat",
 		method:"post",
-		data: {"pno":pno, "ncontent":ncontent},
+		data: {"pno":pno, "ncontent":ncontent, "tomno":tomno},
 		success:(r)=>{
 			console.log(r)
+			if(r == "true"){
+				document.querySelector('.ncontentinput').value = '';
+				
+			}
 		}
 		
-	})
-	
-	document.querySelector('.ncontentinput').value = '';
-	
+	})	
 }
+
+
+
+
+//찜하기
 function setplike(pno){
 	if(memberInfo.mid == null){
 		alert('회원기능입니다. 로그인후 사용해주세요'); return;
@@ -273,10 +302,10 @@ function setplike(pno){
 		success : (r) => {console.log(r);
 			if(r=='true'){
 				alert('찜하기');
-				document.querySelector('.plikebtn').innerHTML = "★";
+				document.querySelector('.plikebtn').innerHTML = `<i class="fas fa-heart"></i>`;
 			}else{
 				alert('삭제');
-				document.querySelector('.plikebtn').innerHTML = "☆";
+				document.querySelector('.plikebtn').innerHTML = `<i class="far fa-heart"></i>`;
 			}
 		}
 	})
@@ -313,8 +342,8 @@ function getplike(pno){
 		data: {"pno":pno },
 		success : (r) => {
 			console.log( r )
-			if(r == "true"){ document.querySelector('.plikebtn').innerHTML = '☆'; }
-			else{ document.querySelector('.plikebtn').innerHTML = '★'; }
+			if(r == "true"){ document.querySelector('.plikebtn').innerHTML = '<i class="far fa-heart"></i>'; }
+			else{ document.querySelector('.plikebtn').innerHTML = `<i class="fas fa-heart"></i>`; }
 		}
 	})
 }
