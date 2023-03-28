@@ -138,17 +138,73 @@ function produclistprint(  ){
 function productprint( i ){
 	let p = productList[i];
 	
-	  let html = `<button onclick="produclistprint()"> <== </button> <h3>제품상세페이지</h3>`;
-		      html += `<div> 
-					<div> ${ p.pname } </div>
-					<div> ${ p.pcomment }  </div>
-					<div> ${ p.pprice }  </div>
-					<div> ${ p.pstate }  </div>
-					<div> ${ p.pview }  </div>
-					<div> ${ p.pdate }  </div>
-					<div> <button class="plikebtn" type="button" onclick="setplike(${p.pno})"> </button> </div>
+	let imghtml = '';
+	p.pimglist.forEach((img,i)=>{
+		
+		if(i==0){
+			imghtml+=`
+				<div class="carousel-item active">
+				      <img src="/jspWeb/product/pimg/${img}" class="d-block w-100" alt="...">
 				</div>`
+		}else{
+			imghtml +=`
+				<div class="carousel-item">
+				      <img src="/jspWeb/product/pimg/${img}" class="d-block w-100" alt="...">
+				</div>`
+		}
+		
+	})
+	
+				
+	let html= `
+			<div class="pviewbox">
+				<div class="pviewinfo">
+					<div class="mimgbox">
+						<img src="/jspWeb/member/pimg/${p.pimg == null ? 'default.webp' : p.mimg}" class="hpimg">
+						<span class="mid"> ${p.mid} </span>
+					</div>
+					
+					<div>
+						<button type="button" class="pbadge" onclick="produclistprint()">목록보기</button>
+					</div>
+				</div>
 			
+			
+			<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+			  <div class="carousel-inner">
+			   
+			    ${imghtml}
+			  
+			  </div>
+			  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+			    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			    <span class="visually-hidden">Previous</span>
+			  </button>
+			  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+			    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+			    <span class="visually-hidden">Next</span>
+			  </button>
+			</div>
+				
+			<!-- 제품 상세 내용물  -->
+			<div class="pdate"> ${p.pdate} </div>
+			<div class="pname">  ${p.pname} </div>
+			<div class="pcomment"> ${p.comment} </div>
+			<div > <span class="pbadge" > ${p.pstate == 1 ? "판매중" : p.pastate == 2 ? "거래중": "거래완료"} </span> </div>
+			<div class="pprice">${ p.pprice } </div>
+			<div class="petc">  
+						<i class="far fa-eye"></i>  ${ p.pview } 
+						<i class="far fa-thumbs-up"></i> 5 
+						<i class="far fa-thumbs-down"></i> 2 
+						<i class="far fa-comment-dots"></i> 4
+			</div>
+			
+			<div class="pviewbtnbox">
+				<button type="button"> <i class="far fa-heart"></i> </button>
+				<button type="button"> 채팅 </button>
+			</div>
+			
+			</div>`
 			document.querySelector('.productlistbox').innerHTML = html;
 			getplike(p.pno)
 }

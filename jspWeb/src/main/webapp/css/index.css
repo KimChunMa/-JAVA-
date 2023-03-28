@@ -187,5 +187,55 @@ html , body{
 	text-align: right;
 }
 
+/* ---------- 제품 상세 페이지 ------------*/
+.pviewbox{
+	padding:0px 20px 10px 20px;
+	width:100%;
+}
 
+.pviewinfo{
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 5px;
+}
 
+.pbadge{ /* 목록보기 버튼 */
+	background-color: pink;
+	border:none;
+	border-radius: 10px;
+	padding:3px 10px;
+	color:white;
+}
+
+/* 날짜 */
+.pviewbox .pdate{ 
+	margin:20px 0px 5px 0px;
+}
+
+/* 설명 */
+.pviewbox .pcomment{
+	height:120px;
+	font-size:13px;
+}
+
+.pviewbox .pbadge{
+	text-align: right;
+}
+
+.pviewbtnbox button{
+	border:none;
+	background-color: #f66d85;
+	width:48%;
+	padding:15px;
+	color:white;
+	font-size:22px;
+	margin-top:20px;
+	border-radius: 10PX;
+}
+
+.carousel-item img{
+	height:250px;
+	object-fit:cover;
+
+}
