@@ -4,7 +4,7 @@ let productList = null; //제품 총 목록
 var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표시할 div
 	center : new kakao.maps.LatLng(37.31756000352892 , 126.8332584339037), // 지도의 중심좌표 
     level : 6 // 지도의 확대 레벨 
-});
+}); 
     
 // ------------------- 클러스터러 -------------------------
     // 마커 클러스터러를 생성합니다 
