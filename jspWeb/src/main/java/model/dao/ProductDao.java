@@ -63,7 +63,7 @@ public class ProductDao extends Dao{
 				ResultSet rs2 = ps.executeQuery();
 				
 				while(rs2.next()) {
-					pimglist.add(rs.getString(2)); // 검색된 이미지이름을 리스트에 저장
+					pimglist.add(rs2.getString(2)); // 검색된 이미지이름을 리스트에 저장
 				}
 				
 				ProductDto dto = new ProductDto(

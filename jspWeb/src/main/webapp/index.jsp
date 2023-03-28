@@ -25,39 +25,11 @@
 		<!-- 사이드바 -->
 		<div class="productlistbox" >
 		
-			<div class="productbox">
-				<div class="pimgbox">
-					<img src="/jspWeb/product/pimg/default.png">
-				</div>
-					<div class="pname"> LG 노트북 팝니다 </div>
-					<div class="pprice"> 3,3000원</div>
-					<div class="petc">  
-						<i class="far fa-eye"></i> 30
-						<i class="far fa-thumbs-up"></i> 5 
-						<i class="far fa-thumbs-down"></i> 2 
-						<i class="far fa-comment-dots"></i> 4
-					</div>
-				</div>
-				
 			
-			<div class="productbox">
-				<div class="pimgbox">
-					<img src="/jspWeb/product/pimg/default.png">
-				</div>
-					<div class="pname"> LG 노트북 팝니다 </div>
-					<div class="pprice"> 3,3000원</div>
-					<div class="petc">  
-						<i class="far fa-eye"></i> 30
-						<i class="far fa-thumbs-up"></i> 5 
-						<i class="far fa-thumbs-down"></i> 2 
-						<i class="far fa-comment-dots"></i> 4
-					</div>
-			</div>
+				
 			
 				
 			</div>	<!-- productlistbox -->
-			
-			
 		</div>
 	
 	<p id="result"></p>

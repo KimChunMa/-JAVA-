@@ -50,12 +50,12 @@ function getproductlist(동, 서, 남, 북){
 			
 //------------------------- 사이드바 제품 목록 ---------------------
   	productList = r;	// 제품목록 결과를 전역변수 담아주기 
-	//produclistprint(  );
+	produclistprint(  );
 //------------------------ 마커 작업 -------------------------
         // 데이터에서 좌표 값을 가지고 마커를 표시합니다
         // 마커 클러스터러로 관리할 마커 객체는 생성할 때 지도 객체를 설정하지 않습니다
         //마커의 추가 코드를 작성하기위해 변수화
-        let markers = r.map((p)=> { console.log(p)
+        let markers = r.map((p,i)=> { console.log(p)
             let marker = new kakao.maps.Marker({
                 position : new kakao.maps.LatLng(p.plat, p.plng)
             });
@@ -64,19 +64,7 @@ function getproductlist(동, 서, 남, 북){
             // 지도에 클릭 이벤트를 등록합니다
 			// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
 			kakao.maps.event.addListener(marker, 'click', function() {
-		       let html = `<button onclick="produclistprint()"> <== </button> <h3>제품상세페이지</h3>`;
-		      html += `<div> 
-					<div> ${ p.pname } </div>
-					<div> ${ p.pcomment }  </div>
-					<div> ${ p.pprice }  </div>
-					<div> ${ p.pstate }  </div>
-					<div> ${ p.pview }  </div>
-					<div> ${ p.pdate }  </div>
-					<div> <button class="plikebtn" type="button" onclick="setplike(${p.pno})"> </button> </div>
-				</div>`
-			
-			document.querySelector('.productlistbox').innerHTML = html;
-			getplike(p.pno)
+		      productprint( i )
 		});
             return marker;
         });
@@ -90,17 +78,29 @@ function getproductlist(동, 서, 남, 북){
    
     
 //------------ 클릭시 제품정보 출력 함수 -------------------    
-function produclistprint(  ){
+function produclistprint(  ){ 
     let html = '<h3>제품목록페이지</h3>';
-    productList.forEach( (p) => {
-		html += `<div> 
-					<span> ${ p.pname } </span>
-					<span> ${ p.pcomment }  </span>
-					<span> ${ p.pprice }  </span>
-					<span> ${ p.pstate }  </span>
-					<span> ${ p.pview }  </span>
-					<span> ${ p.pdate }  </span>
-				</div>`
+    productList.forEach( (p, i) => {
+		
+		html+= `
+			<div class="productbox" onclick="productprint( ${i} )">
+				<div class="pimgbox">
+					<img src="/jspWeb/product/pimg/${p.pimglist[0]}">
+				</div>
+				<div class="pcontentbox"> 
+					<div class="pdate"> ${ p.pdate } </div>
+					<div class="pname"> ${ p.pname } </div>
+					<div class="pprice"> ${ p.pprice } </div>
+					<div class="petc">  
+						<i class="far fa-eye"></i>  ${ p.pview }
+						<i class="far fa-thumbs-up"></i> 5 
+						<i class="far fa-thumbs-down"></i> 2 
+						<i class="far fa-comment-dots"></i> 4
+					</div>
+				</div>
+			</div>
+		
+		`;
 	});
 	document.querySelector('.productlistbox').innerHTML = html;
 }
@@ -123,7 +123,24 @@ function produclistprint(  ){
 		document.querySelector('.productlistbox').innerHTML = html;
   }
 */
-
+//제품 개별 조회
+function productprint( i ){
+	let p = productList[i];
+	
+	  let html = `<button onclick="produclistprint()"> <== </button> <h3>제품상세페이지</h3>`;
+		      html += `<div> 
+					<div> ${ p.pname } </div>
+					<div> ${ p.pcomment }  </div>
+					<div> ${ p.pprice }  </div>
+					<div> ${ p.pstate }  </div>
+					<div> ${ p.pview }  </div>
+					<div> ${ p.pdate }  </div>
+					<div> <button class="plikebtn" type="button" onclick="setplike(${p.pno})"> </button> </div>
+				</div>`
+			
+			document.querySelector('.productlistbox').innerHTML = html;
+			getplike(p.pno)
+}
 
 function setplike(pno){
 	if(memberInfo.mid == null){

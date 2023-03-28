@@ -123,12 +123,12 @@ html , body{
 
 /* 지도 */
 #map{
-	width:80%; height:100%;
+	width:70%; height:100%;
 }
 
 /* 사이드바 */
 .productlistbox{
-	width:20%;
+	width:30%;
 	height:100%;
 }
 
@@ -139,10 +139,15 @@ html , body{
 	flex-direction: column;
 }
 
+.pcontentbox{
+	display:flex;
+	flex-direction: column;
+}
+
 /* 제품 1개의 구여 */
 .productbox{
 	display:flex;
-	flex-direction:column;
+	
 	padding:0px 5px 20px 5px;
 	border-bottom:1px solid #eeeeee;
 	margin:0px 5px 20px 5px;
@@ -150,7 +155,7 @@ html , body{
 
 /* 사이드바 이미지 */
 .pimgbox img{
-	object-fit:cover; height:130px; width:130px;
+	object-fit:cover; height:130px; width:130px; 
 }
 
 .productbox{
@@ -158,11 +163,27 @@ html , body{
 	padding:0px 10px;
 }
 
+/* 제품 제목*/
 .pname{
 	font-family: TheJamsil5Bold;
 	font-size:20px;
+	height:30px;
 	overflow: hidden;
 	white-space: nowrap; /* 자동줄바꿈  */
 	text-overflow:  ellipsis;
-	max-width:95%;
+	max-width:230px;
 }
+
+/* 가격 */
+.pprice{
+	text-align: right;
+	font-family: 'TheJamsil5Bold';
+	font-size: 18px;
+	margin-top:20px;
+}
+
+/* 이모티콘 */
+.petc{
+	text-align: right;
+}
+
