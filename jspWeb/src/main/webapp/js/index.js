@@ -150,7 +150,7 @@ function chatlistprint( i ){ //i는 총제품중 i번쨰 제품
 			console.log(r)
 			let printfrommno = [] // 출력된 mno
 			r.forEach( (o)=>{//구매자별 1개씩만 출력
-				if( !printfrommno.includes(o.frommno)){ // 구매자 채팅을 출력한적이 없으면
+				if( !printfrommno.includes(o.frommno) && o.frommno != memberInfo.mno){ // 구매자 채팅을 출력한적이 없으면
 					printfrommno.push(o.frommno) // 구매자번호 저장후 , 구매자별 1번씩 만 출력
 				
 				html += `
