@@ -1,3 +1,16 @@
+/* 
+	1. productlistprint() : 모든 제품 목록 html 출력 함수
+	2. productprint () : productList내 i번쨰 제품 1개 html 출력함수
+	3. chatprint() : 채팅창 html  출력
+	4. sendchat() : 채팅창 보내기
+	5. setplike() : 찜하기
+	6. getplike() : 찜하기 상태 호출
+*/
+
+/*  api
+	1. getproductlist() : 기준[동서남북]에 따른 제품목록 요청해서 결과를 받는 함수 / 마커 생성
+	2. get동서남북() : 현재 지도좌표 구하기
+*/
 let productList = null; //제품 총 목록
 
 //---------------- 지도 생성 -------------------
@@ -11,7 +24,7 @@ var map = new kakao.maps.Map(document.getElementById('map'), { // 지도를 표�
     var clusterer = new kakao.maps.MarkerClusterer({
         map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
         averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
-        minLevel: 4 // 클러스터 할 최소 지도 레벨 
+        minLevel: 6 // 클러스터 할 최소 지도 레벨 
     });
   
   // ----------------------- 마커 이미지 변경 ------------------------------------ //
@@ -208,7 +221,53 @@ function productprint( i ){
 			getplike(p.pno) //찜하기
 }
 
-//채팅페이지 이동
+//9. 제품별 채팅 목록 페이지 이동 
+function chatlistprint( i ){
+	let p = productList[i];
+	
+	let html = ``;
+	$.ajax({
+		url:"/jspWeb/product/chat",
+		method:"get",
+		data: {"pno":p.pno},
+		async: false,
+		success:(r)=>{
+			console.log(r)
+			let printfrommno = [] // 출력된 mno
+			r.forEach( (o)=>{//구매자별 1개씩만 출력
+				if( !printfrommno.includes(o.frommno)){ // 구매자 채팅을 출력한적이 없으면
+					printfrommno.push(o.frommno) // 구매자번호 저장후 , 구매자별 1번씩 만 출력
+				
+				
+				html += `
+						<!-- 해당 제품으로부터 채팅을 받은 목록 -->
+						<div class="chatlist">
+							<div class="frommimg"> 
+								<img src="/jspWeb/member/pimg/default.webp" class="hpimg">
+							</div>	
+							<div class="frominfo">
+								<div class="fromdate">${o.ndate} </div>
+								<div class="frommid"> ${o.frommno} </div>
+								<div class="fromncontent"> ${o.ncontent} </div>
+							</div>
+						</div>	<!-- catlist e -->`
+				}	
+						
+			})//foreach e
+			//구매자 번호가 존재하지 않으면
+			if(printfrommno.length == 0){
+				html +='채팅이없습니다.'
+			}
+			document.querySelector('.productlistbox').innerHTML = html;
+		}// success e
+		
+	})// $.ajax e
+	
+}//chatlistprint e
+
+
+
+//3.채팅페이지 이동 [로그인, 등록자인지 검사 ]
 function chatprint(i){
 	
 	if(memberInfo.mid == null){
@@ -216,6 +275,12 @@ function chatprint(i){
 	}
 	
 	let p = productList[i];
+	
+	if(memberInfo.mno == p.mno){ // 만약에 등록한 회원이면
+		alert('본인이 등록한 제품입니다.')
+		chatlistprint( i );
+		return;
+	}
 	
 	//채팅창 가져오기
 	let chathtml = '';

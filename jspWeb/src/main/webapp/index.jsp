@@ -24,10 +24,9 @@
 		<div id="map"></div>
 		<!-- 사이드바 -->
 		<div class="productlistbox" >
-		
-			
 			
 		</div>	<!-- productlistbox -->
+		
 	</div>
 	
 	<p id="result"></p>
