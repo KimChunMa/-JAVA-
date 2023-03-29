@@ -122,7 +122,7 @@ public class ProductDao extends Dao{
 				return true; // 찜목록에 없으면 true 
 	}
 	
-	//5. 채팅창 보내기
+	//5. 채팅창 보내기 
 	public boolean setChat(ChatDto dto) {
 		String sql = "insert into note(ncontent, pno, frommno, tomno) value(?,?,?,?)";
 		
@@ -141,51 +141,49 @@ public class ProductDao extends Dao{
 	
 	//6. 제품에 등록 채팅 [제품번호 일치, 현재보고있는 회원[로그인된 회원], 받거나 보낸내용  ]
 	public ArrayList<ChatDto> getChatList(int pno, int mno , int chatmno){
-		/*String sql = "select * from note "
-				+ " where pno = ? and (frommno = ? or tomno = ?)"; */
+		
 		ArrayList<ChatDto> list = new ArrayList<>();
 		
-		//현재 같이 채팅하고 있는 대상자의 내용물만 출력
-		String sql = "select * from note where pno = ? and "
-		+ " ( (frommno = ? and tomno = ?) or "
-		+ " (frommno = ? and tomno = ? ) ) ";
+		String sql ="";
 		
-		/*
-		  - 1 . 로그인된 회원기준으로 보내거나 받은 메시지 모두 출력
-		  select * from note  where pno = ? and (frommno = ? or tomno = ?)
-		  	판매자는 채팅 대상만의 메세지를 출력해야됨 문제생김
-		  
-		  - 2.
-		  만약에 채팅방에 4번회원 5번회원 존재
-		  frommno = 4 이면서 tomno = 5 이거나 frommno = 5 이면서 tomno = 4
-		  - 4번회원이 보냈거나 받았으면 5번회원이 받았거나 보냈으면
-		  
-		*/
+		if(chatmno != 0) { // 채팅방 내용물만 확인
+			sql = "select * from note where pno = ? and "
+			+ " ( (frommno = ? and tomno = ?) or "
+			+ " (frommno = ? and tomno = ? ) ) ";
+			
+		}else{ //채팅 목록 출력
+			sql = "select * from note where pno = ? and (frommno = ? or tomno = ?)";
+		}
 		
 		try {
 			ps=con.prepareStatement(sql);
-			ps.setInt(1, pno); ps.setInt(2, mno); ps.setInt(3, chatmno);
-			ps.setInt(4, chatmno); ps.setInt(5, mno);
-			rs=ps.executeQuery();
-			
-			while(rs.next()) {
+			ps.setInt(1, pno); 
 				
+			if(chatmno != 0 ) {
+				ps.setInt(2, mno); ps.setInt(3, chatmno);
+				ps.setInt(4, chatmno); ps.setInt(5, mno);
+			}else {
+				ps.setInt(2, mno); ps.setInt(3, mno);
+			}
+			rs=ps.executeQuery();
+				
+			while(rs.next()) {
+					
 				ChatDto dto = new ChatDto ( 
 				rs.getInt(1), rs.getString(2),
 				rs.getString(3), rs.getInt(4),
 				rs.getInt(5), rs.getInt(6));
-			
-				
+					
 				sql = "select mid , mimg from member where mno = "+ rs.getInt(5) ;
 				ps=con.prepareStatement(sql);
 				ResultSet rs2 = ps.executeQuery();
 				if(rs2.next()) {
 					dto.setFrommid(rs2.getString(1));
 					dto.setFrommimg(rs2.getString(2));
-					
 					list.add(dto);
-				}
-			}
+				}//rs2 e
+			}//rs e
+			
 		} catch (SQLException e) {System.err.println(e);}
 		return list;
 	}
