@@ -8,6 +8,11 @@ public class ChatDto {
     private int frommno; 	 //받는사람
     private int tomno; 		 //주는사람
     
+    //추가필드
+    private String frommid;  // 보낸사람 아이디
+    private String frommimg; // 보낸사람 프로필
+    
+    
 	public ChatDto(long nno, String ncontent, String ndate, int pno, int frommno, int tomno) {
 		super();
 		this.nno = nno;
@@ -24,6 +29,30 @@ public class ChatDto {
 	public String toString() {
 		return "ChatDto [nno=" + nno + ", ncontent=" + ncontent + ", ndate=" + ndate + ", pno=" + pno + ", frommno="
 				+ frommno + ", tomno=" + tomno + "]";
+	}
+
+
+
+	public String getFrommid() {
+		return frommid;
+	}
+
+
+
+	public void setFrommid(String frommid) {
+		this.frommid = frommid;
+	}
+
+
+
+	public String getFrommimg() {
+		return frommimg;
+	}
+
+
+
+	public void setFrommimg(String frommimg) {
+		this.frommimg = frommimg;
 	}
 
 

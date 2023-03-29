@@ -103,6 +103,7 @@ function getproductlist(동, 서, 남, 북){
     
 //------------ 클릭시 제품정보 출력 함수 -------------------    
 function produclistprint(  ){ 
+	console.log(productList)
     let html = '<h3>제품목록페이지</h3>';
     productList.forEach( (p, i) => {
 		
@@ -222,14 +223,14 @@ function productprint( i ){
 }
 
 //9. 제품별 채팅 목록 페이지 이동 
-function chatlistprint( i ){
+function chatlistprint( i ){ //i는 총제품중 i번쨰 제품
 	let p = productList[i];
 	
 	let html = ``;
 	$.ajax({
 		url:"/jspWeb/product/chat",
 		method:"get",
-		data: {"pno":p.pno},
+		data: {"pno":p.pno , "chatmno":0},
 		async: false,
 		success:(r)=>{
 			console.log(r)
@@ -238,12 +239,11 @@ function chatlistprint( i ){
 				if( !printfrommno.includes(o.frommno)){ // 구매자 채팅을 출력한적이 없으면
 					printfrommno.push(o.frommno) // 구매자번호 저장후 , 구매자별 1번씩 만 출력
 				
-				
 				html += `
 						<!-- 해당 제품으로부터 채팅을 받은 목록 -->
-						<div class="chatlist">
+						<div onclick="chatinfoprint(${i},${o.frommno})" class="chatlist">
 							<div class="frommimg"> 
-								<img src="/jspWeb/member/pimg/default.webp" class="hpimg">
+								<img src="/jspWeb/member/pimg/${o.frommimg == null ? 'default.webp' : o.frommimg}" class="hpimg">
 							</div>	
 							<div class="frominfo">
 								<div class="fromdate">${o.ndate} </div>
@@ -265,44 +265,45 @@ function chatlistprint( i ){
 	
 }//chatlistprint e
 
+// *
+let index = 0; // 현재보고있는 제품의 제품인덱스
+let chatmno; //현재 채팅하고있는 상대방의 mno
 
 
-//3.채팅페이지 이동 [로그인, 등록자인지 검사 ]
-function chatprint(i){
-	
-	if(memberInfo.mid == null){
-		alert('회원기능 입니다.'); return;
-	}
-	
-	let p = productList[i];
-	
-	if(memberInfo.mno == p.mno){ // 만약에 등록한 회원이면
-		alert('본인이 등록한 제품입니다.')
-		chatlistprint( i );
-		return;
-	}
-	
+//10. 채팅방 내용물 요청해서 해당 html 출력
+function getcontent(){
+	let pno = productList[index].pno;
 	//채팅창 가져오기
 	let chathtml = '';
 	$.ajax({
 		url:"/jspWeb/product/chat",
 		method:"get",
-		data: {"pno":p.pno, },
+		data: {"pno":pno, "chatmno":chatmno  },
 		async:false, //동기식
 		success:(r)=>{
 			console.log(r);
 			
 			r.forEach( (o)=>{
-				if(o.frommno == memberInfo.mno){
+				if(o.frommno == memberInfo.mno){ //보낸사람과 로그인된사람과 일치시
 					chathtml += `<div class="sendbox">${o.ncontent}</div>`
-				}else{
+				}else { 
 					chathtml += `<div class="receivebox">${o.ncontent}</div>`
 				}
-			})
+			})//foreach e
 			
-		}
-	})
+		}//success e
+	})//ajax e
+	document.querySelector('.chatcontent').innerHTML = chathtml;
+}
+
+//11
+function chatinfoprint(i, tomno){
+	console.log( tomno + '에게 메세지 전송 페이지' );
+	//전역변수에 담기
+	index = i;
+	chatmno = tomno;
 	
+	let p = productList[index];
 	
 	
 	let html = `
@@ -319,30 +320,54 @@ function chatprint(i){
 				</div>
 				
 				<div class="chatcontent">
-					${ chathtml }
+				
+					
 				</div>
 				
 				<div class="chatbtn">
 					<textarea rows="" cols="" class="ncontentinput"></textarea>
-					<button type="button" onclick="sendchat(${p.pno}, ${p.mno})"> 전송 </button>
+					<button type="button" onclick="sendchat(${p.pno})"> 전송 </button>
 				</div>
 				
 			</div>	<!-- chatbox -->
 			`
 	document.querySelector('.productlistbox').innerHTML = html;
+	getcontent();
+}
+
+//3.채팅페이지 이동 [로그인, 등록자인지 검사 ]
+function chatprint(i){
+	
+	if(memberInfo.mid == null){ // 로그인검사
+		alert('회원기능 입니다.'); return;
+	}
+	
+	let p = productList[i];
+	console.log(p)
+	
+	if(memberInfo.mno == p.mno){ // 만약에 등록한 회원이면
+		alert('본인이 등록한 제품입니다.')
+		chatlistprint( i ); //9.채팅목록으로 이동
+		return;
+	}
+	//만약에 등록한 회원이 아니면 [ 구매자 ] : 
+	chatinfoprint( i , p.mno); //구매자입장 (받는사람 )
+	
+	
 }
 
 //채팅 보내기
-function sendchat (pno, tomno){
+function sendchat (pno){
 	let ncontent = document.querySelector('.ncontentinput').value;
 	$.ajax({
 		url:"/jspWeb/product/chat",
 		method:"post",
-		data: {"pno":pno, "ncontent":ncontent, "tomno":tomno},
+		data: {"pno":pno, "ncontent":ncontent, "tomno":chatmno},
 		success:(r)=>{
 			console.log(r)
 			if(r == "true"){
 				document.querySelector('.ncontentinput').value = '';
+				getcontent();
 				
 			}
 		}
