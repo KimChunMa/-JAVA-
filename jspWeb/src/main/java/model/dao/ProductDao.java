@@ -15,8 +15,8 @@ public class ProductDao extends Dao{
 	private ProductDao() {}
 	public static ProductDao getInstance() {return dao;}
 	
-	//1. 제품 등록
-	public boolean write (ProductDto dto) {
+	//1. 제품 등록 [  synchronized : 멀티스레드 사용시 (서블릿) 해당 메소드 동시불가 대기만들기 = await ]
+	public synchronized boolean write (ProductDto dto) {
 		String sql = "insert into product(pname, pcomment, pprice , plat , plng, mno) " +
 					" values(?,?,?,?,?,?) ";
 		
@@ -45,7 +45,7 @@ public class ProductDao extends Dao{
 	}
 	
 	//2.제품 호출
-	public ArrayList<ProductDto> getProductList( String 동, String 서 , String 남 , String 북){
+	public synchronized  ArrayList<ProductDto> getProductList( String 동, String 서 , String 남 , String 북){
 		String sql = "SELECT  p.*, m.mid, m.mimg FROM product p natural join member m  "
 				+ " where "+동+" >= plng and "+서+" <= plng "
 				+ " and "+남+" <= plat and "+북+" >= plat";
@@ -84,7 +84,7 @@ public class ProductDao extends Dao{
 	}
 	
 	// 3. 찜하기 등록 / 취소
-	public boolean setplike(int pno , int mno) {
+	public synchronized  boolean setplike(int pno , int mno) {
 		//1. 등록할지 취소할지 검색 먼저
 		String sql = "select * from plike "
 				+ " where pno = "+pno+" and mno = "+mno;
@@ -108,7 +108,7 @@ public class ProductDao extends Dao{
 	}
 	
 	//4. 현재 회원이 해당 제품의 찜하기 상태 확인
-	public boolean getplikc(int pno, int mno) {
+	public synchronized  boolean getplikc(int pno, int mno) {
 		//1. 등록할지 취소할지 검색 먼저
 		String sql = "select * from plike "
 				   + " where pno = "+pno+" and mno = "+mno;
@@ -123,7 +123,7 @@ public class ProductDao extends Dao{
 	}
 	
 	//5. 채팅창 보내기 
-	public boolean setChat(ChatDto dto) {
+	public synchronized  boolean setChat(ChatDto dto) {
 		String sql = "insert into note(ncontent, pno, frommno, tomno) value(?,?,?,?)";
 		
 		try {
@@ -140,7 +140,7 @@ public class ProductDao extends Dao{
 	}
 	
 	//6. 제품에 등록 채팅 [제품번호 일치, 현재보고있는 회원[로그인된 회원], 받거나 보낸내용  ]
-	public ArrayList<ChatDto> getChatList(int pno, int mno , int chatmno){
+	public synchronized  ArrayList<ChatDto> getChatList(int pno, int mno , int chatmno){
 		
 		ArrayList<ChatDto> list = new ArrayList<>();
 		

@@ -23,7 +23,8 @@ public class ProductChat extends HttpServlet {
        
     public ProductChat() {
     }
-
+    
+    //채팅창 얻기
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int pno = Integer.parseInt( request.getParameter("pno"));
 		int mno  = MemberDao.getInstance().getMno( (String)request.getSession().getAttribute("login") );
@@ -37,6 +38,7 @@ public class ProductChat extends HttpServlet {
 		response.getWriter().print(jsonArray);
 	}
 	
+	//채팅 넣기
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String 쪽지내용 = request.getParameter("ncontent");
 		int 제품번호  = Integer.parseInt( request.getParameter("pno"));
@@ -50,7 +52,9 @@ public class ProductChat extends HttpServlet {
 		//만약 채팅등록이 성공 했으면 tomno에게 소켓알림 메세지 보내기
 		if(result) {
 			try {
-				Alarm.서버메세지(null, null);
+			  //서버소켓에게 채팅을 받은 유저의 번호와 내용을 전달
+			  
+			  Alarm.서버메세지(null, 받는회원번호+","+쪽지내용);
 			} catch (Exception e) {System.out.println(e);}
 		}
 		

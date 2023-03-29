@@ -299,3 +299,19 @@ html , body{
 .frommid{ font-weight: bold; }
 
 .fromncontent{ font-size:12px; }
+
+/* ㅡㅡㅡㅡㅡㅡㅡㅡ 알림모달 창 ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ*/
+.msgbox{
+	width:200px;
+	border:1px solid red;
+	background-color: white;
+	height:100px;
+	position: fixed;
+	left:1%;
+	bottom:-100px;
+	z-index:300;
+	opacity: 0.8;
+	
+	/* 애니메이션 효과 (css변화 시간)*/
+	transition : 1s;
+}

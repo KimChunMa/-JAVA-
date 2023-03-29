@@ -35,6 +35,12 @@
 	
 	<%	} %>  --%>
 	
+	<div class="msgbox">
+		메세지 도착했어요
+	</div>
+	
+	
+	
 	<div class="container">
 		<div class="header">
 			<!-- 로고 -->
