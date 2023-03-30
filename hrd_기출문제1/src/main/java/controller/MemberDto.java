@@ -9,7 +9,10 @@ public class MemberDto {
 	private String grade; // 고객등급
 	private int city ; //  거주도시
 	
+	//추가
+	private int psum ; //총매출액
 	
+
 	public MemberDto(int custno, String custname, String phone, String address, String joindate, String grade,
 			int city) {
 		super();
@@ -21,6 +24,25 @@ public class MemberDto {
 		this.grade = grade;
 		this.city = city;
 	}
+	
+	
+	public MemberDto(int custno, String custname, String grade, int psum) {
+		super();
+		this.custno = custno;
+		this.custname = custname;
+		this.grade = grade;
+		this.psum = psum;
+	}
+
+
+	public int getPsum() {
+		return psum;
+	}
+
+	public void setPsum(int psum) {
+		this.psum = psum;
+	}
+
 	
 	public int getCustno() {
 		return custno;

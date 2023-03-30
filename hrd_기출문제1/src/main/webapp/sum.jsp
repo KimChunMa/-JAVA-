@@ -1,3 +1,6 @@
+<%@page import="controller.MemberDto"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="controller.Dao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,7 +11,30 @@
 </head>
 <body>
 	<%@ include file ="header.jsp" %>
-	통계
+	
+	
+	<center>
+	<table border="1">
+		<tr>
+			<td> 회원번호 </td> <td> 회원성명 </td>
+			<td> 고객등급 </td> <td> 매출 </td>
+		</tr>
+		<tr>	
+			<% Dao dao = new Dao();
+				ArrayList<MemberDto> result = dao.getsum();
+				for(MemberDto dto : result){
+				%>
+				
+				<td> <%=dto.getCustno()%></td> <td> <%=dto.getCustname()%></td>
+				<td> <%=dto.getGrade()%></td> <td> <%=dto.getPsum()%></td>
+		</tr>
+			<%} %>
+	</table>
+	
+	</center>
+	
+	
+	
 	<%@ include file ="footer.jsp" %>
 </body>
 </html>

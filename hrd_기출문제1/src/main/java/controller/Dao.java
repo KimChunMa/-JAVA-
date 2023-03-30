@@ -88,5 +88,69 @@ public class Dao {
 		return mlist;
 	}
 	
+	//4. 특정회원 출력
+	public MemberDto getmember(int custno) {
+		String sql = "select *from member_tbl_02 where custno = "+custno;
+		
+		try {
+			ps=con.prepareStatement(sql);
+			rs=ps.executeQuery();
+			
+			if(rs.next()) {
+				MemberDto dto = new MemberDto( rs.getInt(1), rs.getString(2),
+				rs.getString(3),  rs.getString(4),  rs.getString(5),
+				rs.getString(6),  rs.getInt(7));
+				
+				return dto;
+			}
+		} catch (SQLException e) {System.err.println(e);}
+		
+		return null;
+	}
 	
+	//5. 회원수정
+	public boolean update(MemberDto dto) {
+		String sql ="update member_tbl_02 set "
+				+ " custno = ? , custname = ?, "
+				+" phone = ? , address = ? , "
+				+" joindate = ? ,  grade = ? , city = ? where custno = ?   ";
+		
+		try {
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, dto.getCustno());
+			ps.setString(2, dto.getCustname());
+			ps.setString(3, dto.getPhone());
+			ps.setString(4, dto.getAddress());
+			ps.setString(5, dto.getJoindate());
+			ps.setString(6, dto.getGrade());
+			ps.setInt(7, dto.getCity());
+			ps.setInt(8, dto.getCustno());
+			
+			ps.executeUpdate(); return true;
+			
+		} catch (SQLException e) {System.out.println(e);}
+		
+		return false;
+	}
+	
+	//6 회원별 매출
+	public ArrayList<MemberDto> getsum(){
+		String sql ="select m.custno , m.custname, if(m.grade = 'A', 'VIP' ,if(m.grade='B' , '일반', '직원')) as g , \r\n"
+				+ " sum(mo.price) as psum "
+				+ " from member_tbl_02 m natural join money_tbl_02 mo "
+				+ " group by (m.custno ) "
+				+ " order by sum(mo.price) desc; ";
+		
+		ArrayList<MemberDto> list = new ArrayList<>();
+		
+		try {
+			ps=con.prepareStatement(sql); rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				list.add( new MemberDto (rs.getInt(1), rs.getString(2),
+						rs.getString(3), rs.getInt(4)));
+			}
+		} catch (SQLException e) {System.out.println(e);}
+			return list;	
+	}
 }

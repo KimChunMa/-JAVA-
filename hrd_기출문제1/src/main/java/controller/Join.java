@@ -20,10 +20,24 @@ public class Join extends HttpServlet {
     public Join() { super(); }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		
-		 ArrayList<MemberDto> result = new Dao().m_Print();
-		 System.out.println( result );
+		int custno = Integer.parseInt( request.getParameter("custno"));
+		System.out.println(custno);
+		
+		String custname = request.getParameter("custname");
+		System.out.println( custname );
+		String phone = request.getParameter("phone");
+		String address = request.getParameter("address");
+		String joindate = request.getParameter("joindate");
+		String grade = request.getParameter("grade");
+		int city = Integer.parseInt( request.getParameter("city"));
+		
+		MemberDto dto = new MemberDto(custno, custname, phone, address, joindate, grade, city);
+		Dao dao = new Dao(); dao.update(dto);
+		response.sendRedirect("/hrd_exam1/join.jsp?custno="+custno);
+		
 	}
 
 	
@@ -52,7 +66,6 @@ public class Join extends HttpServlet {
 
 	
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 
