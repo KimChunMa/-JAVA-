@@ -1,3 +1,6 @@
+<%@page import="controller.Dao"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,11 +11,23 @@
 </head>
 <body>
 	<%@ include file ="header.jsp" %>
+	
+	<% 
+		//jsp 이용한 서블릿 대체
+		Dao dao = new Dao();
+		int sustno = dao.getcustno();
+		
+		//2. 오늘날짜
+		Date date = new Date();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+		String now = sdf.format(date);
+	%>
+	
 	<center> 
-	<form name="joinform" action="서블릿 주소" method="post"> 
+	<form name="joinform" action="/hrd_exam1/join" method="post"> 
 	<table border="1">
 		<tr>
-			<th> 회원번호(자동발생)</th> <td> <input type="text" name="custno"> </td>
+			<th> 회원번호(자동발생)</th> <td> <input type="text" name="custno" value=<%=sustno%>> </td>
 		</tr>
 		
 		<tr>
@@ -28,7 +43,7 @@
 		</tr>
 		
 		<tr>
-			<th> 가입일자 </th> <td> <input type="text"  name="joindate"> </td>
+			<th> 가입일자 </th> <td> <input type="text"  name="joindate" value=<%=now%>> </td>
 		</tr>
 		
 		<tr>
