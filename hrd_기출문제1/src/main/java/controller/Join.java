@@ -36,7 +36,7 @@ public class Join extends HttpServlet {
 		
 		MemberDto dto = new MemberDto(custno, custname, phone, address, joindate, grade, city);
 		Dao dao = new Dao(); dao.update(dto);
-		response.sendRedirect("/hrd_exam1/join.jsp?custno="+custno);
+		response.sendRedirect("/hrd_exam1/view.jsp");
 		
 	}
 
