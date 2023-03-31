@@ -1,3 +1,47 @@
+/* 
+	해당객체의 필드명만 호출
+	Object.keys(객체명) : 객체내 모든 필드명 / 키 배열로 호출
+*/
+
+const ctx = document.getElementById('myChart');
+
+$.get("/jspWeb/point" , (r) => {
+	console.log(r);
+	console.log(Object.keys(r));
+	console.log(Object.values(r));
+
+//----------------------- chart.js 차트-------------------------
+	//new Chart ('dom객체' , {차트옵션});
+	// {type: '차트이름', data: {차트에 표시할 데이터} , option : {차트옵션}}
+	// labels : 가로축
+	
+	
+ 
+
+  new Chart(ctx, {
+    type: 'line', //bar : 막대 , line : 선차트
+    data: {
+      labels: Object.keys(r), //날짜 필드
+      datasets: [
+		{
+        label: '포인트 충전 내역',
+        data: Object.values(r), //데이터 값
+        borderWidth: 2
+     	}
+      ]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+})
+
+
 let pageObject = {
 	page:1,
 	listsize:2,

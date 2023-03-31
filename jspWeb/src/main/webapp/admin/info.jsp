@@ -17,6 +17,14 @@
 </head> 
 <body>
 	<%@ include file = "/header.jsp" %>
+	
+	<h3> char.js 사용 </h3>
+	<div>
+	  <canvas id="myChart"></canvas>
+	</div>
+	
+	
+	
 	<h3> 모든 회원 명단 </h3>
 	
 	총회원수 <span class="mcount"></span> <br/>
@@ -49,6 +57,8 @@
 	<div class="pagebtn">
 	</div>
 	
+	<!-- chartjs.js -->
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	
 	<script src="/jspWeb/js/admin/info.js" ></script>
 	
